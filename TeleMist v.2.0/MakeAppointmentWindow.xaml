@@ -10,10 +10,10 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
+           
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
@@ -21,23 +21,31 @@
         <Grid.RowDefinitions>
             
             <RowDefinition Height="10"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         
         <!--Row 1-->
-        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
+        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
             Записатися на прийом до
             <LineBreak/>Авдієва Г. П., сімейний лікар-терапевт вищої категорії
 
         </TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">Оберіть дату</TextBlock>
-        <DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2"></DatePicker>
-        <Border CornerRadius="5" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4" Background="#feb83f">
-            
+        <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1">Оберіть дату</TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"></DatePicker>
+        <TextBlock Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1">Вільний час на</TextBlock>
+        <Border CornerRadius="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Background="#feb83f">
+            <WrapPanel Orientation="Horizontal">
+                <TextBlock>kekffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</TextBlock>
+                <TextBlock>kekfffffffffffffffffffffffffffffffffffffffff</TextBlock>
+                
+            </WrapPanel>
+
         </Border>
         </Grid>
 </Window>

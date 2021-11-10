@@ -7,10 +7,52 @@
     <Style TargetType="Window">
         <Setter Property="Background" Value="#F5f5f5"/>
     </Style>
+
+    <Style x:Key="CancelButton" TargetType="Button">
+        <Setter Property="BorderBrush" Value="Red"/>
+        <Setter Property="Width" Value="90"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock FontSize="14">
+                    Скасувати прийом
+                </TextBlock>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0.5,0" SpreadMethod="Reflect" Opacity="0.3">
+                    <GradientStop Color="Red" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                    <GradientStop Color="Transparent" Offset="0.555"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}"
+                                BorderThickness="1" BorderBrush="red">
+                        <ContentPresenter 
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                             />
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="StyleButton" TargetType="Button">
         <Setter Property="Background" Value="#6C55E4"/>
         <Setter Property="Foreground" Value="#f5f5f5"/>
-        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="200"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -50,9 +92,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
+    
+    <Style x:Key="AppointmentMadeButton" TargetType="Button" BasedOn="{StaticResource StyleButton}">
+        <Setter Property="Background" Value="#feb83f"/>
+        <Setter Property="Foreground" Value="#373737"/>
+        <Setter Property="Content" Value="Вас записано на прийом"/>
+    </Style>
+    
     <Style TargetType="TabItem">
-   
         <Setter Property="MinWidth" Value="200"/>
         <Setter Property="MinHeight" Value="40"/>
         <Setter Property="Foreground" Value="#f5f5f5"/>
@@ -84,7 +131,7 @@
     </Style>
 
     <Style  TargetType="TextBlock">
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -99,12 +146,16 @@
     
     <Style TargetType="TextBox">
         <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="35"/>
     </Style>
     
     <Style TargetType="PasswordBox">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="35"/>
     </Style>
 
     <Style TargetType="CheckBox">

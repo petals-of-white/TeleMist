@@ -17,8 +17,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="45"/>
@@ -38,20 +38,21 @@
 
                             <Image Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\reload_arrow.png"/>
                         </Button.Content>
-                        
+
 
                     </Button>
                 </Grid>
                 <ScrollViewer>
                     <StackPanel Orientation="Vertical">
-                        
+
                         <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
                             <Grid ShowGridLines="True">
 
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -59,19 +60,23 @@
                                 </Grid.RowDefinitions>
                                 <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                 <TextBlock Grid.Column="1" > Авдієва Г. П.</TextBlock>
-                                <TextBlock Grid.Column="2"></TextBlock>
-                                <Button Grid.Column="3" Style="{StaticResource StyleButton}" Margin="20,5" MaxHeight="55" MinWidth="150">Записатися на прийом</Button>
+                                <TextBlock Grid.Column="2">21.04.2021 о 13:40</TextBlock>
+                                <Button Grid.Column="3" Style="{StaticResource AppointmentMadeButton}"></Button>
+                                <Button Grid.Column="4" Style="{StaticResource CancelButton}">
+                                      
+                                </Button>
                             </Grid>
                         </Border>
-                        
-                        
+
+
                         <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
                             <Grid ShowGridLines="True">
 
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -80,15 +85,15 @@
                                 <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                 <TextBlock Grid.Column="1" >Поліщук І. М.</TextBlock>
                                 <TextBlock Grid.Column="2"></TextBlock>
-                                <Button Grid.Column="3" Style="{StaticResource StyleButton}" Margin="20,5" MaxHeight="55" MinWidth="150">Записатися на прийом</Button>
+                                <Button Grid.Column="3" Style="{StaticResource StyleButton}">Записатися на прийом</Button>
                             </Grid>
                         </Border>
-                        
-             
+
+
                         <StackPanel Orientation="Vertical">
-                            
+
                         </StackPanel>
-                        
+
 
                     </StackPanel>
                 </ScrollViewer>
@@ -120,9 +125,10 @@
                         <Grid ShowGridLines="True">
 
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -131,11 +137,11 @@
                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                             <TextBlock Grid.Column="1" >Поліщук І. М.</TextBlock>
                             <TextBlock Grid.Column="2">15.04.2021</TextBlock>
-                            <Button MinHeight="45" Grid.Column="3" Style="{StaticResource StyleButton}" Margin="20,5" MaxHeight="55" MinWidth="150">Переглянути деталі</Button>
+                            <Button  Grid.Column="3" Style="{StaticResource StyleButton}" Margin="20,5" >Переглянути деталі</Button>
                         </Grid>
                     </ScrollViewer>
                 </Border>
-                
+
             </StackPanel>
         </TabItem>
         <TabItem Header="Профіль">
@@ -160,7 +166,7 @@
                     <ColumnDefinition Width="10"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-            
+
                 <TextBlock Grid.Row="1" Grid.Column="1">Прізвище</TextBlock>
                 <TextBox Grid.Row="1" Grid.Column="2"></TextBox>
 
@@ -174,21 +180,21 @@
 
 
                 <TextBlock Grid.Row="4" Grid.Column="1">Стать</TextBlock>
-                <TextBox Grid.Row="4" Grid.Column="2"></TextBox>
-                
-                
-                
+                <TextBox Grid.Row="4" Grid.Column="2">Чоловік</TextBox>
+
+
+
                 <TextBlock Grid.Row="5" Grid.Column="1">Дата народження</TextBlock>
-                <TextBox Grid.Row="5" Grid.Column="2"></TextBox>
-                
+                <DatePickerTextBox Grid.Row="5" Grid.Column="2"></DatePickerTextBox>
+
                 <TextBlock Grid.Row="6" Grid.Column="1">Місце проживання</TextBlock>
                 <TextBox Grid.Row="6" Grid.Column="2"></TextBox>
-                
+
                 <TextBlock Grid.Row="7" Grid.Column="1">Страховий поліс / Спеціялізація лікаря</TextBlock>
                 <TextBox Grid.Row="7" Grid.Column="2"></TextBox>
 
                 <Button Style="{StaticResource StyleButton}" Grid.Row="7" Grid.Column="4">Зберегти</Button>
-                
+
             </Grid>
         </TabItem>
     </TabControl>

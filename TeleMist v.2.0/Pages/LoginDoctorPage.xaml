@@ -40,7 +40,7 @@
             Будь ласка, уведіть свій DoctorID і пароль
 
         </TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="15,7,15,7"/>
+        <TextBox Grid.Row="3" Grid.Column="1"/>
         <PasswordBox Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
         <Button Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"
                 HorizontalAlignment="Stretch" Margin="15,20,15,0"
