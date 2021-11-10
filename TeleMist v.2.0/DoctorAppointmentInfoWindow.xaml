@@ -1,0 +1,55 @@
+﻿<Window x:Class="TeleMist_v._2._0.DoctorAppointmentInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeleMist_v._2._0"
+        mc:Ignorable="d"
+        Title="DoctorAppointmentInfoWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="1" Grid.Column="2">Інформація про прийом</TextBlock>
+       
+        <!-- Рядок 2-->
+        <TextBlock Grid.Row="2" Grid.Column="1">Пацієнт</TextBlock>
+        
+
+        <!-- Рядок 3-->
+        <TextBlock Grid.Row="3" Grid.Column="1">Причина звернення</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2"></TextBox>
+
+        <!-- Рядок 4-->
+        <TextBlock Grid.Row="4" Grid.Column="1">Скарги</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="2"></TextBox>
+
+        <!-- Рядок 5-->
+        <TextBlock Grid.Row="5" Grid.Column="1">Установленні діягнози</TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="2"></TextBox>
+        
+        <!-- Рядок 6-->
+        <TextBlock Grid.Row="6" Grid.Column="1">Призначення</TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="2"></TextBox>
+        
+        <!-- Рядок 7-->
+        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource StyleButton}">Зберегти</Button>
+        
+    </Grid>
+</Window>

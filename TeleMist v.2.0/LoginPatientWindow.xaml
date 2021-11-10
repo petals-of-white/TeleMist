@@ -1,0 +1,45 @@
+﻿<Window x:Class="TeleMist_v._2._0.LoginPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeleMist_v._2._0"
+        mc:Ignorable="d"
+        Title="LoginPatientWindow" Height="450" Width="800">
+    <Grid ShowGridLines="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MinWidth="330"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--End of Grid-->
+        <!--Ідемо згори донизу-->
+        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/лого.png"></Image>
+        <TextBlock x:Name="Kek" HorizontalAlignment="Stretch"
+               VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
+                   TextWrapping="WrapWithOverflow" TextAlignment="Center">
+            Вітаємо, пацієнте.
+            Будь ласка, уведіть свій PatientID і пароль
+
+        </TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Margin="15,7,15,7"/>
+        <PasswordBox Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
+        <Button Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
+                HorizontalAlignment="Stretch" Margin="15,0,15,0"
+                
+                Style="{StaticResource StyleButton}"/>
+        <TextBlock Foreground="Red" FontSize="13" Grid.Row="6" Grid.Column="1">Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
+        </TextBlock>
+    </Grid>
+</Window>

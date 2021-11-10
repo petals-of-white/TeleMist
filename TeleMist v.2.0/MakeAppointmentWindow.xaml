@@ -1,0 +1,43 @@
+﻿<Window x:Class="TeleMist_v._2._0.MakeAppointmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeleMist_v._2._0"
+        mc:Ignorable="d"
+        Title="MakeAppointmentWindow" Height="450" Width="800">
+        
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
+        <!--Row 1-->
+        <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
+            Записатися на прийом до
+            <LineBreak/>Авдієва Г. П., сімейний лікар-терапевт вищої категорії
+
+        </TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">Оберіть дату</TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2"></DatePicker>
+        <Border CornerRadius="5" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4" Background="#feb83f">
+            
+        </Border>
+        </Grid>
+</Window>
