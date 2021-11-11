@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="ConfirmCallWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Text="Ви справді бажаєте почати консультацію з *Ім'я лікаря чи пацієнта*?
+                   ">  
+            
+        </TextBlock>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource YellowButton}">Так</Button>
+        <Button Grid.Row="3" Grid.Column="3" Style="{StaticResource PurpleButton}">Ні</Button>
+        <Button></Button>
         
     </Grid>
 </Window>

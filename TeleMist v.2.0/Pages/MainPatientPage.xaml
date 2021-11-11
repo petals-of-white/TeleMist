@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TeleMist_v._2._0.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="900"
       Title="MainPatientPage"
       Background="#F5f5f5"
       >
@@ -52,7 +52,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto" MinWidth="90"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -75,7 +75,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="3*"/>
                                     <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto" MinWidth="90"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
@@ -84,7 +84,7 @@
                                 <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                 <TextBlock Grid.Column="1" >Поліщук Іван Миколайович</TextBlock>
                                 <TextBlock Grid.Column="2"></TextBlock>
-                                <Button Grid.Column="3" Style="{StaticResource StyleButton}">Записатися на прийом</Button>
+                                <Button Grid.Column="3" Style="{StaticResource OpenAppointmentDialogueWindow}">Записатися на прийом</Button>
                             </Grid>
                         </Border>
 
@@ -139,7 +139,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto" MinWidth="90"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -148,7 +148,7 @@
                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                             <TextBlock Grid.Column="1" >Поліщук І. М.</TextBlock>
                             <TextBlock Grid.Column="2">15.04.2021</TextBlock>
-                            <Button  Grid.Column="3" Style="{StaticResource StyleButton}" Margin="20,5" >Переглянути деталі</Button>
+                            <Button  Grid.Column="3" Style="{StaticResource ShowAppointmentDetailsButton}" Margin="20,5" >Переглянути деталі</Button>
                         </Grid>
                     </ScrollViewer>
                 </Border>
@@ -172,7 +172,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="10"></ColumnDefinition>
@@ -180,15 +180,15 @@
 
 
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ProfileFields}">Прізвище</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="2"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
 
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ProfileFields}">Ім'я</TextBlock>
-                <TextBox Grid.Row="2" Grid.Column="2"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
 
                 <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ProfileFields}">По батькові</TextBlock>
-                <TextBox Grid.Row="3" Grid.Column="2"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
 
                 <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource ProfileFields}">Стать</TextBlock>
@@ -206,10 +206,10 @@
 
 
                 <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource ProfileFields}">Місце проживання</TextBlock>
-                <TextBox Grid.Row="6" Grid.Column="2"></TextBox>
+                <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
                 <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
-                <TextBox Grid.Row="7" Grid.Column="2"></TextBox>
+                <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
                 <Button Style="{StaticResource StyleButton}" Grid.Row="8" Grid.Column="4">Зберегти</Button>
 

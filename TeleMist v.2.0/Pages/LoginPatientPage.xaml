@@ -39,7 +39,7 @@
             Будь ласка, уведіть свій PatientID і пароль
 
         </TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
         <PasswordBox Grid.Row="4" Grid.Column="1"/>
         <Button Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"

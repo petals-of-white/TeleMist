@@ -6,6 +6,7 @@
     <System:Int32 x:Key="ButtonHeight">30</System:Int32>
     <Style TargetType="Window">
         <Setter Property="Background" Value="#F5f5f5"/>
+        <Setter Property="FontSize" Value="16"/>
     </Style>
 
     <Style x:Key="CancelButton" TargetType="Button">
@@ -48,7 +49,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="StyleButton" TargetType="Button">
+    <Style x:Key="PurpleButton" TargetType="Button">
         <Setter Property="Background" Value="#6C55E4"/>
         <Setter Property="Foreground" Value="#f5f5f5"/>
         <Setter Property="Height" Value="35"/>
@@ -91,6 +92,17 @@
                 <!--<Setter Property="Height" Value=""/>-->
             </Trigger>
         </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="StyleButton" TargetType="Button" BasedOn="{StaticResource PurpleButton}">
+    
+    </Style>
+    <Style x:Key="ShowAppointmentDetailsButton" TargetType="Button" BasedOn="{StaticResource PurpleButton}">
+        <EventSetter Event="Click" Handler="ShowAppointmentDetailsButton_Click"/>
+    </Style>
+    <Style x:Key="OpenAppointmentDialogueWindow" TargetType="Button" BasedOn="{StaticResource PurpleButton}">
+
+        <EventSetter Event="Click" Handler="OpenAppointmentDialogueClick"/>
     </Style>
 
     <Style x:Key="CalendarDayButton" TargetType="CalendarDayButton">
@@ -135,15 +147,17 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
 
-   
-    <Style x:Key="AppointmentMadeButton" TargetType="Button" BasedOn="{StaticResource StyleButton}">
+
+    <Style x:Key="YellowButton" TargetType="Button" BasedOn="{StaticResource PurpleButton}">
         <Setter Property="Background" Value="#feb83f"/>
         <Setter Property="Foreground" Value="#373737"/>
-        <Setter Property="Content" Value="Вас записано на прийом"/>
     </Style>
-    
+
+    <Style x:Key="AppointmentMadeButton" TargetType="Button" BasedOn="{StaticResource YellowButton}">
+        <Setter Property="Content" Value="Вас записано на прийом"/>
+        <EventSetter Event="Click"  Handler="OpenCallWindowButton_Click"/>
+    </Style>
     <Style TargetType="TabItem">
         <Setter Property="Width" Value="160"/>
         <Setter Property="Height" Value="30"/>
@@ -197,15 +211,31 @@
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    
-    <Style TargetType="TextBox">
-        <Setter Property="TextAlignment" Value="Center"/>
+
+    <Style TargetType="TextBox" x:Key="AbstractBox">
         <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style TargetType="TextBox" x:Key="RegularBox" BasedOn="{StaticResource AbstractBox}">
+        <!--<Setter Property="FontSize" Value="16"/>-->
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="Margin" Value="0,6"/>
+
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="LockedBox" BasedOn="{StaticResource RegularBox}">
+        <Setter Property="IsReadOnly" Value="True"/>
+
+    </Style>
+    <Style TargetType="TextBox" BasedOn="{StaticResource AbstractBox}" x:Key="SmallBox">
+        <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
-    
+
+
     <Style TargetType="PasswordBox">
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
@@ -224,8 +254,10 @@
         <Setter Property="FlowDirection" Value="RightToLeft"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
-
+    
+    
     <Style TargetType="Calendar" x:Key="EnhancedCalendar">
+        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CalendarDayButton}"/>
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -237,5 +269,14 @@
             </Setter.Value>
         </Setter>
     </Style>
- 
+
+    <Style TargetType="DatePicker">
+        <Setter Property="FontSize" Value="16"/>
+     
+        <Setter Property="CalendarStyle" Value="{StaticResource EnhancedCalendar}"/>
+    </Style>
+
+    <Style TargetType="MediaElement">
+        <Setter Property="Source" Value="W:\гей була в мене коняк.mp4"/>
+    </Style>
 </ResourceDictionary>

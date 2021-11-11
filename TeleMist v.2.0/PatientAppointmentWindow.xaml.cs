@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace TeleMist_v._2._0
 {
     /// <summary>
-    /// Interaction logic for AppointmentWindow.xaml
+    /// Interaction logic for PatientAppointmentWindow.xaml
     /// </summary>
-    public partial class AppointmentWindow : Window
+    public partial class PatientAppointmentWindow : Window
     {
-        public AppointmentWindow()
+        public PatientAppointmentWindow()
         {
             InitializeComponent();
         }
