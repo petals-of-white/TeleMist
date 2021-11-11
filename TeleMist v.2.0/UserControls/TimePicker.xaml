@@ -6,17 +6,14 @@
              xmlns:local="clr-namespace:TeleMist_v._2._0.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="#f5f5f5">
-    <ItemsControl>
+
+    <ItemsControl ItemsSource="{Binding AllAppointmentHours}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <UniformGrid Columns="5"/>
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Button Content="{Binding}" Margin="0,0,5,5" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-        <TextBlock>fdf</TextBlock>
+        
     </ItemsControl>
+
 </UserControl>

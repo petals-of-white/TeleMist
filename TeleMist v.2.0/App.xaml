@@ -19,7 +19,7 @@
         </DataTemplate>-->
         
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type viewmodels:GreetingViewModel}">
+            <!--<DataTemplate DataType="{x:Type viewmodels:GreetingViewModel}">
                 <views:GreetingView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginDoctorViewModel}">
@@ -27,7 +27,7 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginPatientViewModel}">
                 <views:LoginPatientView/>
-            </DataTemplate>
+            </DataTemplate>-->
 
             
             <ResourceDictionary.MergedDictionaries>

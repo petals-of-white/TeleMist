@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist_v._2._0"
         mc:Ignorable="d"
-        Title="Запис на прийом" Height="539" Width="816">
+        Title="Запис на прийом" Height="539" Width="816"
+        xmlns:bob="clr-namespace:TeleMist_v._2._0.UserControls"
+        >
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -48,15 +50,11 @@
             
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2">
-            <WrapPanel Orientation="Horizontal">
-                <TextBlock>kekffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</TextBlock>
-                <TextBlock>kekfffffffffffffffffffffffffffffffffffffffff<Bold>sdf</Bold></TextBlock>
-
-            </WrapPanel>
+            <bob:TimePicker></bob:TimePicker>
 
         </Border>
 
 
-        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource AppointmentMadeButton}">Записатись</Button>
+        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource YellowButton}">Записатись</Button>
     </Grid>
 </Window>

@@ -48,7 +48,7 @@
         </Grid>
         
         
-        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource YellowButton}">Заповнити форму</Button>
+        <Button Grid.Row="4" Grid.Column="1" Style="{StaticResource FillAppointmentInfoButton}">Заповнити форму</Button>
         
         <Button Grid.Row="4" Grid.Column="4" Style="{StaticResource PurpleButton}">Завершити</Button>
     </Grid>

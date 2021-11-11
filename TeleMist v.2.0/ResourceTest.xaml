@@ -212,6 +212,9 @@
         <Setter Property="BorderThickness" Value="0"/>
     </Style>
 
+    <Style TargetType="Button" x:Key="FillAppointmentInfoButton" BasedOn="{StaticResource YellowButton}">
+        <EventSetter Event="Click" Handler="FillAppointmentInfoButton_Click"/>
+    </Style>
     <Style TargetType="TextBox" x:Key="AbstractBox">
         <Setter Property="FontSize" Value="16"/>
     </Style>
@@ -278,5 +281,16 @@
 
     <Style TargetType="MediaElement">
         <Setter Property="Source" Value="W:\гей була в мене коняк.mp4"/>
+    </Style>
+
+
+    <Style TargetType="Button" x:Key="UnavailableTimeButton">
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="AvailableTimeButton">
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Background" Value="Gray"/>
     </Style>
 </ResourceDictionary>
