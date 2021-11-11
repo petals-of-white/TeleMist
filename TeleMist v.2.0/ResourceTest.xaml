@@ -9,14 +9,14 @@
     </Style>
 
     <Style x:Key="CancelButton" TargetType="Button">
-        <Setter Property="BorderBrush" Value="Red"/>
+        <Setter Property="BorderBrush" Value="#ba263a"/>
         <Setter Property="Width" Value="90"/>
-        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Foreground" Value="#ba263a"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="80"/>
         <Setter Property="Content">
             <Setter.Value>
-                <TextBlock FontSize="14">
+                <TextBlock FontSize="14" Padding="0,0,0,0" LineHeight="15" LineStackingStrategy="BlockLineHeight">
                     Скасувати прийом
                 </TextBlock>
             </Setter.Value>
@@ -25,18 +25,18 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0.5,0" SpreadMethod="Reflect" Opacity="0.3">
-                    <GradientStop Color="Red" Offset="0"/>
+                    <GradientStop Color="#ba263a" Offset="0"/>
                     <GradientStop Color="Transparent" Offset="1"/>
                     <GradientStop Color="Transparent" Offset="0.555"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="5" Background="{TemplateBinding Background}"
-                                BorderThickness="1" BorderBrush="red">
+                                BorderThickness="1" BorderBrush="#ba263a">
                         <ContentPresenter 
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
@@ -67,9 +67,9 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
+
         <Style.Triggers>
-           
+
             <!--<EventTrigger RoutedEvent="MouseLeftButton"></EventTrigger>-->
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Template">
@@ -92,7 +92,52 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="CalendarDayButton" TargetType="CalendarDayButton">
+        
+       <Setter Property="Width" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}"
+                                BorderThickness="1">
+
+                        <ContentPresenter 
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" Background="#6C55E4"
+                                BorderThickness="1">
+                                <ContentPresenter 
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                             />
+                            </Border>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     
+
+   
     <Style x:Key="AppointmentMadeButton" TargetType="Button" BasedOn="{StaticResource StyleButton}">
         <Setter Property="Background" Value="#feb83f"/>
         <Setter Property="Foreground" Value="#373737"/>
@@ -100,8 +145,8 @@
     </Style>
     
     <Style TargetType="TabItem">
-        <Setter Property="MinWidth" Value="200"/>
-        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="Width" Value="160"/>
+        <Setter Property="Height" Value="30"/>
         <Setter Property="Foreground" Value="#f5f5f5"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -135,8 +180,17 @@
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+
     </Style>
 
+    <Style TargetType="TextBlock" x:Key="ProfileFields">
+        
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        
+    </Style>
     <Style TargetType="Button" x:Key="TextButton">
 
         <Setter Property="Foreground" Value="#F3b83f"/>
@@ -149,6 +203,7 @@
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="35"/>
+        <Setter Property="Margin" Value="5"/>
     </Style>
     
     <Style TargetType="PasswordBox">
@@ -157,48 +212,30 @@
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="35"/>
     </Style>
+    
+   
+    <Style TargetType="ComboBox">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
 
     <Style TargetType="CheckBox">
-        
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FlowDirection" Value="RightToLeft"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <!--<Setter Property="LayoutTransform">
-            
-        </Setter>-->
-        <!--<Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="CheckBox">
-  <Grid>
-    <Path x:Name="Equis"
-          Opacity="0"
-          Stroke="Purple"
-          Fill="Purple"
-          Stretch="UniformToFill"
-          StrokeThickness="20"
-          Data="M 15,50 L 40,70 L 80,30"
-          Margin="0,0,2,2" />
-    <ContentPresenter Margin="4"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"/>
-  </Grid>
-  <ControlTemplate.Triggers>
-    <Trigger Property="IsChecked"
-             Value="true">
-      <Setter TargetName="Equis"
-              Property="Opacity"
-              Value="1" />
-    </Trigger>
-    <Trigger Property="IsChecked"
-             Value="false">
-      <Setter TargetName="Equis"
-              Property="Opacity"
-              Value="0" />
-    </Trigger>
-  </ControlTemplate.Triggers>
-</ControlTemplate>
-            </Setter.Value>
-        </Setter>-->
     </Style>
+
+    <Style TargetType="Calendar" x:Key="EnhancedCalendar">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF6C55E4"/>
+                    <GradientStop Color="#FFECF0F4" Offset="0.16"/>
+                    <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+ 
 </ResourceDictionary>

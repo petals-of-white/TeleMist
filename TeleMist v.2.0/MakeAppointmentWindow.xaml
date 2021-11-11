@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist_v._2._0"
         mc:Ignorable="d"
-        Title="MakeAppointmentWindow" Height="450" Width="800">
-        
+        Title="Запис на прийом" Height="539" Width="816">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-           
+
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -19,33 +19,44 @@
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            
+
             <RowDefinition Height="10"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        
+
         <!--Row 1-->
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
             Записатися на прийом до
-            <LineBreak/>Авдієва Г. П., сімейний лікар-терапевт вищої категорії
-
         </TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1">Оберіть дату</TextBlock>
-        <DatePicker Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"></DatePicker>
-        <TextBlock Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1">Вільний час на</TextBlock>
-        <Border CornerRadius="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="3" Background="#feb83f">
+        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4">
+            <Bold>Ковпаченко Гог </Bold>
+        </TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
+        <Calendar x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}"  CalendarDayButtonStyle="{StaticResource CalendarDayButton}" DisplayMode="Month">
+            
+        </Calendar>
+
+
+        <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
+            
+        </TextBlock>
+        <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2">
             <WrapPanel Orientation="Horizontal">
                 <TextBlock>kekffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</TextBlock>
-                <TextBlock>kekfffffffffffffffffffffffffffffffffffffffff</TextBlock>
-                
+                <TextBlock>kekfffffffffffffffffffffffffffffffffffffffff<Bold>sdf</Bold></TextBlock>
+
             </WrapPanel>
 
         </Border>
-        </Grid>
+
+
+        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource AppointmentMadeButton}">Записатись</Button>
+    </Grid>
 </Window>

@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:TeleMist_v._2._0"
              xmlns:views="clr-namespace:TeleMist_v._2._0.Views"
              xmlns:viewmodels="clr-namespace:TeleMist_v._2._0.ViewModels"
-             StartupUri="AuthWindow.xaml"
+             StartupUri="MakeAppointmentWindow.xaml"
              
              >
     <Application.Resources>

@@ -9,13 +9,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,11 +25,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="1" Grid.Column="2">Інформація про прийом</TextBlock>
+
+
+        <TextBlock Grid.Row="1" Grid.Column="2"> <Span Foreground="#6c55e4"><Bold>Інформація про прийом</Bold></Span></TextBlock>
        
         <!-- Рядок 2-->
         <TextBlock Grid.Row="2" Grid.Column="1">Пацієнт</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2">Кекович мемознавець</TextBlock>
         
 
         <!-- Рядок 3-->
@@ -41,7 +43,7 @@
         <TextBox Grid.Row="4" Grid.Column="2"></TextBox>
 
         <!-- Рядок 5-->
-        <TextBlock Grid.Row="5" Grid.Column="1">Установленні діягнози</TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1">Діягнози</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="2"></TextBox>
         
         <!-- Рядок 6-->
