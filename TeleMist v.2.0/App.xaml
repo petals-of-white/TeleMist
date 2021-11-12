@@ -31,7 +31,8 @@
 
             
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ResourceTest.xaml"/>
+                <ResourceDictionary Source="Resources/Styles.xaml"/>
+                <ResourceDictionary Source="Resources/Config.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

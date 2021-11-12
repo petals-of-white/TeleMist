@@ -9,9 +9,9 @@ using System.Windows.Controls;
 using System.Diagnostics;
 namespace TeleMist_v._2._0
 {
-    public partial class ResourceTest : ResourceDictionary
+    public partial class Styles : ResourceDictionary
     {
-        public ResourceTest()
+        public Styles()
         {
 
             InitializeComponent();
