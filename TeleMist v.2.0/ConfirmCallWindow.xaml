@@ -21,7 +21,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="10"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Text="Ви справді бажаєте почати консультацію з *Ім'я лікаря чи пацієнта*?
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="Ви справді бажаєте почати консультацію з *Ім'я лікаря чи пацієнта*?
                    ">  
             
         </TextBlock>

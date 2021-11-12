@@ -4,9 +4,9 @@
              xmlns:local="clr-namespace:TeleMist_v._2._0"
              xmlns:views="clr-namespace:TeleMist_v._2._0.Views"
              xmlns:viewmodels="clr-namespace:TeleMist_v._2._0.ViewModels"
-             StartupUri="AuthWindow.xaml"
-             
+             StartupUri="AuthWindow.xaml" 
              >
+    
     <Application.Resources>
         <!--<DataTemplate DataType="{x:Type viewmodels:GreetingViewModel}">
             <views:GreetingView/>
@@ -17,9 +17,15 @@
         <DataTemplate DataType="{x:Type viewmodels:LoginPatientViewModel}">
             <views:LoginPatientView/>
         </DataTemplate>-->
-        
+
         <ResourceDictionary>
-            <!--<DataTemplate DataType="{x:Type viewmodels:GreetingViewModel}">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles.xaml"/>
+                <ResourceDictionary Source="Resources/Config.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        <!--<DataTemplate DataType="{x:Type viewmodels:GreetingViewModel}">
                 <views:GreetingView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewmodels:LoginDoctorViewModel}">
@@ -28,13 +34,6 @@
             <DataTemplate DataType="{x:Type viewmodels:LoginPatientViewModel}">
                 <views:LoginPatientView/>
             </DataTemplate>-->
-
-            
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles.xaml"/>
-                <ResourceDictionary Source="Resources/Config.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
     </Application.Resources>
     
 </Application>

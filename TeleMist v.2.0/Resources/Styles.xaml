@@ -4,6 +4,8 @@
                     x:Class="TeleMist_v._2._0.Styles">
 
     <System:Int32 x:Key="ButtonHeight">30</System:Int32>
+    
+    
     <Style TargetType="Window">
         <Setter Property="Background" Value="#F5f5f5"/>
         <Setter Property="FontSize" Value="16"/>

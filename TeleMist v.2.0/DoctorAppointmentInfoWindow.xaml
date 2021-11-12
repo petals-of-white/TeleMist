@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -27,31 +27,31 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="2"> <Span Foreground="#6c55e4"><Bold>Інформація про прийом</Bold></Span></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2" > <Span Foreground="#6c55e4"><Bold>Інформація про прийом</Bold></Span></TextBlock>
        
         <!-- Рядок 2-->
-        <TextBlock Grid.Row="2" Grid.Column="1">Пацієнт</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" >Пацієнт</TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="2">Кекович мемознавець</TextBlock>
         
 
         <!-- Рядок 3-->
         <TextBlock Grid.Row="3" Grid.Column="1">Причина звернення</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="2"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}"></TextBox>
 
         <!-- Рядок 4-->
         <TextBlock Grid.Row="4" Grid.Column="1">Скарги</TextBlock>
-        <TextBox Grid.Row="4" Grid.Column="2"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}"></TextBox>
 
         <!-- Рядок 5-->
         <TextBlock Grid.Row="5" Grid.Column="1">Діягнози</TextBlock>
-        <TextBox Grid.Row="5" Grid.Column="2"></TextBox>
+        <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}"></TextBox>
         
         <!-- Рядок 6-->
         <TextBlock Grid.Row="6" Grid.Column="1">Призначення</TextBlock>
-        <TextBox Grid.Row="6" Grid.Column="2"></TextBox>
+        <TextBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource RegularBox}"></TextBox>
         
         <!-- Рядок 7-->
-        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource StyleButton}">Зберегти</Button>
+        <Button Grid.Row="7" Grid.Column="3" VerticalAlignment="Bottom" Style="{StaticResource StyleButton}">Зберегти</Button>
         
     </Grid>
 </Window>

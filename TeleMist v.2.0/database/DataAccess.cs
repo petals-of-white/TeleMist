@@ -9,10 +9,10 @@ namespace TeleMist_v._2._0.database
 {
     public class DataAccess
     {
-        public List<Patient> GetPatients(string lastName)
-        {
-            throw new NotImplementedException();
-            OleDbConnection
-        }
+        //public List<Patient> GetPatients(string lastName)
+        //{
+        //    throw new NotImplementedException();
+            
+        //}
     }
 }

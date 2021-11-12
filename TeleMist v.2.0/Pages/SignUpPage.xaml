@@ -11,14 +11,16 @@
     <Grid ShowGridLines="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="0.5*"/>
         
            
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
@@ -49,7 +51,7 @@
             <RadioButton Content="Як поцієнт"></RadioButton>
         </UniformGrid>
         
-        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}" Text=""/>
+        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />
 
         <PasswordBox Grid.Row="4" Grid.Column="1"/>
         <PasswordBox Grid.Row="5" Grid.Column="1"/>
