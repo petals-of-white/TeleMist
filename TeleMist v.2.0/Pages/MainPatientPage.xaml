@@ -171,7 +171,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -211,7 +211,7 @@
                 <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
                 <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}"></TextBox>
 
-                <Button Style="{StaticResource StyleButton}" Grid.Row="8" Grid.Column="4">Зберегти</Button>
+                <Button Style="{StaticResource StyleButton}" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
 
             </Grid>
         </TabItem>

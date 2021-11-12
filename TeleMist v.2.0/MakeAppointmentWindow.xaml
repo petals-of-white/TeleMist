@@ -49,7 +49,7 @@
         <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
             
         </TextBlock>
-        <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2">
+        <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">
             <bob:TimePicker></bob:TimePicker>
 
         </Border>

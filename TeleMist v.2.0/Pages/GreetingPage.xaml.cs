@@ -42,5 +42,11 @@ namespace TeleMist_v._2._0.Pages
             LoginPatientPage page = new LoginPatientPage();
             NavigationService.Navigate(page);
         }
+
+        private void GoToSignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpPage page = new SignUpPage();
+            NavigationService.Navigate(page);
+        }
     }
 }

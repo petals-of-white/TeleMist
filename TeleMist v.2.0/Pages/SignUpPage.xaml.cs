@@ -16,14 +16,21 @@ using System.Windows.Shapes;
 namespace TeleMist_v._2._0.Pages
 {
     /// <summary>
-    /// Interaction logic for MainPatientPage.xaml
+    /// Interaction logic for SignUpWindow.xaml
     /// </summary>
-    public partial class MainPatientPage : Page
+    public partial class SignUpPage : Page
     {
-        
-        public MainPatientPage()
+        public SignUpPage()
         {
             InitializeComponent();
+        }
+        private void SingUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Зареєструвалися!!! Ура");
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GreetingPage());
         }
     }
 }

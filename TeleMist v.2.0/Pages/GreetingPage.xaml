@@ -33,8 +33,8 @@
         <Button x:Name="DoctorButton" Content="Я лікар" Grid.Row="3" Grid.Column="1"  Style="{StaticResource StyleButton}" Click="DoctorButton_Click"></Button> <!--="{Binding UpdateViewCommand}" CommandParameter="doctor"/>-->
         <Button x:Name="PatientButton" Content="Я пацієнт" Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleButton}" Click="PatientButton_Click"/>
         <Button Content="Зареєструватись" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Stretch" Margin="10,0,10,0"
-                Style="{StaticResource TextButton}"/>
+                HorizontalAlignment="Stretch" Margin="10,0,10,0" x:Name="SignUpButton"
+                Style="{StaticResource TextButton}" Click="GoToSignUpButton_Click"/>
 
     </Grid>
 </Page>

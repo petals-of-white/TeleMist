@@ -8,6 +8,11 @@
         <Setter Property="Background" Value="#F5f5f5"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
+    
+    <Style TargetType="Page">
+        <Setter Property="Background" Value="#F5f5f5"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
 
     <Style x:Key="CancelButton" TargetType="Button">
         <Setter Property="BorderBrush" Value="#ba263a"/>
@@ -210,6 +215,7 @@
         <Setter Property="Foreground" Value="#F3b83f"/>
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <!--<EventSetter Event="Click" Handler="SignUpButton_Click"/>-->
     </Style>
 
     <Style TargetType="Button" x:Key="FillAppointmentInfoButton" BasedOn="{StaticResource YellowButton}">
