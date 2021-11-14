@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
-        Title="Запис на прийом" Height="539" Width="816"
+        Title="Запис на консультація" Height="539" Width="816"
         xmlns:bob="clr-namespace:TeleMist.UserControls"
         >
 
@@ -35,7 +35,7 @@
 
         <!--Row 1-->
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
-            Записатися на прийом до
+            Записатися на консультацію до
         </TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4">
             <Bold>Ковпаченко Гог </Bold>

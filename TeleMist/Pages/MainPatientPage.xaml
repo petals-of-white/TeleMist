@@ -30,7 +30,7 @@
                         :іменем
                     </CheckBox>
                     <CheckBox Grid.Column="2">
-                        :датою прийому
+                        :датою консультаціяу
                     </CheckBox>
 
                     <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">
@@ -84,7 +84,7 @@
                                 <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                 <TextBlock Grid.Column="1" >Поліщук Іван Миколайович</TextBlock>
                                 <TextBlock Grid.Column="2"></TextBlock>
-                                <Button Grid.Column="3" Style="{StaticResource OpenAppointmentDialogueWindow}">Записатися на прийом</Button>
+                                <Button Grid.Column="3" Style="{StaticResource OpenAppointmentDialogueWindow}">Записатися на консультацію</Button>
                             </Grid>
                         </Border>
 
@@ -118,7 +118,7 @@
                         :іменем
                     </CheckBox>
                     <CheckBox Grid.Column="2">
-                        :датою прийому
+                        :датою консультаціяу
                     </CheckBox>
 
                     <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">

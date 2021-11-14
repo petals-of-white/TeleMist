@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
-        Title="PatientAppointmentWindow" Height="450" Width="800">
+        Title="Інформація про консультація" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>
@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="2"> <Span Foreground="#6c55e4"><Bold>Інформація про прийом</Bold></Span></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2"> <Span Foreground="#6c55e4"><Bold>Інформація про консультація</Bold></Span></TextBlock>
 
         <!-- Рядок 2-->
         <TextBlock Grid.Row="2" Grid.Column="1">Лікар</TextBlock>

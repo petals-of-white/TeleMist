@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeleMist.database;
 
 namespace TeleMist.Pages
 {
@@ -31,9 +32,24 @@ namespace TeleMist.Pages
             NavigationService.Navigate(new GreetingPage());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoginAsAPatient_Click(object sender, RoutedEventArgs e)
+        {
+            Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            if (Password.Password == "" || PatientID.Text == "")
+            {
+                MessageBox.Show("Заповніть, нарешті, поля");
+                return;
+            }
+
+            db.Select($"SELECT * FROM [patient] WHERE [id]='{PatientID.Text}' AND [password]='{Password.Password}';");
+
+
+        }
+
+        /*private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPatientPage());
-        }
+        }*/
     }
 }

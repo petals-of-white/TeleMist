@@ -46,15 +46,15 @@
             
         </TextBlock>-->
         
-        <UniformGrid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <RadioButton Content="Як лікар"></RadioButton>
-            <RadioButton Content="Як поцієнт"></RadioButton>
+        <UniformGrid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" Rows="1">
+            <RadioButton x:Name="Doctor" Content="Як лікар" IsChecked="True"/>
+            <RadioButton x:Name="Patient" Content="Як пацієнт"></RadioButton>
         </UniformGrid>
         
-        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />
+        <TextBox x:Name="UserID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />
 
-        <PasswordBox Grid.Row="4" Grid.Column="1"/>
-        <PasswordBox Grid.Row="5" Grid.Column="1"/>
+        <PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1"/>
+        <PasswordBox x:Name="CheckPassword" Grid.Row="5" Grid.Column="1"/>
         
         <Button Content="Зареєструватися" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"

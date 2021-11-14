@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="2" > <Span Foreground="#6c55e4"><Bold>Інформація про прийом</Bold></Span></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="2" > <Span Foreground="#6c55e4"><Bold>Інформація про консультацію</Bold></Span></TextBlock>
        
         <!-- Рядок 2-->
         <TextBlock Grid.Row="2" Grid.Column="1" >Пацієнт</TextBlock>

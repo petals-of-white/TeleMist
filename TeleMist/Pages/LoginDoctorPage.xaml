@@ -32,7 +32,7 @@
 
         <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
 
-        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/лого.png"></Image>
+        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/Images/logo.png"></Image>
         <TextBlock x:Name="Kek" HorizontalAlignment="Stretch"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
                    TextWrapping="WrapWithOverflow" TextAlignment="Center">
@@ -40,9 +40,9 @@
             Будь ласка, уведіть свій DoctorID і пароль
 
         </TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
-        <PasswordBox Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
-        <Button Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"
+        <TextBox x:Name="DoctorID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
+        <PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
+        <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"
                 HorizontalAlignment="Stretch" Margin="15,20,15,0"
                 Style="{StaticResource StyleButton}"/>
     </Grid>

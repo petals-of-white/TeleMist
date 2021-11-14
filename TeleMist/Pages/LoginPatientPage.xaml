@@ -39,12 +39,12 @@
             Будь ласка, уведіть свій PatientID і пароль
 
         </TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
-        <PasswordBox Grid.Row="4" Grid.Column="1"/>
-        <Button Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
+        <TextBox x:Name="PatientID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
+        <PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="LoginAsAPatient" Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"
                 
-                Style="{StaticResource StyleButton}" Click="Button_Click"/>
+                Style="{StaticResource StyleButton}" Click="LoginAsAPatient_Click"/>
         <TextBlock Foreground="Red" FontSize="13" Grid.Row="6" Grid.Column="1">Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
         </TextBlock>
     </Grid>

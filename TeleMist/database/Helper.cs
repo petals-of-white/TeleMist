@@ -9,9 +9,9 @@ namespace TeleMist.database
 {
     public static class Helper
     {
-        public static string ConStr(string name)
+        public static string ConStr()
         {
-            string str = (string)App.Current.FindResource("connectionString");
+            string str = (string)App.Current.TryFindResource("ConnectionString");
             return str;
         }
     }

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using TeleMist.database;
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -26,7 +26,35 @@ namespace TeleMist.Pages
         }
         private void SingUpButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Зареєструвалися!!! Ура");
+            if (Password.Password != CheckPassword.Password)
+            {
+                MessageBox.Show("Паролі не збігаються. Будь ласка, перевірте.");
+                return;
+            }
+
+            Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            string role;
+            if (Doctor.IsChecked == true) {
+                role = "doctor";
+            }
+            else
+            {
+                role = "patient";
+
+            }
+
+            
+            int res = db.Insert($"INSERT INTO [{role}] ([id], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
+            if (res == 1)
+                MessageBox.Show("Успішний успіх");
+
+
+
+
+            /*MessageBox.Show("Зареєструвалися!!! Ура");*/
+            /*App.AccessDb*/
+
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

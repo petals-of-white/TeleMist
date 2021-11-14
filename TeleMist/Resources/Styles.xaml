@@ -25,7 +25,7 @@
         <Setter Property="Content">
             <Setter.Value>
                 <TextBlock FontSize="14" Padding="0,0,0,0" LineHeight="15" LineStackingStrategy="BlockLineHeight">
-                    Скасувати прийом
+                    Скасувати консультація
                 </TextBlock>
             </Setter.Value>
         </Setter>
@@ -162,7 +162,7 @@
     </Style>
 
     <Style x:Key="AppointmentMadeButton" TargetType="Button" BasedOn="{StaticResource YellowButton}">
-        <Setter Property="Content" Value="Вас записано на прийом"/>
+        <Setter Property="Content" Value="Вас записано на консультація"/>
         <EventSetter Event="Click"  Handler="OpenCallWindowButton_Click"/>
     </Style>
     
