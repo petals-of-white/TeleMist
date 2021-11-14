@@ -20,6 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="лого.png" />
+    <Resource Include="Images\logo.png" />
   </ItemGroup>
 </Project>
