@@ -10,7 +10,7 @@
       Background="#F5f5f5"
       >
 
-    <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1">
+    <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
         <TabItem Header="Лікарі">
             <StackPanel Orientation="Vertical">
                 <Grid ShowGridLines="True">
@@ -201,7 +201,7 @@
 
                 <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ProfileFields}">Дата народження</TextBlock>
                 <DatePicker Margin="5" Grid.Row="5" Grid.Column="2" Text="Hello Darkness My Old Friend">
-                    
+
                 </DatePicker>
 
 

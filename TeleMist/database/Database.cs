@@ -14,59 +14,52 @@ namespace TeleMist.database
     public class Database
     {
 
-
         private OleDbConnection Connection { get; set; }
-
         public Database()
         {
             this.Connection = new OleDbConnection(Helper.ConStr());
 
-
-            /*this.Name = @"App_Data\" + Name;
-            ConnectionString = @"Provider = Microsoft.ACE.OLEDB.12.0; " +
-                           "Data Source = " + Path + ";" +
-                           "Persist Security Info = False;";*/
-
         }
-        public Patient GetPatient(string SQL)
+        public List<Doctor> GetDoctors(string SQL)
         {
             Connection.Open();
             OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
-            Patient patient = new Patient();
+            List<Doctor> doctors = new List<Doctor>();
             try
             {
+                
+
+                OleDbDataReader reader = selectCommand.ExecuteReader();
+
+                //Перевіримо, чи існують узагалі запитані записи в базі даних
+                if (!reader.HasRows) {
+                    MessageBox.Show("Немає такого користувача, мабуть");
+                    return null;
+                }
+
+
                 /*
                  Привласнюємо отриманні значення з бази даних уластивостям об'єкта Patient,
                 спершу перевіривши, чи не дорівнюють вони нулю за допомогою функції CheckNull
                  */
+                while (reader.Read())
+                {
 
-                OleDbDataReader reader = selectCommand.ExecuteReader();
-                reader.Read();
-                patient.Id = (int)(TypedValue(reader["id"]));
-                patient.Username = (string)(TypedValue(reader["username"]));
-                patient.Password = (string)(TypedValue(reader["password"]));
-                //patient.Avatar = (int)(TypedValue(reader["avatar"]));
-                patient.Surname = (string)(TypedValue(reader["surname"]));
-                patient.FirstName = (string)(TypedValue(reader["first_name"]));
-                patient.Patronym = (string)(TypedValue(reader["patronym"]));
-                patient.Gender = (string)(TypedValue(reader["gender"]));
-                patient.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
-                patient.Residence = (string)TypedValue(reader["residence"]);
-                patient.Insurance = (string)TypedValue(reader["insurance"]);
+                    Doctor doctor = new Doctor();
+                    doctor.Id = (int)(TypedValue(reader["id"]));
+                    doctor.Username = (string)(TypedValue(reader["username"]));
+                    doctor.Password = (string)(TypedValue(reader["password"]));
+                    //patient.Avatar = (int)(TypedValue(reader["avatar"]));
+                    doctor.Surname = (string)(TypedValue(reader["surname"]));
+                    doctor.FirstName = (string)(TypedValue(reader["first_name"]));
+                    doctor.Patronym = (string)(TypedValue(reader["patronym"]));
+                    doctor.Gender = (string)(TypedValue(reader["gender"]));
+                    doctor.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
+                    doctor.Residence = (string)TypedValue(reader["residence"]);
+                    doctor.Specialty = (string)TypedValue(reader["specialty"]);
+                    doctors.Add(doctor);
+                }
                 
-
-
-                /*patient.Id = (int)CheckNull(reader.GetInt32(reader.GetOrdinal("id")));*/
-                /*                patient.Username = (string)CheckNull(reader.GetString(reader.GetOrdinal("username")));
-                                patient.Password = (string)CheckNull(reader.GetString(reader.GetOrdinal("password")));
-                                //patient.Avatar = (string)CheckNull(reader.GetString(reader.GetOrdinal("avatar")));
-                                patient.Surname = CheckNull(reader.GetString(reader.GetOrdinal("surname")));
-                                patient.FirstName = (string)CheckNull(reader.GetString(reader.GetOrdinal("first_name")));
-                                patient.Patronym = (string)CheckNull(reader.GetString(reader.GetOrdinal("patronym")));
-                                patient.Gender = (string)CheckNull(reader.GetString(reader.GetOrdinal("gender")));
-                                patient.DateOfBirth = (DateTime)CheckNull(reader.GetDateTime(reader.GetOrdinal("date_of_birth")));
-                                patient.Residence = (string)CheckNull(reader.GetString(reader.GetOrdinal("residence")));
-                                patient.Insurance = (string)CheckNull(reader.GetString(reader.GetOrdinal("insurance")));*/
 
             }
 
@@ -84,21 +77,141 @@ namespace TeleMist.database
             }
 
 
-            return patient;
+            return doctors;
         }
+        public List<Patient> GetPatients(string SQL)
+        {
 
+            Connection.Open();
+            OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
+
+            List<Patient> patients = new List<Patient>(); //список пацієнтів
+
+            try
+            {
+                OleDbDataReader reader = selectCommand.ExecuteReader();
+
+                //Перевіримо, чи існують узагалі запитані записи в базі даних
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show("Немає такого користувача, мабуть");
+                    return new List<Patient>();
+                }
+
+
+                while (reader.Read())
+                {
+                    /*
+                 Привласнюємо отриманні значення з бази даних уластивостям об'єкта Patient,
+                спершу перевіривши, чи не дорівнюють вони нулю за допомогою функції CheckNull
+                 */
+                    Patient patient = new Patient();
+                    patient.Id = (int)(TypedValue(reader["id"]));
+                    patient.Username = (string)(TypedValue(reader["username"]));
+                    patient.Password = (string)(TypedValue(reader["password"]));
+                    //patient.Avatar = (int)(TypedValue(reader["avatar"]));
+                    patient.Surname = (string)(TypedValue(reader["surname"]));
+                    patient.FirstName = (string)(TypedValue(reader["first_name"]));
+                    patient.Patronym = (string)(TypedValue(reader["patronym"]));
+                    patient.Gender = (string)(TypedValue(reader["gender"]));
+                    patient.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
+                    patient.Residence = (string)TypedValue(reader["residence"]);
+                    patient.Insurance = (string)TypedValue(reader["insurance"]);
+                
+                }
+
+            }
+
+            catch (OleDbException e)
+            { 
+                MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
+                return null;
+            }
+
+            finally
+            {
+                Connection.Close();
+            }
+
+
+            return patients;
+        }
+        public List<Appointment> GetAppointments(string SQL)
+        {
+            Connection.Open();
+            OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
+            List<Appointment> appointments = new List<Appointment>();
+
+            try
+            {
+                OleDbDataReader reader = selectCommand.ExecuteReader();
+
+                //Перевіримо, чи існують узагалі запитані записи в базі даних
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show("Немає відвідувань поки що");
+                    return new List<Appointment>();
+                }
+
+                while (reader.Read())
+                {
+                    /*
+                 Привласнюємо отриманні значення з бази даних уластивостям об'єкта Patient,
+                спершу перевіривши, чи не дорівнюють вони нулю за допомогою функції CheckNull
+                 */
+                    Appointment appointment = new Appointment();
+                    appointment.Id = (int)(TypedValue(reader["id"]));
+
+                    //Спробуємо дістати методами GetPatients і GetDoctors
+                    //відповідного пацієнта і лікаря замість індентифікатора
+
+
+                    //!!! Перевірити наявність пацієнта
+                    int doctorId = (int)(TypedValue(reader["doctor_id"]));
+                    appointment.Doctor = GetDoctors($"SELECT * FROM [doctor] WHERE" +
+                $" [id]={doctorId}")[0];
+
+
+
+                    //!!! Перевірити наявність пацієнта
+                    int patientId = (int)(TypedValue(reader["patient_id"]));
+                    appointment.Patient = GetPatients($"SELECT * FROM [patient] WHERE" +
+                $" [id]={patientId}")[0];
+
+
+
+                    appointment.Reason = (string)(TypedValue(reader["reason"]));
+                    appointment.Date_Time = (DateTime?)(TypedValue(reader["date_of_birth"]));
+                    appointment.Diagnose = (string)TypedValue(reader["diagnose"]);
+                    appointment.Recommendations = (string)TypedValue(reader["recommendations"]);
+                    appointment.Status = (string)TypedValue((reader["status"]));
+                }
+
+            }
+
+            catch (OleDbException e)
+            {
+                MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
+                return null;
+            }
+
+            finally
+            {
+                Connection.Close();
+            }
+
+            // THE END
+            return appointments;
+
+        }
         public void Update()
         {
             throw new NotImplementedException();
         }
-
-
-
         public void Delete()
         {
             throw new NotImplementedException();
         }
-
         public int Insert(string SQL)
         {
 

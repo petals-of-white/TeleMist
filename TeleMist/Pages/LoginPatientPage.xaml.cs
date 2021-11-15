@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeleMist.database;
 using TeleMist.Models;
+using TeleMist.Windows;
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -36,27 +37,35 @@ namespace TeleMist.Pages
         private void LoginAsAPatient_Click(object sender, RoutedEventArgs e)
         {
             Database db = (Database)App.Current.TryFindResource("AccessDB");
-
             if (Password.Password == "" || PatientID.Text == "")
             {
                 MessageBox.Show("Заповніть, нарешті, поля");
                 return;
             }
 
-            Patient patient = db.GetPatient($"SELECT * FROM [patient] WHERE [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
-            if (patient != null)
+            List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
+                $" [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
+
+
+            //Якщо не виникла помилка в процесі запиту І список користувачів не пустий (користувач існує)
+            if (patients != null && patients.Count > 0)
             {
+                Patient patient = patients[0];
                 MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
-                using (StreamWriter outputFile = new StreamWriter("win.txt"))
+                using (StreamWriter outputFile = new StreamWriter("patient.txt"))
                 {
                     outputFile.WriteLine(patient.ToString());
                 }
+                App.Current.Resources.Add("CurrentUser", patient);
+
+                List<Appointment> appointments = db.Get
+                App.Current.Resources.Add("HistoryOfAppointments", );
+                MainWindow main = new MainWindow();
+                App.Current.MainWindow.Close();
+                main.Show();
+
             }
         }
 
-        /*private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new MainPatientPage());
-        }*/
     }
 }

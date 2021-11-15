@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeleMist.database;
 using TeleMist.Models;
+using TeleMist.Windows;
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -28,7 +30,12 @@ namespace TeleMist.Pages
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new GreetingPage());
+        }
 
+            
+        private void LoginAsADoctor_Click(object sender, RoutedEventArgs e)
+        {
             Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             if (Password.Password == "" || DoctorID.Text == "")
@@ -37,12 +44,28 @@ namespace TeleMist.Pages
                 return;
             }
 
-            //Doctor doctor = db.GetDoctor($"SELECT * FROM [patient] WHERE [id]={PatientID.Text} AND [password]='{Password.Password}';");
-            //if (doctor != null)
-            //{
-             //   MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!! " + doctor.Id + " " + doctor.Password);
-            //}
+            /**/
+            Doctor doctor = db.GetDoctor($"SELECT * FROM [doctor] WHERE" +
+                $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';");
+
+            if(doctor != null)
+            {
+                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
+                using (StreamWriter outputFile = new StreamWriter("doctor.txt"))
+                {
+                    outputFile.WriteLine(doctor.ToString());
+                }
+                App.Current.Resources.Add("CurrentUser", doctor);
+                MainWindow main = new MainWindow();
+                App.Current.MainWindow.Close();
+                main.Show();
+                
+                
+            }
+
         }
+
+      
 
     }
 }

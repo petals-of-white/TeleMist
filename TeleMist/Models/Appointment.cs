@@ -9,13 +9,16 @@ namespace TeleMist.Models
     public class Appointment
     {
         public int Id { get; set; }
-        public int PatientId { get; set; }
-        public int DocgtorId { get; set; }
-        public DateTime Date_Time { get; set; }
+        //public int PatientId { get; set; }
+        //public int DocgtorId { get; set; }
+        public Doctor Doctor { get; set; }
+        public Patient Patient { get; set; }
+        public DateTime? Date_Time { get; set; }
         public string Reason { get; set; }
         public string Diagnose { get; set; }
         public string Recommendations { get; set; }
         public string Status { get; set; }
+
 
 
     }

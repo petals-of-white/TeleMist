@@ -43,7 +43,7 @@
         <TextBox x:Name="DoctorID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
         <PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
         <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"
-                HorizontalAlignment="Stretch" Margin="15,20,15,0"
+                HorizontalAlignment="Stretch" Margin="15,20,15,0" Click="LoginAsADoctor_Click"
                 Style="{StaticResource StyleButton}"/>
     </Grid>
 </Page>
