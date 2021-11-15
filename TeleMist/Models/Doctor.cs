@@ -16,10 +16,22 @@ namespace TeleMist.Models
         public string FirstName { get; set; }
         public string Patronym { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string Residence { get; set; }
         public string Specialty { get; set; }
-       
+
+        public string FullName
+        {
+            get
+            {
+                return Surname + " " + FirstName + " " + Patronym;
+            }
+        }
+        public override string ToString()
+        {
+            return $"Id = {Id}, DoctgorID = {Username}, Password =  {Password}, {FullName}, {Gender}, {DateOfBirth}, {Residence}, {Specialty}";
+        }
+
     }
 }

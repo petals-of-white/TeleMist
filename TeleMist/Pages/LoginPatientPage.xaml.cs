@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeleMist.database;
-
+using TeleMist.Models;
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -42,10 +43,14 @@ namespace TeleMist.Pages
                 return;
             }
 
-            Patient patient = db.GetPatient($"SELECT * FROM [patient] WHERE [username]={PatientID.Text} AND [password]='{Password.Password}';");
+            Patient patient = db.GetPatient($"SELECT * FROM [patient] WHERE [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
             if (patient != null)
             {
-                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!! " + patient.Id + " " + patient.Password);
+                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
+                using (StreamWriter outputFile = new StreamWriter("win.txt"))
+                {
+                    outputFile.WriteLine(patient.ToString());
+                }
             }
         }
 
