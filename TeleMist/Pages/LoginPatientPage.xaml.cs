@@ -42,9 +42,11 @@ namespace TeleMist.Pages
                 return;
             }
 
-            db.Select($"SELECT * FROM [patient] WHERE [id]='{PatientID.Text}' AND [password]='{Password.Password}';");
-
-
+            Patient patient = db.GetPatient($"SELECT * FROM [patient] WHERE [username]={PatientID.Text} AND [password]='{Password.Password}';");
+            if (patient != null)
+            {
+                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!! " + patient.Id + " " + patient.Password);
+            }
         }
 
         /*private void Button_Click(object sender, RoutedEventArgs e)

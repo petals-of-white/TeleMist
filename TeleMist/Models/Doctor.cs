@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeleMist.database
+namespace TeleMist.Models
 {
-    public class Patient
+    internal class Doctor
     {
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
         public string Avatar { get; set; }
         public string Surname { get; set; }
         public string FirstName { get; set; }
@@ -20,8 +19,7 @@ namespace TeleMist.database
         public string DateOfBirth { get; set; }
         public string Gender { get; set; }
         public string Residence { get; set; }
-        public string Insurance { get; set; }
-
-
+        public string Specialty { get; set; }
+       
     }
 }

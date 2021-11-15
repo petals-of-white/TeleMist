@@ -45,7 +45,7 @@ namespace TeleMist.Pages
             }
 
             
-            int res = db.Insert($"INSERT INTO [{role}] ([id], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
+            int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
             if (res == 1)
                 MessageBox.Show("Успішний успіх");
 
