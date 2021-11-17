@@ -35,9 +35,8 @@
 
         
         <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
-        
-        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/лого.png"></Image>
-        
+
+        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <!--<TextBlock x:Name="Kek" HorizontalAlignment="Stretch"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
                    TextWrapping="WrapWithOverflow" TextAlignment="Center">
@@ -61,7 +60,7 @@
                 
                 Style="{StaticResource StyleButton}" Click="SingUpButton_Click"/>
         
-        <TextBlock Foreground="Red" FontSize="13" Grid.Row="7" Grid.Column="1">
+        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}"  Grid.Row="7" Grid.Column="1">
             Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
         </TextBlock>
     </Grid>

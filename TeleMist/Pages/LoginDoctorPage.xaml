@@ -18,7 +18,8 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
@@ -32,7 +33,7 @@
 
         <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
 
-        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/Images/logo.png"></Image>
+        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock x:Name="Kek" HorizontalAlignment="Stretch"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
                    TextWrapping="WrapWithOverflow" TextAlignment="Center">
@@ -42,8 +43,11 @@
         </TextBlock>
         <TextBox x:Name="DoctorID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>
         <PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>
-        <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"
-                HorizontalAlignment="Stretch" Margin="15,20,15,0" Click="LoginAsADoctor_Click"
-                Style="{StaticResource StyleButton}"/>
+        <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="1" 
+               Click="LoginAsADoctor_Click"
+               Style="{StaticResource PurpleButton}"/>
+        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}" Grid.Row="6" Grid.Column="1">
+            Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
+        </TextBlock>
     </Grid>
 </Page>

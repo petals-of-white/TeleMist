@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
         <!--End of Grid-->
         <!--Ідемо згори донизу-->
-        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/Images/logo.png"></Image>
+        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock x:Name="Kek" Text="Вітаємо. Будь ласка, оберіть себе" HorizontalAlignment="Center"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
         <Button x:Name="DoctorButton" Content="Я лікар" Grid.Row="3" Grid.Column="1"  Style="{StaticResource StyleButton}" Click="DoctorButton_Click"></Button> <!--="{Binding UpdateViewCommand}" CommandParameter="doctor"/>-->
