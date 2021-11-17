@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-                    xmlns:db="clr-namespace:TeleMist.database">
+                    xmlns:db="clr-namespace:TeleMist.DB">
 
-    <sys:String x:Key="ConnectionString">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\Telemist\Telemist\database\telemist.accdb;Persist Security Info=True</sys:String>
-
+    <sys:String x:Key="ConnectionString">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\Telemist\Telemist\DB\telemist.accdb;Persist Security Info=True</sys:String>
     <db:Database x:Key="AccessDB"></db:Database>
 
 </ResourceDictionary>

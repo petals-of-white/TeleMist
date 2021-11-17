@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TeleMist.database;
+using TeleMist.DB;
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -32,7 +32,7 @@ namespace TeleMist.Pages
                 return;
             }
 
-            Database db = (Database)App.Current.TryFindResource("AccessDB");
+            DB.Database db = (DB.Database)App.Current.TryFindResource("AccessDB");
 
             string role;
             if (Doctor.IsChecked == true) {

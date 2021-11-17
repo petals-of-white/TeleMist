@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using Microsoft.CSharp;
-namespace TeleMist.database
+namespace TeleMist.DB
 {
     public class DataAccess
     {

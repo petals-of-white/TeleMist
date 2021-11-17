@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TeleMist.database;
+using TeleMist.DB;
 using TeleMist.Models;
 using TeleMist.Windows;
 namespace TeleMist.Pages
@@ -45,8 +45,8 @@ namespace TeleMist.Pages
             }
 
             /**/
-            Doctor doctor = db.GetDoctor($"SELECT * FROM [doctor] WHERE" +
-                $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';");
+            Doctor doctor = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
+                $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';")[0];
 
             if(doctor != null)
             {

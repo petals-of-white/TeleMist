@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using TeleMist.database;
+using TeleMist.DB;
 namespace TeleMist
 {
     /// <summary>

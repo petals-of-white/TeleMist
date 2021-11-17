@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.ComponentModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 using System.Data.OleDb;
 using System.Windows;
 using TeleMist.Models;
-namespace TeleMist.database
+using System.Data;
+namespace TeleMist.DB
 {
 
     public class Database
@@ -22,12 +18,20 @@ namespace TeleMist.database
         }
         public List<Doctor> GetDoctors(string SQL)
         {
-            Connection.Open();
+            bool toCloseConnection;
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+                toCloseConnection = true;
+            }
+            else
+            {
+                toCloseConnection= false;
+            }
             OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
             List<Doctor> doctors = new List<Doctor>();
             try
             {
-                
 
                 OleDbDataReader reader = selectCommand.ExecuteReader();
 
@@ -36,7 +40,6 @@ namespace TeleMist.database
                     MessageBox.Show("Немає такого користувача, мабуть");
                     return null;
                 }
-
 
                 /*
                  Привласнюємо отриманні значення з бази даних уластивостям об'єкта Patient,
@@ -59,21 +62,19 @@ namespace TeleMist.database
                     doctor.Specialty = (string)TypedValue(reader["specialty"]);
                     doctors.Add(doctor);
                 }
-                
 
             }
 
             catch (OleDbException e)
             {
-
                 MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
                 return null;
-
             }
 
             finally
             {
-                Connection.Close();
+                if (toCloseConnection)
+                    Connection.Close();
             }
 
 
@@ -82,7 +83,16 @@ namespace TeleMist.database
         public List<Patient> GetPatients(string SQL)
         {
 
-            Connection.Open();
+            bool toCloseConnection;
+            if (Connection.State == ConnectionState.Closed)
+            {
+                Connection.Open();
+                toCloseConnection = true;
+            }
+            else
+            {
+                toCloseConnection = false;
+            }
             OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
 
             List<Patient> patients = new List<Patient>(); //список пацієнтів
@@ -117,6 +127,7 @@ namespace TeleMist.database
                     patient.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
                     patient.Residence = (string)TypedValue(reader["residence"]);
                     patient.Insurance = (string)TypedValue(reader["insurance"]);
+                    patients.Add(patient);
                 
                 }
 
@@ -125,12 +136,13 @@ namespace TeleMist.database
             catch (OleDbException e)
             { 
                 MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
-                return null;
+                return new List<Patient>();
             }
 
             finally
             {
-                Connection.Close();
+                if (toCloseConnection)
+                    Connection.Close();
             }
 
 
@@ -168,23 +180,29 @@ namespace TeleMist.database
 
                     //!!! Перевірити наявність пацієнта
                     int doctorId = (int)(TypedValue(reader["doctor_id"]));
-                    appointment.Doctor = GetDoctors($"SELECT * FROM [doctor] WHERE" +
-                $" [id]={doctorId}")[0];
+
+                    
+
+                    MessageBox.Show(reader.ToString());
 
 
-
+                    
                     //!!! Перевірити наявність пацієнта
                     int patientId = (int)(TypedValue(reader["patient_id"]));
-                    appointment.Patient = GetPatients($"SELECT * FROM [patient] WHERE" +
-                $" [id]={patientId}")[0];
-
-
+                    
 
                     appointment.Reason = (string)(TypedValue(reader["reason"]));
-                    appointment.Date_Time = (DateTime?)(TypedValue(reader["date_of_birth"]));
+                    appointment.Date_Time = (DateTime?)(TypedValue(reader["date_time"]));
                     appointment.Diagnose = (string)TypedValue(reader["diagnose"]);
                     appointment.Recommendations = (string)TypedValue(reader["recommendations"]);
                     appointment.Status = (string)TypedValue((reader["status"]));
+                    appointment.Doctor = GetDoctors($"SELECT * FROM [doctor] WHERE" +
+                $" [id]={doctorId}")[0];
+                    appointment.Patient = GetPatients($"SELECT * FROM [patient] WHERE" +
+                $" [id]={patientId}")[0];
+
+                    appointments.Add(appointment);
+
                 }
 
             }
@@ -192,7 +210,7 @@ namespace TeleMist.database
             catch (OleDbException e)
             {
                 MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
-                return null;
+                return new List<Appointment>();
             }
 
             finally

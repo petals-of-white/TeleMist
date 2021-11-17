@@ -19,6 +19,10 @@ namespace TeleMist.Models
         public string Recommendations { get; set; }
         public string Status { get; set; }
 
+        public override string ToString()
+        {
+            return $"Id = {Id}, Doctor =  {Doctor.Id}, Patient = {Patient.Id}, Date = {Date_Time}";
+        }
 
 
     }

@@ -28,5 +28,13 @@ namespace TeleMist.Windows
         {
             MessageBox.Show(App.Current.TryFindResource("CurrentUser").ToString());
         }
+
+        private void LogOutButotn_Click(object sender, RoutedEventArgs e)
+        {
+            AuthWindow auth = new AuthWindow();
+            App.Current.MainWindow.Close();
+            auth.Show();
+
+        }
     }
 }

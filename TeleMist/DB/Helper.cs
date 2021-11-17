@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using TeleMist;
-namespace TeleMist.database
+namespace TeleMist.DB
 {
     public static class Helper
     {

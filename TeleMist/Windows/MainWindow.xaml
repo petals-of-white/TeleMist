@@ -99,6 +99,8 @@
             </TabItem>
             <TabItem Header="Історія">
                 <StackPanel Orientation="Vertical">
+                    
+                
                     <Grid ShowGridLines="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -129,7 +131,13 @@
                         </Button>
                     </Grid>
                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-
+                        <!--<ListBox>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
                         <ScrollViewer>
                             <Grid ShowGridLines="True">
 
@@ -208,6 +216,7 @@
                     <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
                     <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
 
+                    <Button x:Name="LogOutButotn" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButotn_Click">Log Out</Button>
                     <Button x:Name="SaveChanges"  Style="{StaticResource StyleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
 
                 </Grid>
