@@ -18,7 +18,6 @@ namespace TeleMist.Models
          * запис до одного лікаря на кілька консультацій уперед неможливий
    
          */
-        public Appointment NextAppointment { get; set; }
 
 
     }

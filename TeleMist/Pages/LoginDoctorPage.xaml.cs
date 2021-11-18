@@ -56,6 +56,7 @@ namespace TeleMist.Pages
                     outputFile.WriteLine(doctor.ToString());
                 }
                 App.Current.Resources.Add("CurrentUser", doctor);
+
                 MainWindow main = new MainWindow();
                 App.Current.MainWindow.Close();
                 main.Show();

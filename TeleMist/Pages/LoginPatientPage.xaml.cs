@@ -59,58 +59,12 @@ namespace TeleMist.Pages
                 {
                     outputFile.WriteLine(patient.ToString());
                 }*/
+                
                 App.Current.Resources.Add("CurrentUser", patient);
 
-                //усі лікарі
-                List<Doctor> doctors = db.GetDoctors($"SELECT * FROM [doctor]");
-                foreach (Doctor doctor in doctors)
-                {
-                    MessageBox.Show(doctor.ToString());
-                }
 
-                if (doctors != null)
-                {
-                    App.Current.Resources.Add("Doctors", doctors);
-                }
-                
-
-                //завершені консультації
-                List<Appointment> historyOfAppointments = db.GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                    $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
-
-                foreach(Appointment appointment in historyOfAppointments)
-                {
-                    MessageBox.Show(appointment.ToString());
-                }
-                if (historyOfAppointments != null)
-                {
-                    App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
-                }
-
-                //майбутні консультації
-                List<Appointment> activeAppointments = db.GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                    $"([patient_id]={patient.Id}) AND ([date_time] > Now())");
-                
-
-                if (activeAppointments != null)
-                {
-                    App.Current.Resources.Add("ActiveAppointments", activeAppointments);
-
-                    //тестовий варіянт зв'язування відвідувань
-
-                    foreach(Appointment appointment in activeAppointments)
-                    {
-                        var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
-                                  where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
-                                  select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
-                        Doctor doc = tempDocs.First();
-                        doc.NextAppointment = appointment;
-
-                    }
-                }
-
-               
-
+                db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
+  
 
                 MainWindow main = new MainWindow();
                 App.Current.MainWindow.Close();

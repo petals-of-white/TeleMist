@@ -200,7 +200,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style  TargetType="TextBlock" x:Key="DefaultText">
+    <Style  TargetType="TextBlock">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
@@ -306,8 +306,13 @@
         <Setter Property="Background" Value="Gray"/>
     </Style>
 
-    <Style TargetType="TextBlock" x:Key="WarningMessage" BasedOn="{StaticResource DefaultText}">
+    <Style TargetType="TextBlock" x:Key="WarningMessage">
+        <!--BasedOn="{StaticResource DefaultText}">-->
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+       
     </Style>
 </ResourceDictionary>

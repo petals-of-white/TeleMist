@@ -10,8 +10,19 @@
     <Grid>
         <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
             <TabItem Header="Лікарі">
-                <StackPanel Orientation="Vertical">
-                    <Grid ShowGridLines="True">
+                <!--<StackPanel Orientation="Vertical">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Grid ShowGridLines="True" Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,7 +39,7 @@
                             :іменем
                         </CheckBox>
                         <CheckBox Grid.Column="2">
-                            :датою консультаціяу
+                            :датою консультації
                         </CheckBox>
 
                         <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">
@@ -40,73 +51,42 @@
 
                         </Button>
                     </Grid>
-                    <ScrollViewer>
-                        <StackPanel Orientation="Vertical">
 
-                            <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-                                <Grid ShowGridLines="True">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                        <ItemsControl ItemsSource="{DynamicResource Doctors}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
+                                        <Grid ShowGridLines="True">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto" MinWidth="90"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="100"/>
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
-                                    <TextBlock Grid.Column="1" LineStackingStrategy="MaxHeight" > Авдієва Г. П.</TextBlock>
-                                    <TextBlock Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True">21.04.2021 о 13:40</TextBlock>
-                                    <Button Grid.Column="3" Style="{StaticResource AppointmentMadeButton}"></Button>
-                                    <Button Grid.Column="4" Style="{StaticResource CancelButton}">
-                                    </Button>
-                                </Grid>
-                            </Border>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto" MinWidth="90"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="100"/>
+                                            </Grid.RowDefinitions>
 
 
-                            <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-                                <Grid ShowGridLines="True">
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto" MinWidth="90"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="100"/>
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
-                                    <TextBlock Grid.Column="1" >Поліщук Іван Миколайович</TextBlock>
-                                    <TextBlock Grid.Column="2"></TextBlock>
-                                    <Button Grid.Column="3" Style="{StaticResource OpenAppointmentDialogueWindow}">Записатися на консультацію</Button>
-                                </Grid>
-                            </Border>
-
-
-                            <StackPanel Orientation="Vertical">
-
-                            </StackPanel>
-
-
-                        </StackPanel>
+                                            <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
+                                            <TextBlock Text="{Binding FullName}" Grid.Column="1" LineStackingStrategy="MaxHeight" ></TextBlock>
+                                            <TextBlock Text="{Binding NextAppointment.Date_Time}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
+                                            <Button Grid.Column="3" Style="{StaticResource AppointmentMadeButton}"></Button>
+                                            <Button Grid.Column="4" Style="{StaticResource CancelButton}">
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
-                </StackPanel>
-
+                </Grid>
             </TabItem>
-            <!--<Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-            </Grid>-->
+          
+            
             <TabItem Header="Історія">
                 <!--<StackPanel Orientation="Vertical">-->
                 <Grid>
@@ -175,65 +155,7 @@
                         </ScrollViewer>
 
                 </Grid>
-                <!--<Grid ShowGridLines="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                            <ColumnDefinition Width="3*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0">
-                        Сортувати за:
-                        </TextBlock>
-                        <CheckBox Grid.Column="1">
-                            :іменем
-                        </CheckBox>
-                        <CheckBox Grid.Column="2">
-                            :датою консультаціяу
-                        </CheckBox>
-
-                        <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">
-                            <Button.Content>
-
-                                <Image Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\reload_arrow.png"/>
-                            </Button.Content>
-
-
-                        </Button>
-                    </Grid>-->
-
-                    <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{DynamicResource HistoryOfAppointments}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-                                        <Grid ShowGridLines="True">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="auto" MinWidth="90"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="100"/>
-                                            </Grid.RowDefinitions>
-                                            <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
-                                            <TextBlock Grid.Column="1" Text="{Binding Doctor.FullName}"></TextBlock>
-                                            <TextBlock Grid.Column="2" Text="{Binding Date_Time}"></TextBlock>
-                                            <Button  Grid.Column="3" Style="{StaticResource ShowAppointmentDetailsButton}" Margin="20,5" >Переглянути деталі</Button>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        </ScrollViewer>-->
-               
-
-                <!--</StackPanel>-->
+        
             </TabItem>
             <TabItem Header="Профіль">
                 <Grid ShowGridLines="True">

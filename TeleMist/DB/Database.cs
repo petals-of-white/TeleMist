@@ -4,12 +4,13 @@ using System.Data.OleDb;
 using System.Windows;
 using TeleMist.Models;
 using System.Data;
+using System.Linq;
 namespace TeleMist.DB
 {
 
     public class Database
     {
-
+       
         private OleDbConnection Connection { get; set; }
         public Database()
         {
@@ -240,7 +241,6 @@ namespace TeleMist.DB
             {
                 InsertCommand.ExecuteNonQuery();
 
-
             }
 
 
@@ -299,5 +299,125 @@ namespace TeleMist.DB
 
         }
 
+        public void UpdateDoctorInfo(Doctor doctor)
+        {
+            //Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            List<Patient> patients = GetPatients($"SELECT * FROM [doctor]");
+            foreach (Patient patient in patients)
+            {
+                MessageBox.Show(patient.ToString());
+            }
+
+            if (patients != null)
+            {
+                App.Current.Resources["Patients"] = patients;
+
+                //App.Current.Resources.Add("Patients", patients);
+            }
+
+            List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                    $"([doctor_id]={doctor.Id}) AND ([date_time] < Now())");
+
+            foreach (Appointment appointment in historyOfAppointments)
+                MessageBox.Show(appointment.ToString());
+
+
+            if (historyOfAppointments != null)
+                App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
+                //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
+
+            //майбутні консультації
+            List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                $"([patient_id]={doctor.Id}) AND ([date_time] > Now())");
+
+
+            if (activeAppointments != null)
+            {
+                App.Current.Resources["ActiveAppointments"]  = activeAppointments;
+                //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+
+                //тестовий варіянт зв'язування відвідувань
+                foreach (Appointment appointment in activeAppointments)
+                {
+                    var tempDocs = from patient in patients // зі списку всіх доступних лікарів
+                                   where patient.Id == appointment.Patient.Id // де id лікаря = id лікаря в консультації
+                                   select patient; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+                    Patient pat = tempDocs.First();
+                    pat.NextAppointment = appointment;
+
+                }
+            }
+        }
+
+        public void UpdatePatientInfo(Patient patient)
+        {
+            /*    Type personType;
+                string typeString;
+                if (person.GetType() == typeof(Patient))
+                {
+                    personType = typeof(Patient);
+                    typeString = "patient";
+                }
+                else if (person.GetType() == typeof(Doctor))
+                {
+                    personType = typeof(Doctor);
+                    typeString = "doctor";
+                }*/
+
+            //Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            List<Doctor> doctors = GetDoctors($"SELECT * FROM [doctor]");
+            foreach (Doctor doctor in doctors)
+            {
+                MessageBox.Show(doctor.ToString());
+            }
+
+            if (doctors != null)
+            {
+                App.Current.Resources["Doctors"] = doctors;
+                //App.Current.Resources.Add("Doctors", doctors);
+            }
+
+            List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                    $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
+
+            foreach (Appointment appointment in historyOfAppointments)
+                MessageBox.Show(appointment.ToString());
+
+
+            if (historyOfAppointments != null)
+                App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
+                //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
+
+            //майбутні консультації
+            List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                $"([patient_id]={patient.Id}) AND ([date_time] > Now())");
+
+
+            if (activeAppointments != null)
+            {
+                App.Current.Resources["ActiveAppointments"] = activeAppointments;
+                //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+
+                //тестовий варіянт зв'язування відвідувань
+
+                foreach (Appointment appointment in activeAppointments)
+                {
+                    var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
+                                   where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
+                                   select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+                    Doctor doc = tempDocs.First();
+                    doc.NextAppointment = appointment;
+
+                }
+            }
+
+        }
+
+        public void LogOutUser()
+        {
+            App.Current.Resources.Clear();
+        }
     }
 }

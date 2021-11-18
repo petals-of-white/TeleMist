@@ -20,7 +20,11 @@ namespace TeleMist.Models
         public string Gender { get; set; }
 
         public string Residence { get; set; }
-
+        
+        /// <summary>
+        /// Інформація про найближчу зустріч для протилежної сторонки
+        /// </summary>
+        public Appointment NextAppointment { get; set; }
 
         public int GenderBoxIndex
         {
