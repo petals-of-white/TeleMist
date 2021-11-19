@@ -184,7 +184,7 @@ namespace TeleMist.DB
 
                     
 
-                    MessageBox.Show(reader.ToString());
+                    //MessageBox.Show(reader.ToString());
 
 
                     
@@ -304,10 +304,11 @@ namespace TeleMist.DB
             //Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             List<Patient> patients = GetPatients($"SELECT * FROM [doctor]");
-            foreach (Patient patient in patients)
+
+            /*foreach (Patient patient in patients)
             {
                 MessageBox.Show(patient.ToString());
-            }
+            }*/
 
             if (patients != null)
             {
@@ -319,8 +320,8 @@ namespace TeleMist.DB
             List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                     $"([doctor_id]={doctor.Id}) AND ([date_time] < Now())");
 
-            foreach (Appointment appointment in historyOfAppointments)
-                MessageBox.Show(appointment.ToString());
+            //foreach (Appointment appointment in historyOfAppointments)
+            //    MessageBox.Show(appointment.ToString());
 
 
             if (historyOfAppointments != null)
@@ -368,10 +369,11 @@ namespace TeleMist.DB
             //Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             List<Doctor> doctors = GetDoctors($"SELECT * FROM [doctor]");
-            foreach (Doctor doctor in doctors)
-            {
-                MessageBox.Show(doctor.ToString());
-            }
+
+            //foreach (Doctor doctor in doctors)
+            //{
+            //    MessageBox.Show(doctor.ToString());
+            //}
 
             if (doctors != null)
             {
@@ -382,8 +384,8 @@ namespace TeleMist.DB
             List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                     $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
 
-            foreach (Appointment appointment in historyOfAppointments)
-                MessageBox.Show(appointment.ToString());
+            //foreach (Appointment appointment in historyOfAppointments)
+            //    MessageBox.Show(appointment.ToString());
 
 
             if (historyOfAppointments != null)

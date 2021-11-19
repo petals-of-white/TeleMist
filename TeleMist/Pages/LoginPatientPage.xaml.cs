@@ -62,6 +62,7 @@ namespace TeleMist.Pages
                 
                 App.Current.Resources.Add("CurrentUser", patient);
 
+                Patient patient1 = (Patient)App.Current.TryFindResource("CurrentUser");
 
                 db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
   

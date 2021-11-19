@@ -30,7 +30,7 @@
         <!--Ідемо згори донизу-->
 
 
-        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
+        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource PurpleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
         <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock x:Name="Kek" HorizontalAlignment="Stretch"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
@@ -44,7 +44,7 @@
         <Button x:Name="LoginAsAPatient" Content="Увійти" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"
                 
-                Style="{StaticResource StyleButton}" Click="LoginAsAPatient_Click"/>
+                Style="{StaticResource PurpleButton}" Click="LoginAsAPatient_Click"/>
         <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}"  Grid.Row="6" Grid.Column="1">Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
         </TextBlock>
     </Grid>

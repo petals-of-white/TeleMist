@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist.Windows"
         mc:Ignorable="d"
-        Title="MainPage" Height="450" Width="900
-        "  DataContext="{DynamicResource CurrentUser}">
+        Title="Main Window" Height="450" Width="900"
+        DataContext="{DynamicResource CurrentUser}">
     <Grid>
         <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
             <TabItem Header="Лікарі">
@@ -42,13 +42,8 @@
                             :датою консультації
                         </CheckBox>
 
-                        <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">
-                            <Button.Content>
-
-                                <Image Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\reload_arrow.png"/>
-                            </Button.Content>
-
-
+                        <Button Grid.Column="3" Style="{StaticResource UpdateButton}" Margin="0,0,10,0">
+             
                         </Button>
                     </Grid>
 
@@ -74,19 +69,21 @@
                                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                             <TextBlock Text="{Binding FullName}" Grid.Column="1" LineStackingStrategy="MaxHeight" ></TextBlock>
                                             <TextBlock Text="{Binding NextAppointment.Date_Time}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
-                                            <Button Grid.Column="3" Style="{StaticResource AppointmentMadeButton}"></Button>
-                                            <Button Grid.Column="4" Style="{StaticResource CancelButton}">
-                                            </Button>
+                                            <Button Grid.Column="3" Style="{Binding AppointmentStatus}"/>
+                                            <Button Grid.Column="4" Style="{StaticResource CancelButton}" Visibility="{Binding CancelButtonVisibility}"/>
+
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
+                        
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
           
-            
+           
+         
             <TabItem Header="Історія">
                 <!--<StackPanel Orientation="Vertical">-->
                 <Grid>
@@ -118,14 +115,8 @@
                             :датою консультаціяу
                         </CheckBox>
 
-                        <Button Grid.Column="3" MaxHeight="30" MaxWidth="30" Style="{StaticResource StyleButton}" HorizontalAlignment="Right" Margin="0,0,10,0">
-                            <Button.Content>
+                        <Button Grid.Column="3" Style="{StaticResource UpdateButton}" Margin="0,0,10,0"/>
 
-                                <Image Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\reload_arrow.png"/>
-                            </Button.Content>
-
-
-                        </Button>
                     </Grid>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
                         <ItemsControl ItemsSource="{DynamicResource HistoryOfAppointments}">
@@ -146,7 +137,7 @@
                                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                             <TextBlock Grid.Column="1" Text="{Binding Doctor.FullName}"></TextBlock>
                                             <TextBlock Grid.Column="2" Text="{Binding Date_Time}"></TextBlock>
-                                            <Button  Grid.Column="3" Style="{StaticResource ShowAppointmentDetailsButton}" Margin="20,5" >Переглянути деталі</Button>
+                                            <Button  Grid.Column="3" Style="{StaticResource ShowAppointmentDetailsButton}" Margin="20,5" ></Button>
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -213,7 +204,7 @@
                     <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
 
                     <Button x:Name="LogOutButotn" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButotn_Click">Log Out</Button>
-                    <Button x:Name="SaveChanges"  Style="{StaticResource StyleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
+                    <Button x:Name="SaveChanges"  Style="{StaticResource PurpleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
 
                 </Grid>
             </TabItem>

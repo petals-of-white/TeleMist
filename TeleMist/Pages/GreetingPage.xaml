@@ -30,8 +30,8 @@
         <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock x:Name="Kek" Text="Вітаємо. Будь ласка, оберіть себе" HorizontalAlignment="Center"
                VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
-        <Button x:Name="DoctorButton" Content="Я лікар" Grid.Row="3" Grid.Column="1"  Style="{StaticResource StyleButton}" Click="DoctorButton_Click"></Button> <!--="{Binding UpdateViewCommand}" CommandParameter="doctor"/>-->
-        <Button x:Name="PatientButton" Content="Я пацієнт" Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleButton}" Click="PatientButton_Click"/>
+        <Button x:Name="DoctorButton" Content="Я лікар" Grid.Row="3" Grid.Column="1"  Style="{StaticResource PurpleButton}" Click="DoctorButton_Click"></Button> <!--="{Binding UpdateViewCommand}" CommandParameter="doctor"/>-->
+        <Button x:Name="PatientButton" Content="Я пацієнт" Grid.Row="4" Grid.Column="1" Style="{StaticResource PurpleButton}" Click="PatientButton_Click"/>
         <Button Content="Зареєструватись" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom"
                 HorizontalAlignment="Stretch" Margin="10,0,10,0" x:Name="SignUpButton"
                 Style="{StaticResource TextButton}" Click="GoToSignUpButton_Click"/>

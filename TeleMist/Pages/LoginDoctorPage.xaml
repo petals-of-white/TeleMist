@@ -31,7 +31,7 @@
         <!--End of Grid-->
         <!--Ідемо згори донизу-->
 
-        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource StyleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
+        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource PurpleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
 
         <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock x:Name="Kek" HorizontalAlignment="Stretch"

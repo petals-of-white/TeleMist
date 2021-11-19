@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="Запис на консультація" Height="539" Width="816"
         xmlns:bob="clr-namespace:TeleMist.UserControls"
-        >
+        xmlns:models="clr-namespace:TeleMist.Models" xmlns:sys="clr-namespace:System;assembly=netstandard">
+    <Window.Resources>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,9 +39,7 @@
         <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
             Записатися на консультацію до
         </TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4">
-            <Bold>Ковпаченко Гог </Bold>
-        </TextBlock>
+        <TextBlock DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4"/>
         <TextBlock Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
         <Calendar x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}"  CalendarDayButtonStyle="{StaticResource CalendarDayButton}" DisplayMode="Month">
             
@@ -50,8 +50,29 @@
             
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">
-            <bob:TimePicker></bob:TimePicker>
-
+            <!--<bob:TimePicker></bob:TimePicker>-->
+            <ListBox>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                    
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}"></Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <!--<ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="BorderThickness" Value="5"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>-->
+                <sys:String>fasdg</sys:String>
+                <sys:String>fasdg</sys:String>
+                <sys:String>fasdg</sys:String>
+            </ListBox>
+            
         </Border>
 
 
