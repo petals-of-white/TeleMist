@@ -26,7 +26,7 @@ namespace TeleMist.Resources.Styles
             Window make_appointment = new MakeAppointmentWindow();
             make_appointment.Resources.Add("SelectedDoctor", doctor);
 
-
+            
             make_appointment.Show();
 
         }
@@ -60,6 +60,31 @@ namespace TeleMist.Resources.Styles
             List<Doctor> doctos = App.Current.TryFindResource("Doctors") as List<Doctor>;
 
             db.UpdatePatientInfo(currentPatient);
+        }
+        /// <summary>
+        /// Скасовує відповідний запис до лікаря.
+        /// У випадку успіху оновлює дані про лікарів і відвідування.
+        /// Інакше повідомляє про помилку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelAppointmentButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var button = (Button)sender;
+            var doctor = (Doctor)button.DataContext; //одержимо контекст для кнопки скасування
+            Appointment appointment = doctor.NextAppointment;
+            var db = (Database)App.Current.TryFindResource("AccessDB"); 
+            int res = db.Delete($"DELETE FROM [appointment] WHERE [id] = {appointment.Id}");
+            Patient currentPatient = App.Current.Resources["CurrentUser"] as Patient;
+            if (res == 1)
+            {
+                db.UpdatePatientInfo(currentPatient);
+                MessageBox.Show("Перемога. Ми скасували запис.");
+            }
+            else 
+                MessageBox.Show("Your circuit's dead, there's something wrong. Can you hear me, Major Tom?");
+
         }
     }
 

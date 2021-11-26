@@ -72,10 +72,6 @@ namespace TeleMist.Pages
             }
 
 
-
-            /*MessageBox.Show("Зареєструвалися!!! Ура");*/
-            /*App.AccessDb*/
-
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

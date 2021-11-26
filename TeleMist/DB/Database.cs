@@ -227,9 +227,29 @@ namespace TeleMist.DB
         {
             throw new NotImplementedException();
         }
-        public void Delete()
+        public int Delete(string SQL)
         {
-            throw new NotImplementedException();
+            Connection.Open();
+            OleDbCommand DeleteCommand = new OleDbCommand(SQL, Connection);
+
+            try
+            {
+                DeleteCommand.ExecuteNonQuery();
+            }
+
+
+            catch (OleDbException e)
+            {
+                MessageBox.Show("Щось пішло не так");
+                return 0;
+            }
+
+            finally
+            {
+                Connection.Close();
+            }
+
+            return 1;
         }
         public int Insert(string SQL)
         {
@@ -248,6 +268,7 @@ namespace TeleMist.DB
             {
 
                 MessageBox.Show("Щось пішло не так");
+                return 0;
 
             }
 
@@ -257,7 +278,6 @@ namespace TeleMist.DB
             }
             return 1;
 
-            //throw new NotImplementedException();
         }
         public void Kek(string test)
         {

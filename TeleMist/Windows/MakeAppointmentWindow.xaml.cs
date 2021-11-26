@@ -22,6 +22,12 @@ namespace TeleMist
         public MakeAppointmentWindow()
         {
             InitializeComponent();
+            this.Resources["SelectedDoctorDate"] = new List<string> {"sas","sos","sus" };
+        }
+
+        private void MakeAppointmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((string)TimeBox.SelectedValue);
         }
     }
 }

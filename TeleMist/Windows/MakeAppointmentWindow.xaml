@@ -9,6 +9,7 @@
         xmlns:bob="clr-namespace:TeleMist.UserControls"
         xmlns:models="clr-namespace:TeleMist.Models" xmlns:sys="clr-namespace:System;assembly=netstandard">
     <Window.Resources>
+        
     </Window.Resources>
 
     <Grid>
@@ -53,31 +54,36 @@
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">
             <!--<bob:TimePicker></bob:TimePicker>-->
-            <ListBox>
+            <ListBox x:Name="TimeBox" ItemsSource="{DynamicResource SelectedDoctorDate}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel/>
+                        <UniformGrid/>
                     </ItemsPanelTemplate>
                     
                 </ListBox.ItemsPanel>
+                
                 <ListBox.ItemTemplate>
                     <DataTemplate>
+                        
                         <Button Content="{Binding}"></Button>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
-                <!--<ListBox.ItemContainerStyle>
+                <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="BorderThickness" Value="5"/>
+                        <!--<Setter Property="BorderThickness" Value="5"/>-->
+                        <Setter Property="IsEnabled" Value="False"/>
                     </Style>
-                </ListBox.ItemContainerStyle>-->
-                <sys:String>fasdg</sys:String>
-                <sys:String>fasdg</sys:String>
-                <sys:String>fasdg</sys:String>
+                </ListBox.ItemContainerStyle>
+                <!--<sys:String>kek</sys:String>
+                <sys:String>kek</sys:String>
+
+                <sys:String>kek</sys:String>-->
+
             </ListBox>
             
         </Border>
 
 
-        <Button Grid.Row="7" Grid.Column="3" Style="{StaticResource YellowButton}">Записатись</Button>
+        <Button x:Name="MakeAppointmentButton" Grid.Row="7" Grid.Column="3" Style="{StaticResource YellowButton}" Click="MakeAppointmentButton_Click">Записатись</Button>
     </Grid>
 </Window>
