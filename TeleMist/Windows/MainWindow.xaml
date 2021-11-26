@@ -22,7 +22,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <Grid ShowGridLines="True" Grid.Row="0">
+                    <Grid  Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -32,10 +32,10 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0">
+                        <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                         Сортувати за:
                         </TextBlock>
-                        <CheckBox Grid.Column="1">
+                        <CheckBox Grid.Column="1" >
                             :іменем
                         </CheckBox>
                         <CheckBox Grid.Column="2">
@@ -52,7 +52,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-                                        <Grid ShowGridLines="True">
+                                        <Grid >
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -67,10 +67,15 @@
 
 
                                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
-                                            <TextBlock Text="{Binding FullName}" Grid.Column="1" LineStackingStrategy="MaxHeight" ></TextBlock>
-                                            <TextBlock Text="{Binding NextAppointment.Date_Time}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
+                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Text="{Binding FullName}" Grid.Column="1" LineStackingStrategy="MaxHeight" ></TextBlock>
+                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Text="{Binding NextAppointment.Date_Time}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
                                             <Button Grid.Column="3" Style="{Binding AppointmentStatus}"/>
-                                            <Button Grid.Column="4" Style="{StaticResource CancelButton}" Visibility="{Binding CancelButtonVisibility}"/>
+                                            <Button Grid.Column="4" Style="{StaticResource CancelButton}" Visibility="{Binding CancelButtonVisibility}">
+                                                <Button.Content>
+                                                    <TextBlock Style="{StaticResource AbstractTextBlock}" FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
+
+                                                </Button.Content>
+                                            </Button>
 
                                         </Grid>
                                     </Border>
@@ -95,7 +100,7 @@
                         <RowDefinition  Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid ShowGridLines="True" Grid.Row="0">
+                    <Grid  Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -105,7 +110,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0">
+                        <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                         Сортувати за:
                         </TextBlock>
                         <CheckBox Grid.Column="1">
@@ -123,7 +128,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
-                                        <Grid ShowGridLines="True">
+                                        <Grid >
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="3*"/>
@@ -135,8 +140,8 @@
                                                 <RowDefinition Height="100"/>
                                             </Grid.RowDefinitions>
                                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
-                                            <TextBlock Grid.Column="1" Text="{Binding Doctor.FullName}"></TextBlock>
-                                            <TextBlock Grid.Column="2" Text="{Binding Date_Time}"></TextBlock>
+                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Column="1" Text="{Binding Doctor.FullName}"></TextBlock>
+                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Column="2" Text="{Binding Date_Time}"></TextBlock>
                                             <Button  Grid.Column="3" Style="{StaticResource ShowAppointmentDetailsButton}" Margin="20,5" ></Button>
                                         </Grid>
                                     </Border>
@@ -149,7 +154,7 @@
         
             </TabItem>
             <TabItem Header="Профіль">
-                <Grid ShowGridLines="True">
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>

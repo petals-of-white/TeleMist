@@ -48,28 +48,15 @@
     <Style x:Key="CancelButton" TargetType="Button">
         <Setter Property="BorderBrush" Value="#ba263a"/>
         <Setter Property="Width" Value="90"/>
-        <Setter Property="Foreground" Value="#ba263a"/>
+        
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="80"/>
-        <Setter Property="Content">
-            <Setter.Value>
-                <TextBlock FontSize="14" Padding="0,0,0,0" LineHeight="15" LineStackingStrategy="BlockLineHeight">
-                    Скасувати запис
-                </TextBlock>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Visibility" Value="Visible"/>
+        
         
         <Setter Property="Height" Value="35"/>
         
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0.5,0" SpreadMethod="Reflect" Opacity="0.3">
-                    <GradientStop Color="#ba263a" Offset="0"/>
-                    <GradientStop Color="Transparent" Offset="1"/>
-                    <GradientStop Color="Transparent" Offset="0.555"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        
 
         <Setter Property="Template">
             <Setter.Value>
@@ -79,10 +66,29 @@
                         <ContentPresenter 
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
+                                                
                                              />
                     </Border>
 
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <TextBlock Style="{StaticResource AbstractTextBlock}" FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
+            </Setter.Value>
+            
+        </Setter>
+        <!--<Setter Property="Content" Value="Скасувати запис"/>-->
+        <Setter Property="Foreground" Value="#ba263a"/>
+        
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,0.5" StartPoint="0.5,0" SpreadMethod="Reflect" Opacity="0.3">
+                    <GradientStop Color="#ba263a" Offset="0"/>
+                    <GradientStop Color="Transparent" Offset="1"/>
+                    <GradientStop Color="Transparent" Offset="0.555"/>
+                </LinearGradientBrush>
             </Setter.Value>
         </Setter>
     </Style>

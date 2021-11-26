@@ -10,13 +10,13 @@
 
     <!--:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"-->
              
-    <Grid ShowGridLines="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*" MinHeight="50"/>
+            <RowDefinition Height="1*" MinHeight="50"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
@@ -29,8 +29,9 @@
         <!--End of Grid-->
         <!--Ідемо згори донизу-->
         <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Source="/лого.png"></Image>
-        <TextBlock x:Name="Kek" Text="Вітаємо. Будь ласка, оберіть себе" HorizontalAlignment="Center"
-               VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+        <TextBlock x:Name="Kek" Text="Вітаємо. Будь ласка, оберіть себе"
+               Style="{StaticResource AbstractTextBlock}"
+                   Grid.Row="2" Grid.Column="1"/>
         <Button x:Name="DoctorButton" Content="Я лікар" Grid.Row="3" Grid.Column="1" Margin="15,7,15,7" Style="{StaticResource PurpleButton}" Command="{Binding UpdateViewCommand}" CommandParameter="doctor"/>
         <Button x:Name="PatientButton" Content="Я пацієнт" Grid.Row="4" Grid.Column="1" Margin="15,7,15,7" Style="{StaticResource PurpleButton}" Click="PatientButton_Click"/>
         <Button Content="Зареєструватись" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom"

@@ -38,9 +38,9 @@
             </Grid.RowDefinitions>
             
             <StackPanel Grid.Row="0" x:Name="Messages" Orientation="Vertical">
-                <TextBlock> Hello</TextBlock>
-                <TextBlock>Something</TextBlock>
-                <TextBlock> Something</TextBlock>
+                <TextBlock Style="{StaticResource AbstractTextBlock}"> Hello</TextBlock>
+                <TextBlock Style="{StaticResource AbstractTextBlock}">Something</TextBlock>
+                <TextBlock Style="{StaticResource AbstractTextBlock}"> Something</TextBlock>
             </StackPanel>
             
             <TextBox Grid.Row="1"></TextBox>

@@ -36,17 +36,19 @@
         </Grid.RowDefinitions>
 
         <!--Row 1-->
-        <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+        <TextBlock Grid.Row="1" Grid.Column="2"
+                   Grid.ColumnSpan="3"
+                   Style="{StaticResource AbstractTextBlock}">
             Записатися на консультацію до
         </TextBlock>
-        <TextBlock DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4"/>
-        <TextBlock Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4"/>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
         <Calendar x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}"  CalendarDayButtonStyle="{StaticResource CalendarDayButton}" DisplayMode="Month">
             
         </Calendar>
 
 
-        <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
             
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">

@@ -28,27 +28,27 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBlock Grid.Row="1" Grid.Column="2"><Bold Foreground="#6c55e4">Інформація про консультація</Bold></TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="1" Grid.Column="2"><Bold Foreground="#6c55e4">Інформація про консультація</Bold></TextBlock>
 
         <!-- Рядок 2-->
-        <TextBlock Grid.Row="2" Grid.Column="1">Лікар</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding Doctor.FullName}"></TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="2" Grid.Column="1">Лікар</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="2" Grid.Column="2" Text="{Binding Doctor.FullName}"></TextBlock>
 
 
         <!-- Рядок 3-->
-        <TextBlock Grid.Row="3" Grid.Column="1">Причина звернення</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="3" Grid.Column="1">Причина звернення</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LockedBox}" Text="{Binding Reason}"></TextBox>
 
         <!-- Рядок 4-->
-        <TextBlock Grid.Row="4" Grid.Column="1">Скарги</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="4" Grid.Column="1">Скарги</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LockedBox}"></TextBox>
 
         <!-- Рядок 5-->
-        <TextBlock Grid.Row="5" Grid.Column="1">Діягнози</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="5" Grid.Column="1">Діягнози</TextBlock>
         <TextBox Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LockedBox}" Text="{Binding Diagnose}"></TextBox>
 
         <!-- Рядок 6-->
-        <TextBlock Grid.Row="6" Grid.Column="1" >Призначення</TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="6" Grid.Column="1" >Призначення</TextBlock>
         <TextBox Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource LockedBox}" Text="{Binding Recommendations}"></TextBox>
 
         <!-- Рядок 7-->

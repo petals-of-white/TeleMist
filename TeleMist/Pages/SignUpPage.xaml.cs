@@ -26,13 +26,30 @@ namespace TeleMist.Pages
         }
         private void SingUpButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Password.Password != CheckPassword.Password)
+            if (UserID.Text == "")
             {
-                MessageBox.Show("Паролі не збігаються. Будь ласка, перевірте.");
+                Warning.Text = "Ім'я користувача не може бути порожнім";
+                //MessageBox.Show("Ім'я користувача не може бути порожнім");
                 return;
             }
 
-            DB.Database db = (DB.Database)App.Current.TryFindResource("AccessDB");
+            if (Password.Password == "" || CheckPassword.Password == "")
+            {
+                Warning.Text = "Пароль не може бути порожнім";
+                //MessageBox.Show("Пароль не може бути порожнім");
+                return;
+            }
+
+            if (Password.Password != CheckPassword.Password)
+            {
+                Warning.Text = "Паролі не збігаються. Будь ласка, перевірте.";
+                //MessageBox.Show("Паролі не збігаються. Будь ласка, перевірте.");
+                return;
+            }
+
+            
+            
+            Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             string role;
             if (Doctor.IsChecked == true) {
@@ -48,7 +65,11 @@ namespace TeleMist.Pages
             int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
             if (res == 1)
                 MessageBox.Show("Успішний успіх");
-
+            else
+            {
+                Warning.Text = "Неможливо авторизуватись. " +
+                    "Перевірте правильність уведення даних і повторіть спробу";
+            }
 
 
 
