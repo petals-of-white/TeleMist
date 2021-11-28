@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeleMist.Models;
 
 namespace TeleMist
 {
@@ -19,10 +20,30 @@ namespace TeleMist
     /// </summary>
     public partial class MakeAppointmentWindow : Window
     {
+        private static string[] hours = {
+            "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
+            "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+            "15:00", "15:30", "16:00"
+        };
+        private static bool[] states = { false, true };
+
         public MakeAppointmentWindow()
         {
             InitializeComponent();
-            this.Resources["SelectedDoctorDate"] = new List<string> {"sas","sos","sus" };
+
+
+            var times = new List<AppointmentTime>();
+            var random = new Random();
+            foreach (string hour in hours)
+            {
+                times.Add(new AppointmentTime { Time = hour, available = states[random.Next(2)] });
+            }
+            //times.Add(new AppointmentTime {Time="11:30", available=true });
+            //times.Add(new AppointmentTime { Time = "10:00", available = false });
+
+            //times.Add(new AppointmentTime { Time = "9:00", available = true });
+            //times.Add(new AppointmentTime {Time="13:00", available = false });
+            this.Resources["HoursForSelectedDate"] = times;
         }
 
         private void MakeAppointmentButton_Click(object sender, RoutedEventArgs e)

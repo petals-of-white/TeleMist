@@ -47,7 +47,6 @@
                Click="LoginAsADoctor_Click"
                Style="{StaticResource PurpleButton}"/>
         <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}" Grid.Row="6" Grid.Column="1">
-            Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
         </TextBlock>
     </Grid>
 </Page>

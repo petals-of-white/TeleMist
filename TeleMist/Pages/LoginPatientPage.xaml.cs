@@ -43,9 +43,13 @@ namespace TeleMist.Pages
                 return;
             }
 
+            string passwordHash = Hasher.MD5Hash(Password.Password);
+
             //пошук користувача
+            //List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
+            //    $" [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
             List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
-                $" [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
+                $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
 
             MessageBox.Show(patients.Count<Patient>().ToString());
 
@@ -62,8 +66,6 @@ namespace TeleMist.Pages
                 
                 App.Current.Resources.Add("CurrentUser", patient);
 
-                Patient patient1 = (Patient)App.Current.TryFindResource("CurrentUser");
-
                 db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
   
 
@@ -71,6 +73,10 @@ namespace TeleMist.Pages
                 App.Current.MainWindow.Close();
                 main.Show();
 
+            }
+            else
+            {
+                Warning.Text = "Неможливо авторизуватись. Перевірте правильність уведення даних і повторіть спробу";
             }
         }
 

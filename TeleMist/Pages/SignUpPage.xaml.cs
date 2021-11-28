@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeleMist.DB;
+using TeleMist.Models;
+
 namespace TeleMist.Pages
 {
     /// <summary>
@@ -61,17 +63,19 @@ namespace TeleMist.Pages
 
             }
 
-            
-            int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
+
+            string passwordHash = Hasher.MD5Hash(Password.Password);
+
+            //int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
+            int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{passwordHash}');");
+
             if (res == 1)
                 MessageBox.Show("Успішний успіх");
             else
             {
-                Warning.Text = "Неможливо авторизуватись. " +
-                    "Перевірте правильність уведення даних і повторіть спробу";
+                Warning.Text = "Неможливо зареєструватися. " +
+                    "Найімовірніше, користувач з таким іменем уже існує.";
             }
-
-
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

@@ -45,7 +45,7 @@
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"
                 
                 Style="{StaticResource PurpleButton}" Click="LoginAsAPatient_Click"/>
-        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}"  Grid.Row="6" Grid.Column="1">Неможливо авторизуватись. Перевірте правильність уведення даних та повторіть спробу
+        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}"  Grid.Row="6" Grid.Column="1">
         </TextBlock>
     </Grid>
 </Page>

@@ -43,25 +43,35 @@ namespace TeleMist.Pages
                 MessageBox.Show("Заповніть, нарешті, поля");
                 return;
             }
+            string passwordHash = Hasher.MD5Hash(Password.Password);
 
             /**/
-            Doctor doctor = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
-                $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';")[0];
-
-            if(doctor != null)
+            //Doctor doctor = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
+            //    $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';")[0];
+            List<Doctor> doctors = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
+                $" [username]='{DoctorID.Text}' AND [password]='{passwordHash}';");
+            if (doctors != null && doctors.Count > 0)
             {
+
+                Doctor doctor = doctors[0];
+
                 MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
-                using (StreamWriter outputFile = new StreamWriter("doctor.txt"))
+                /*using (StreamWriter outputFile = new StreamWriter("doctor.txt"))
                 {
                     outputFile.WriteLine(doctor.ToString());
-                }
+                }*/
+
                 App.Current.Resources.Add("CurrentUser", doctor);
+
+                db.UpdateDoctorInfo(doctor);
 
                 MainWindow main = new MainWindow();
                 App.Current.MainWindow.Close();
                 main.Show();
-                
-                
+            }
+            else
+            {
+                Warning.Text = "Неможливо авторизуватись. Перевірте правильність уведення даних і повторіть спробу";
             }
 
         }

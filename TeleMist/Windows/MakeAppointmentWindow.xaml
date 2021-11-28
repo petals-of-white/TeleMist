@@ -54,24 +54,52 @@
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">
             <!--<bob:TimePicker></bob:TimePicker>-->
-            <ListBox x:Name="TimeBox" ItemsSource="{DynamicResource SelectedDoctorDate}">
+            <ListBox Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="TimeBox" ItemsSource="{DynamicResource HoursForSelectedDate}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <UniformGrid/>
+                        <UniformGrid Margin="0" Rows="3" Columns="5" >
+                           
+                        </UniformGrid>
                     </ItemsPanelTemplate>
                     
                 </ListBox.ItemsPanel>
                 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        
-                        <Button Content="{Binding}"></Button>
+                        <TextBlock Text="{Binding Time}"></TextBlock>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <!--<Setter Property="BorderThickness" Value="5"/>-->
-                        <Setter Property="IsEnabled" Value="False"/>
+                        <Setter Property="IsEnabled" Value="{Binding available}"/>
+                        <!--<Setter Property="Background" Value="Purple"/>-->
+                        <!--<Setter Property="Margin" Value="5,0"/>-->
+                        <Setter Property="Width" Value="40"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd" Background="White" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></ContentPresenter>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected"  Value="true">
+                                            <Setter Property="Background" TargetName="Bd" Value="#6c55e4"/>
+                                            <Setter Property="Foreground" Value="#f5f5f5"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <!--<Style.Triggers>
+                            <Trigger Property="IsSelected"  Value="true">
+                                <Setter Property="Background" Value="red"/>
+                            </Trigger>
+                        </Style.Triggers>-->
+                        
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <!--<sys:String>kek</sys:String>
