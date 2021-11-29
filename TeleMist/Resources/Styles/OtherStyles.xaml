@@ -8,7 +8,7 @@
 
 
     <Style TargetType="Grid">
-        <Setter Property="ShowGridLines" Value="True"/>
+        <Setter Property="ShowGridLines" Value="False"/>
     </Style>
     
     <Style TargetType="Image" x:Key="Logo">
@@ -127,8 +127,8 @@
         <Setter Property="FlowDirection" Value="RightToLeft"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
-    
-    
+
+
     <Style TargetType="Calendar" x:Key="EnhancedCalendar">
         <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CalendarDayButton}"/>
         <Setter Property="Background">

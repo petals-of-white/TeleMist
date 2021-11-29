@@ -44,17 +44,25 @@
         </TextBlock>
         <TextBlock Style="{StaticResource AbstractTextBlock}" DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4"/>
         <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
-        <Calendar x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}"  CalendarDayButtonStyle="{StaticResource CalendarDayButton}" DisplayMode="Month">
+        <Calendar SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged" x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}" DisplayMode="Month">
             
         </Calendar>
 
 
-        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
+        <TextBlock x:Name="TimeInfoText" Style="{StaticResource AbstractTextBlock}" Grid.Row="5" Grid.Column="3"
+               
+                   Grid.ColumnSpan="1" Text="{Binding ElementName=AppointmentCalendar, Path=SelectedDate, ConverterCulture=ua, StringFormat={}Вільний час на {0:d}}" >
             
         </TextBlock>
         <Border CornerRadius="8" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" BorderBrush="#6c55e4" BorderThickness="2" Padding="5">
-            <!--<bob:TimePicker></bob:TimePicker>-->
             <ListBox Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="TimeBox" ItemsSource="{DynamicResource HoursForSelectedDate}">
+
+                <!--<ListBox DataContext="{DynamicResource HoursForSelectedDate}" DataContextChanged="TimeBox_DataContextChanged"  Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="TimeBox" ItemsSource="{Binding Source={DynamicResource }}" SourceUpdated="TimeBox_SourceUpdated">-->
+                <ListBox.Resources>
+                    <sys:DateTime x:Key="selectedDate">
+                    </sys:DateTime>
+                    
+                </ListBox.Resources>
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Margin="0" Rows="3" Columns="5" >
@@ -89,6 +97,9 @@
                                         <Trigger Property="IsSelected"  Value="true">
                                             <Setter Property="Background" TargetName="Bd" Value="#6c55e4"/>
                                             <Setter Property="Foreground" Value="#f5f5f5"/>
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Foreground" Value="Gray"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
