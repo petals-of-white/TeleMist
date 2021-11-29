@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
-        Title="ConfirmCallWindow" Height="450" Width="800">
+        Title="ConfirmCallWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>

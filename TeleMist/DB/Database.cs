@@ -10,7 +10,7 @@ namespace TeleMist.DB
 
     public class Database
     {
-       
+
         private OleDbConnection Connection { get; set; }
         public Database()
         {
@@ -27,7 +27,7 @@ namespace TeleMist.DB
             }
             else
             {
-                toCloseConnection= false;
+                toCloseConnection = false;
             }
             OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
             List<Doctor> doctors = new List<Doctor>();
@@ -129,13 +129,13 @@ namespace TeleMist.DB
                     patient.Residence = (string)TypedValue(reader["residence"]);
                     patient.Insurance = (string)TypedValue(reader["insurance"]);
                     patients.Add(patient);
-                
+
                 }
 
             }
 
             catch (OleDbException e)
-            { 
+            {
                 MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
                 return new List<Patient>();
             }
@@ -182,15 +182,15 @@ namespace TeleMist.DB
                     //!!! Перевірити наявність пацієнта
                     int doctorId = (int)(TypedValue(reader["doctor_id"]));
 
-                    
+
 
                     //MessageBox.Show(reader.ToString());
 
 
-                    
+
                     //!!! Перевірити наявність пацієнта
                     int patientId = (int)(TypedValue(reader["patient_id"]));
-                    
+
 
                     appointment.Reason = (string)(TypedValue(reader["reason"]));
                     appointment.Date_Time = (DateTime?)(TypedValue(reader["date_time"]));
@@ -300,22 +300,22 @@ namespace TeleMist.DB
             if (Field == DBNull.Value)
                 return null;
             else return Field;
-/*
-            if (type == typeof(string))
-            {
-                return (string)Field;
-            }
-            if (type == typeof(int))
-            {
-                return (int)Field;
-            }
+            /*
+                        if (type == typeof(string))
+                        {
+                            return (string)Field;
+                        }
+                        if (type == typeof(int))
+                        {
+                            return (int)Field;
+                        }
 
-            if (type == typeof(DateTime))
-            {
-                return (DateTime)Field;
-            }*/
+                        if (type == typeof(DateTime))
+                        {
+                            return (DateTime)Field;
+                        }*/
 
-            
+
 
         }
 
@@ -346,94 +346,71 @@ namespace TeleMist.DB
 
             if (historyOfAppointments != null)
                 App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
-                //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
+            //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
 
             //майбутні консультації
             List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                 $"([patient_id]={doctor.Id}) AND ([date_time] > Now())");
 
 
-            if (activeAppointments != null)
+            App.Current.Resources["ActiveAppointments"] = activeAppointments;
+            //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+
+            //тестовий варіянт зв'язування відвідувань
+            foreach (Appointment appointment in activeAppointments)
             {
-                App.Current.Resources["ActiveAppointments"]  = activeAppointments;
-                //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+                var tempDocs = from patient in patients // зі списку всіх доступних лікарів
+                               where patient.Id == appointment.Patient.Id // де id лікаря = id лікаря в консультації
+                               select patient; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+                Patient pat = tempDocs.First();
+                pat.NextAppointment = appointment;
 
-                //тестовий варіянт зв'язування відвідувань
-                foreach (Appointment appointment in activeAppointments)
-                {
-                    var tempDocs = from patient in patients // зі списку всіх доступних лікарів
-                                   where patient.Id == appointment.Patient.Id // де id лікаря = id лікаря в консультації
-                                   select patient; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
-                    Patient pat = tempDocs.First();
-                    pat.NextAppointment = appointment;
-
-                }
             }
         }
 
+
         public void UpdatePatientInfo(Patient patient)
         {
-            /*    Type personType;
-                string typeString;
-                if (person.GetType() == typeof(Patient))
-                {
-                    personType = typeof(Patient);
-                    typeString = "patient";
-                }
-                else if (person.GetType() == typeof(Doctor))
-                {
-                    personType = typeof(Doctor);
-                    typeString = "doctor";
-                }*/
-
-            //Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             List<Doctor> doctors = GetDoctors($"SELECT * FROM [doctor]");
 
-            //foreach (Doctor doctor in doctors)
-            //{
-            //    MessageBox.Show(doctor.ToString());
-            //}
-
-            if (doctors != null)
-            {
-                App.Current.Resources["Doctors"] = doctors;
-                //App.Current.Resources.Add("Doctors", doctors);
-            }
+            //if (doctors != null)
 
             List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                     $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
 
-            //foreach (Appointment appointment in historyOfAppointments)
-            //    MessageBox.Show(appointment.ToString());
 
 
-            if (historyOfAppointments != null)
-                App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
-                //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
+            //зміни історію відвідувань
+            //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
 
             //майбутні консультації
+
             List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                 $"([patient_id]={patient.Id}) AND ([date_time] > Now())");
 
 
-            if (activeAppointments != null)
+            // if (activeAppointments != null)
+
+            //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+
+
+            //тестовий варіянт зв'язування відвідувань
+            foreach (Appointment appointment in activeAppointments)
             {
-                App.Current.Resources["ActiveAppointments"] = activeAppointments;
-                //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+                var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
+                               where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
+                               select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+                Doctor doc = tempDocs.First();
+                doc.NextAppointment = appointment;
 
-                //тестовий варіянт зв'язування відвідувань
-
-                foreach (Appointment appointment in activeAppointments)
-                {
-                    var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
-                                   where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
-                                   select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
-                    Doctor doc = tempDocs.First();
-                    doc.NextAppointment = appointment;
-
-                }
             }
+
+            App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
+            //App.Current.Resources["ActiveAppointments"] = activeAppointments;
+
+            App.Current.Resources["Doctors"] = doctors;
+
 
         }
 

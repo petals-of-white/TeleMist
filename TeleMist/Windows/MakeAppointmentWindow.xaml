@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
-        Title="Запис на консультація" Height="539" Width="816"
+        Title="Запис на консультація"
         xmlns:bob="clr-namespace:TeleMist.UserControls"
-        xmlns:models="clr-namespace:TeleMist.Models" xmlns:sys="clr-namespace:System;assembly=netstandard">
-    <Window.Resources>
-        
-    </Window.Resources>
+        xmlns:models="clr-namespace:TeleMist.Models" 
+        xmlns:sys="clr-namespace:System;assembly=netstandard"
+        >
 
-    <Grid>
+
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
 

@@ -71,7 +71,7 @@
         </Setter>
         <Setter Property="Content">
             <Setter.Value>
-                <TextBlock Style="{StaticResource AbstractTextBlock}" FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
+                <TextBlock FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
             </Setter.Value>
 
         </Setter>
@@ -137,7 +137,8 @@
     <Style x:Key="UpdateButton" TargetType="Button" BasedOn="{StaticResource PurpleButton}">
         <Setter Property="MaxHeight" Value="30"/>
         <Setter Property="MaxWidth" Value=" 30"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="HorizontalAlignment" Value="
+                Right"/>
         <Setter Property="Content">
             <Setter.Value>
                 <Image Source="\Images\reload_arrow.png"/>
@@ -169,7 +170,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="5" Background="{TemplateBinding Background}"
+                    <Border CornerRadius="8" Background="{TemplateBinding Background}"
                                 BorderThickness="1">
 
                         <ContentPresenter 

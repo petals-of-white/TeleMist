@@ -5,22 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TeleMist.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignUpWindow">
-
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="SignUpWindow"
+      d:Background="#f5f5f5"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+      
     <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" MinHeight="60"/>
-
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
             <RowDefinition Height="2*" MinHeight="50"/>
             <RowDefinition Height="*" MinHeight="50"/>
-
             <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
 
@@ -50,11 +50,16 @@
             <RadioButton x:Name="Doctor" Content="Як лікар" IsChecked="True"/>
             <RadioButton x:Name="Patient" Content="Як пацієнт"></RadioButton>
         </UniformGrid>
-        
-        <TextBox x:Name="UserID" Grid.Row="4" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />
 
-        <PasswordBox x:Name="Password" Grid.Row="5" Grid.Column="1"/>
-        <PasswordBox x:Name="CheckPassword" Grid.Row="6" Grid.Column="1"/>
+        <xctk:WatermarkTextBox x:Name="UserID" Grid.Row="4" Grid.Column="1" Watermark="PatientID / DoctorID" Style="{StaticResource TextboxWithDefaultText}"></xctk:WatermarkTextBox>
+        <!--<TextBox x:Name="UserID" Grid.Row="4" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />-->
+        <xctk:WatermarkPasswordBox x:Name="Password" Watermark="Пароль"
+                                   Grid.Row="5" Grid.Column="1"/>
+        <!--<PasswordBox x:Name="Password" Grid.Row="5" Grid.Column="1"/>-->
+        <xctk:WatermarkPasswordBox x:Name="CheckPassword" Watermark="Підтвердьте пароль"
+                                   Grid.Row="6" Grid.Column="1"/>
+
+        <!--<PasswordBox x:Name="CheckPassword" Grid.Row="6" Grid.Column="1"/>-->
         
         <Button Content="Зареєструватися" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"

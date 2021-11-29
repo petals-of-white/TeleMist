@@ -38,33 +38,55 @@ namespace TeleMist
 
         private void MakeAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(TimeBox.SelectedValue.ToString());
+            if (AppointmentCalendar.SelectedDate == null)
+            {
+                MessageBox.Show("Оберіть дату");
+                return;
+            }
+
+            if (TimeBox.SelectedValue == null)
+            {
+                MessageBox.Show("Оберіть час");
+                return;
+            }
+
+            //MessageBox.Show(TimeBox.SelectedValue.ToString());
+
+            if (AppointmentCalendar.SelectedDate.Value < DateTime.Now)
+            {
+                MessageBox.Show("Неможливо записатися в минуле");
+                return;
+            }
+            Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            var currentPatient = App.Current.Resources["CurrentUser"] as Patient;
+            var selectedDoctor = this.Resources["SelectedDoctor"] as Doctor;
+            DateTime appTime;
+            try
+            {
+                appTime = DateTime.Parse(AppointmentCalendar.SelectedDate.Value.ToShortDateString() + " " + ((AppointmentTime)TimeBox.SelectedValue).Time);
+                MessageBox.Show(appTime.ToString());
+                string SQL = $"INSERT INTO [appointment] ([patient_id], [doctor_id], " +
+                $"[date_time], [status]) " +
+                $"VALUES ({currentPatient.Id}, {selectedDoctor.Id}, '{appTime}', 'Заплановано')";
+                int res = db.Insert(SQL);
+                if (res == 1)
+                {
+                    MessageBox.Show("Успішно створено запис!!!");
+                    db.UpdatePatientInfo(currentPatient);
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something wrong \n" + ex.Message);
+            }
+
+            
+
 
         }
 
-        /*
-        private void TimeBox_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
-            MessageBox.Show("kok");
-        }
-
-        private void TimeBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            MessageBox.Show("kok");
-
-        }
-
-        private void AppointmentCalendar_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-            MessageBox.Show("Було обрано іншу дату");
-        }
-
-        private void TimeInfoText_TargetUpdated(object sender, DataTransferEventArgs e)
-        {
-            MessageBox.Show("Було обрано іншу дату");
-
-        }
-        */
         private void AppointmentCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             MessageBox.Show("Було обрано іншу дату");
@@ -100,11 +122,11 @@ namespace TeleMist
             var random = new Random();
             foreach (string hour in allAvailableHours)
             {
-                MessageBox.Show(hour + "" + unavailableHours.FirstOrDefault());
+                //MessageBox.Show(hour + "" + unavailableHours.FirstOrDefault());
                 bool isAvailable = !unavailableHours.Contains(hour);
                 times.Add(new AppointmentTime { Time = hour, available = isAvailable });
             }
-    
+
             this.Resources["HoursForSelectedDate"] = times;
 
             //string time = appointments[0].Date_Time.Value.ToShortTimeString();

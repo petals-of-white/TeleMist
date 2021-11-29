@@ -11,8 +11,8 @@ namespace TeleMist
         //public Database AccessDB { get; set; }
         public App()
         {
-            
-            
+            //InitializeComponent();
+            //this.Resources["ReloadArrowImg"] = getpath
         }
 
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)

@@ -39,8 +39,7 @@ namespace TeleMist.Models
                 if (this.NextAppointment == null)
                 {
                     style = (Style)App.Current.TryFindResource("OpenAppointmentMakingButton");
-                   // EventSetter eventSetter = new EventSetter(Button.ClickEvent, MakeAppointmentButon_Click);
-                    //style.Setters.Add(eventSetter);
+            
                 }
                 else
                 {

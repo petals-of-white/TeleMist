@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist.Windows"
         mc:Ignorable="d"
-        Title="Main Window" Height="450" Width="900"
+        Title="Main Window"
         DataContext="{DynamicResource CurrentUser}">
     <Grid>
         <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
@@ -53,7 +53,6 @@
                                 <DataTemplate>
                                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
                                         <Grid >
-
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="3*"/>
@@ -73,7 +72,6 @@
                                             <Button Grid.Column="4" Style="{StaticResource CancelButton}" Visibility="{Binding CancelButtonVisibility}">
                                                 <Button.Content>
                                                     <TextBlock Style="{StaticResource AbstractTextBlock}" FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
-
                                                 </Button.Content>
                                             </Button>
 
@@ -117,7 +115,7 @@
                             :іменем
                         </CheckBox>
                         <CheckBox Grid.Column="2">
-                            :датою консультаціяу
+                            :датою консультації
                         </CheckBox>
 
                         <Button Grid.Column="3" Style="{StaticResource UpdateButton}" Margin="0,0,10,0"/>

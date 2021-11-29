@@ -14,10 +14,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\reload_arrow.png" />
     <None Remove="лого.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\reload_arrow.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
     <PackageReference Include="System.Data.OleDb" Version="6.0.0" />
   </ItemGroup>
 
