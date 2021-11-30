@@ -17,6 +17,30 @@ namespace TeleMist.DB
             this.Connection = new OleDbConnection(Helper.ConStr());
 
         }
+
+        public bool NonQuery(string SQL) {
+
+            Connection.Open();
+            OleDbCommand NonQueryCommand = new OleDbCommand(SQL, Connection);
+            try
+            {
+                NonQueryCommand.ExecuteNonQuery();
+            }
+
+            catch (OleDbException e)
+            {
+
+                MessageBox.Show("Помилка! " + e.Message);
+                return false;
+            }
+
+            finally
+            {
+                Connection.Close();
+            }
+
+            return true;
+        }
         public List<Doctor> GetDoctors(string SQL)
         {
             bool toCloseConnection;
@@ -81,6 +105,12 @@ namespace TeleMist.DB
 
             return doctors;
         }
+
+        /// <summary>
+        /// Повертає список пацієнтів згідно SQL-запитом
+        /// </summary>
+        /// <param name="SQL"></param>
+        /// <returns></returns>
         public List<Patient> GetPatients(string SQL)
         {
 
@@ -94,6 +124,7 @@ namespace TeleMist.DB
             {
                 toCloseConnection = false;
             }
+
             OleDbCommand selectCommand = new OleDbCommand(SQL, Connection);
 
             List<Patient> patients = new List<Patient>(); //список пацієнтів
@@ -107,8 +138,8 @@ namespace TeleMist.DB
                 {
                     MessageBox.Show("Немає такого користувача, мабуть");
                     return new List<Patient>();
+                    
                 }
-
 
                 while (reader.Read())
                 {
@@ -116,6 +147,7 @@ namespace TeleMist.DB
                  Привласнюємо отриманні значення з бази даних уластивостям об'єкта Patient,
                 спершу перевіривши, чи не дорівнюють вони нулю за допомогою функції CheckNull
                  */
+
                     Patient patient = new Patient();
                     patient.Id = (int)(TypedValue(reader["id"]));
                     patient.Username = (string)(TypedValue(reader["username"]));
@@ -128,6 +160,8 @@ namespace TeleMist.DB
                     patient.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
                     patient.Residence = (string)TypedValue(reader["residence"]);
                     patient.Insurance = (string)TypedValue(reader["insurance"]);
+
+                    //додаємо до списку пацієнтів
                     patients.Add(patient);
 
                 }
@@ -146,7 +180,6 @@ namespace TeleMist.DB
                     Connection.Close();
             }
 
-
             return patients;
         }
         public List<Appointment> GetAppointments(string SQL)
@@ -162,7 +195,7 @@ namespace TeleMist.DB
                 //Перевіримо, чи існують узагалі запитані записи в базі даних
                 if (!reader.HasRows)
                 {
-                    MessageBox.Show("Немає відвідувань поки що");
+                    //MessageBox.Show("Немає відвідувань поки що");
                     return new List<Appointment>();
                 }
 
@@ -300,23 +333,6 @@ namespace TeleMist.DB
             if (Field == DBNull.Value)
                 return null;
             else return Field;
-            /*
-                        if (type == typeof(string))
-                        {
-                            return (string)Field;
-                        }
-                        if (type == typeof(int))
-                        {
-                            return (int)Field;
-                        }
-
-                        if (type == typeof(DateTime))
-                        {
-                            return (DateTime)Field;
-                        }*/
-
-
-
         }
 
         public void UpdateDoctorInfo(Doctor doctor)
@@ -368,17 +384,19 @@ namespace TeleMist.DB
             }
         }
 
-
         public void UpdatePatientInfo(Patient patient)
         {
+            List<Doctor> doctors;
+            List<Appointment> historyOfAppointments, activeAppointments;
+            Patient updatedPatient;
 
-            List<Doctor> doctors = GetDoctors($"SELECT * FROM [doctor]");
+            updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}")[0];
+            doctors = GetDoctors($"SELECT * FROM [doctor]");
 
             //if (doctors != null)
 
-            List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+            historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                     $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
-
 
 
             //зміни історію відвідувань
@@ -386,7 +404,7 @@ namespace TeleMist.DB
 
             //майбутні консультації
 
-            List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+            activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
                 $"([patient_id]={patient.Id}) AND ([date_time] > Now())");
 
 
@@ -406,11 +424,12 @@ namespace TeleMist.DB
 
             }
 
+            App.Current.Resources["CurrentUser"] = updatedPatient;
+
             App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
             //App.Current.Resources["ActiveAppointments"] = activeAppointments;
 
             App.Current.Resources["Doctors"] = doctors;
-
 
         }
 

@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:TeleMist.Windows"
         mc:Ignorable="d"
         Title="Main Window"
-        DataContext="{DynamicResource CurrentUser}">
+        d:Height="500"
+        d:Width="800"
+        DataContext="{DynamicResource CurrentUser}" Height="358" Width="650">
+
     <Grid>
         <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
             <TabItem Header="Лікарі">
@@ -14,13 +17,12 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-
                     </Grid.ColumnDefinitions>
+
                     <Grid.RowDefinitions>
                         <RowDefinition  Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
 
                     <Grid  Grid.Row="0">
                         <Grid.ColumnDefinitions>
@@ -29,9 +31,11 @@
                             <ColumnDefinition Width="2*"></ColumnDefinition>
                             <ColumnDefinition Width="3*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
+
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
+
                         <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                         Сортувати за:
                         </TextBlock>
@@ -43,7 +47,7 @@
                         </CheckBox>
 
                         <Button Grid.Column="3" Style="{StaticResource UpdateButton}" Margin="0,0,10,0">
-             
+
                         </Button>
                     </Grid>
 
@@ -67,7 +71,7 @@
 
                                             <Image Grid.Column="0" Source="C:\Users\maxle\OneDrive\Навчання\Основи проєктування програмних\WPF_first_steps\TeleMist v.2.0\Images\default_avatar.png" MaxHeight="100" MaxWidth="100"></Image>
                                             <TextBlock Style="{StaticResource AbstractTextBlock}" Text="{Binding FullName}" Grid.Column="1" LineStackingStrategy="MaxHeight" ></TextBlock>
-                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Text="{Binding NextAppointment.Date_Time}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
+                                            <TextBlock Style="{StaticResource AbstractTextBlock}" Text="{Binding NextAppointment.Date_Time, StringFormat={}{0:dd.MM.yyyy о HH:mm}}" Grid.Column="2" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"></TextBlock>
                                             <Button Grid.Column="3" Style="{Binding AppointmentStatus}"/>
                                             <Button Grid.Column="4" Style="{StaticResource CancelButton}" Visibility="{Binding CancelButtonVisibility}">
                                                 <Button.Content>
@@ -79,14 +83,14 @@
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
-                        
+
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
-          
-           
-         
+
+
+
             <TabItem Header="Історія">
                 <!--<StackPanel Orientation="Vertical">-->
                 <Grid>
@@ -146,22 +150,21 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        </ScrollViewer>
-
+                    </ScrollViewer>
                 </Grid>
-        
+
             </TabItem>
             <TabItem Header="Профіль">
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -176,20 +179,20 @@
 
 
                     <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ProfileFields}">Прізвище</TextBlock>
-                    <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Surname}"></TextBox>
+                    <TextBox x:Name="Surname" Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Surname}"></TextBox>
 
 
                     <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource ProfileFields}">Ім'я</TextBlock>
-                    <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=FirstName}"></TextBox>
+                    <TextBox x:Name="FirstName" Grid.Row="2" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=FirstName}"></TextBox>
 
 
                     <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource ProfileFields}">По батькові</TextBlock>
-                    <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Patronym}"></TextBox>
+                    <TextBox x:Name="Patronym" Grid.Row="3" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Patronym}"></TextBox>
 
 
                     <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource ProfileFields}">Стать</TextBlock>
                     <ComboBox x:Name="GenderBox" Grid.Row="4" Grid.Column="2" SelectedIndex="{Binding Path=GenderBoxIndex}">
-                        
+
                         <ComboBoxItem>Чоловік</ComboBoxItem>
                         <ComboBoxItem>Жінка</ComboBoxItem>
                     </ComboBox>
@@ -197,14 +200,14 @@
 
 
                     <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ProfileFields}">Дата народження</TextBlock>
-                    <DatePicker Margin="5" Grid.Row="5" Grid.Column="2" Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
+                    <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
 
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource ProfileFields}">Місце проживання</TextBlock>
-                    <TextBox Grid.Row="6" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Residence}"></TextBox>
+                    <TextBox x:Name="Residence" Grid.Row="6" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Residence}"></TextBox>
 
                     <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
-                    <TextBox Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
+                    <TextBox x:Name="Insurance" Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
 
                     <Button x:Name="LogOutButotn" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButotn_Click">Log Out</Button>
                     <Button x:Name="SaveChanges"  Style="{StaticResource PurpleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
