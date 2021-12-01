@@ -52,14 +52,11 @@
         </UniformGrid>
 
         <xctk:WatermarkTextBox x:Name="UserID" Grid.Row="4" Grid.Column="1" Watermark="PatientID / DoctorID" Style="{StaticResource TextboxWithDefaultText}"></xctk:WatermarkTextBox>
-        <!--<TextBox x:Name="UserID" Grid.Row="4" Grid.Column="1" Style="{StaticResource SmallBox}" Text="" />-->
         <xctk:WatermarkPasswordBox x:Name="Password" Watermark="Пароль"
                                    Grid.Row="5" Grid.Column="1"/>
-        <!--<PasswordBox x:Name="Password" Grid.Row="5" Grid.Column="1"/>-->
         <xctk:WatermarkPasswordBox x:Name="CheckPassword" Watermark="Підтвердьте пароль"
                                    Grid.Row="6" Grid.Column="1"/>
 
-        <!--<PasswordBox x:Name="CheckPassword" Grid.Row="6" Grid.Column="1"/>-->
         
         <Button Content="Зареєструватися" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center"
                 HorizontalAlignment="Stretch" Margin="15,0,15,0"

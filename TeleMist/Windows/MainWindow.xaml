@@ -203,7 +203,8 @@
 
 
                     <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ProfileFields}">Дата народження</TextBlock>
-                    <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
+                    <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" 
+                                Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
 
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource ProfileFields}">Місце проживання</TextBlock>

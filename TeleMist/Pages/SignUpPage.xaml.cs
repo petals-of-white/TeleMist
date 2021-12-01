@@ -28,18 +28,33 @@ namespace TeleMist.Pages
         }
         private void SingUpButton_Click(object sender, RoutedEventArgs e)
         {
+
+            string role;
+
             if (UserID.Text == "")
             {
                 Warning.Text = "Ім'я користувача не може бути порожнім";
                 //MessageBox.Show("Ім'я користувача не може бути порожнім");
                 return;
             }
+            
+            if (UserID.Text.Length < 6)
+            {
+                Warning.Text = "Ім'я користувача мусить містити щонайменше 6 символів";
+            }
+
 
             if (Password.Password == "" || CheckPassword.Password == "")
             {
                 Warning.Text = "Пароль не може бути порожнім";
                 //MessageBox.Show("Пароль не може бути порожнім");
                 return;
+            }
+            
+            if (Password.Password.Length < 6)
+            {
+                Warning.Text = "Пароль мусить містити щонайменше 6 символів";
+
             }
 
             if (Password.Password != CheckPassword.Password)
@@ -50,10 +65,9 @@ namespace TeleMist.Pages
             }
 
             
-            
             Database db = (Database)App.Current.TryFindResource("AccessDB");
 
-            string role;
+
             if (Doctor.IsChecked == true) {
                 role = "doctor";
             }

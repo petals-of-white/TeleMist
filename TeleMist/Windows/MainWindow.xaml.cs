@@ -35,13 +35,21 @@ namespace TeleMist.Windows
             string surname, firstName, patronym, gender, residence, insurance;
             DateTime dateOfBirth;
 
-            surname = Surname.Text;
-            firstName = FirstName.Text;
-            patronym = Patronym.Text;
-            gender = GenderBox.Text;
-            residence = Residence.Text;
-            insurance = Insurance.Text;
-            dateOfBirth = DateOfBirth.SelectedDate.Value;
+            try
+            {
+                surname = Surname.Text;
+                firstName = FirstName.Text;
+                patronym = Patronym.Text;
+                gender = GenderBox.Text;
+                residence = Residence.Text;
+                insurance = Insurance.Text;
+                dateOfBirth = DateOfBirth.SelectedDate.Value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Було введено неприпустимі значення полів");
+                return;
+            }
 
           
             Patient currentPatient = App.Current.TryFindResource("CurrentUser") as Patient;
