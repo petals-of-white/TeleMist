@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeleMist.Models
 {
-    public class Appointment
+    public class Appointment: IComparable<Appointment>
     {
         public int Id { get; set; }
         //public int PatientId { get; set; }
@@ -18,6 +18,11 @@ namespace TeleMist.Models
         public string Diagnose { get; set; }
         public string Recommendations { get; set; }
         public string Status { get; set; }
+
+        public int CompareTo(Appointment other)
+        {
+            return other.Date_Time.Value.CompareTo(this.Date_Time.Value);
+        }
 
         public override string ToString()
         {

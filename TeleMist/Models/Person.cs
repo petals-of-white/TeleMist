@@ -46,5 +46,41 @@ namespace TeleMist.Models
                 return Surname + " " + FirstName + " " + Patronym;
             }
         }
+
+        public class NameComparer : IComparer<Person>
+        {
+            public int Compare(Person x, Person y)
+            {
+                return x.FullName.CompareTo(y.FullName);
+            }
+        }
+
+        public class DateComparer : IComparer<Person>
+        {
+            public int Compare(Person x, Person y)
+
+            {
+                if(x.NextAppointment != null && y.NextAppointment != null)
+                {
+                    return x.NextAppointment.CompareTo(y.NextAppointment);
+                }
+                //if (x.NextAppointment.Date_Time.HasValue && y.NextAppointment.Date_Time.HasValue)
+                //{
+                //    return x.NextAppointment.Date_Time.Value.CompareTo(y.NextAppointment.Date_Time.Value);
+                //}
+                else if (x.NextAppointment == null && y.NextAppointment != null)
+                {
+                    return 1;
+                }
+                else if (x.NextAppointment != null && y.NextAppointment == null) {
+                    return -1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+       
     }
 }

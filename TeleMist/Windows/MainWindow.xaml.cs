@@ -43,7 +43,7 @@ namespace TeleMist.Windows
             insurance = Insurance.Text;
             dateOfBirth = DateOfBirth.SelectedDate.Value;
 
-
+          
             Patient currentPatient = App.Current.TryFindResource("CurrentUser") as Patient;
             
             if (currentPatient != null)
@@ -81,6 +81,53 @@ namespace TeleMist.Windows
             this.Close();
             auth.Show();
 
+        }
+
+        private void SortDoctorsByName_Checked(object sender, RoutedEventArgs e)
+        {
+
+            List<Doctor> doctors = App.Current.Resources["Doctors"] as List<Doctor>;
+
+            var updatedDoctors = from doctor in new List<Doctor>(doctors)
+                                select doctor;
+            var sortedDoctors = updatedDoctors.ToList();
+            sortedDoctors.Sort(new Doctor.NameComparer());
+
+            App.Current.Resources["Doctors"] = sortedDoctors;
+
+       //     DoctorsList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("FullName",
+       //System.ComponentModel.ListSortDirection.Ascending));
+
+
+
+            
+        }
+        private void SortDoctorsByDate_Checked(object sender, RoutedEventArgs e)
+        {
+            List<Doctor> doctors = App.Current.Resources["Doctors"] as List<Doctor>;
+
+            var updatedDoctors = from doctor in new List<Doctor>(doctors)
+                                 select doctor;
+            var sortedDoctors = updatedDoctors.ToList();
+            sortedDoctors.Sort(new Doctor.DateComparer());
+
+            App.Current.Resources["Doctors"] = sortedDoctors;
+        }
+        /// <summary>
+        /// Сортування ресурсу в залежності від 
+        /// <br></br>
+        /// T - тип об'єкта в списку ресурсів
+        /// </summary>
+        /// <typeparam name="T">Тип об'єкта в списку</typeparam>
+        /// <param name="resource"></param>
+        /// <param name="method"></param>
+        private void SortResource<T>(ref List<T> resource, IComparer<T> comparer)
+        {
+            List<T> newResource = new List<T>(resource);
+            newResource.Sort(comparer);
+
+            //newResource = resource.Select(item => (T)item.Clone()).ToList()
+            resource = newResource;
         }
     }
 }

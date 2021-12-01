@@ -39,10 +39,10 @@
                         <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                         Сортувати за:
                         </TextBlock>
-                        <CheckBox Grid.Column="1" >
+                        <CheckBox Grid.Column="1" x:Name="SortDoctorsByName" Checked="SortDoctorsByName_Checked">
                             :іменем
                         </CheckBox>
-                        <CheckBox Grid.Column="2">
+                        <CheckBox Grid.Column="2" x:Name="SortDoctorsByDate" Checked="SortDoctorsByDate_Checked">
                             :датою консультації
                         </CheckBox>
 
@@ -52,7 +52,7 @@
                     </Grid>
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                        <ItemsControl ItemsSource="{DynamicResource Doctors}">
+                        <ItemsControl ItemsSource="{DynamicResource Doctors}" x:Name="DoctorsList">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
