@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
         Title="Інформація про консультація"
-        DataContext="{DynamicResource SelectedAppointment}">
+        DataContext="{DynamicResource SelectedAppointment}"
+        Style="{StaticResource TheRightWindow}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"/>

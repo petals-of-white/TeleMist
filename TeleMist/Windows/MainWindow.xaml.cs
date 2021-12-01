@@ -110,24 +110,51 @@ namespace TeleMist.Windows
                                  select doctor;
             var sortedDoctors = updatedDoctors.ToList();
             sortedDoctors.Sort(new Doctor.DateComparer());
+            sortedDoctors.Reverse();
+
 
             App.Current.Resources["Doctors"] = sortedDoctors;
         }
-        /// <summary>
-        /// Сортування ресурсу в залежності від 
-        /// <br></br>
-        /// T - тип об'єкта в списку ресурсів
-        /// </summary>
-        /// <typeparam name="T">Тип об'єкта в списку</typeparam>
-        /// <param name="resource"></param>
-        /// <param name="method"></param>
-        private void SortResource<T>(ref List<T> resource, IComparer<T> comparer)
+       /// <summary>
+       /// Сортує ресурс-список за навзою ресурсу, з елементами типу T
+       /// </summary>
+       /// <typeparam name="T"></typeparam>
+       /// <param name="resourceName"></param>
+       /// <param name="comparer"></param>
+        internal void SortResource<T>(string resourceName, IComparer<T> comparer)
         {
-            List<T> newResource = new List<T>(resource);
-            newResource.Sort(comparer);
+            List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
+           
+            var updatedResources = from resource in new List<T>(resources)
+                                 select resource;
+            var sortedResources = updatedResources.ToList();
+            sortedResources.Sort(comparer);
 
-            //newResource = resource.Select(item => (T)item.Clone()).ToList()
-            resource = newResource;
+
+            App.Current.Resources[resourceName] = sortedResources;
+
+        }
+
+        internal void SortResource<T>(string resourceName)
+        {
+            List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
+            var updatedResources = from resource in new List<T>(resources)
+                                   select resource;
+            var sortedResources = updatedResources.ToList();
+            sortedResources.Sort();
+            App.Current.Resources[resourceName] = sortedResources;
+
+        }
+
+        private void SortHistoryByName_Checked(object sender, RoutedEventArgs e)
+        {
+            SortResource<Appointment>("HistoryOfAppointments");
+        }
+
+        private void SortHistoryByDate_Checked(object sender, RoutedEventArgs e)
+        {
+            SortResource<Appointment>("HistoryOfAppointments");
+
         }
     }
 }

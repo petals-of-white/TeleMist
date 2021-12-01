@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
         Title="Запис на консультація"
-        xmlns:bob="clr-namespace:TeleMist.UserControls"
         xmlns:models="clr-namespace:TeleMist.Models" 
         xmlns:sys="clr-namespace:System;assembly=netstandard"
-        >
-
-
-        <Grid>
+        d:Height="400" d:Width="900"
+        Style="{StaticResource TheRightWindow}">
+    
+    <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
 
@@ -42,9 +42,18 @@
                    Style="{StaticResource AbstractTextBlock}">
             Записатися на консультацію до
         </TextBlock>
-        <TextBlock Style="{StaticResource AbstractTextBlock}" DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4"/>
-        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
-        <Calendar SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged" x:Name="AppointmentCalendar" FontSize="16" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5" Style="{StaticResource EnhancedCalendar}" DisplayMode="Month">
+        <TextBlock Style="{StaticResource AbstractTextBlock}"
+                   DataContext="{DynamicResource SelectedDoctor}" Text="{Binding FullName}" 
+                   Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Foreground="#6c55e4" FontWeight="Bold"
+                   ></TextBlock>
+        <TextBlock Style="{StaticResource AbstractTextBlock}" Grid.Row="3" Grid.Column="3"
+                   Grid.ColumnSpan="1"> Оберіть дату</TextBlock>
+        <Calendar SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged"
+                  x:Name="AppointmentCalendar" FontSize="16"
+                  HorizontalAlignment="Center"
+                  
+                  Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Margin="0,5"
+                  Style="{StaticResource EnhancedCalendar}" DisplayMode="Month">
             
         </Calendar>
 

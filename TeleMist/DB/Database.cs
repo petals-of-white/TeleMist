@@ -5,6 +5,8 @@ using System.Windows;
 using TeleMist.Models;
 using System.Data;
 using System.Linq;
+using TeleMist.Windows;
+
 namespace TeleMist.DB
 {
 
@@ -390,13 +392,12 @@ namespace TeleMist.DB
             List<Appointment> historyOfAppointments, activeAppointments;
             Patient updatedPatient;
 
+
             updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}")[0];
             doctors = GetDoctors($"SELECT * FROM [doctor]");
 
-            //if (doctors != null)
-
             historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                    $"([patient_id]={patient.Id}) AND ([date_time] < Now())");
+                    $"([patient_id]={patient.Id}) AND ([status] = 'Завершено')");
 
 
             //зміни історію відвідувань
@@ -405,7 +406,7 @@ namespace TeleMist.DB
             //майбутні консультації
 
             activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                $"([patient_id]={patient.Id}) AND ([date_time] > Now())");
+                $"([patient_id]={patient.Id}) AND ([status] = 'Заплановано');");
 
 
             // if (activeAppointments != null)
@@ -425,11 +426,38 @@ namespace TeleMist.DB
             }
 
             App.Current.Resources["CurrentUser"] = updatedPatient;
-
             App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
             //App.Current.Resources["ActiveAppointments"] = activeAppointments;
-
             App.Current.Resources["Doctors"] = doctors;
+            MainWindow mainWindow = App.Current.MainWindow as MainWindow;
+
+            if (mainWindow != null)
+            {
+                if ((bool)(mainWindow.SortDoctorsByDate?.IsChecked))
+                {
+                    mainWindow.SortResource<Doctor>("Doctors", new Doctor.DateComparer());
+
+                }
+
+                if ((bool)(mainWindow.SortDoctorsByName?.IsChecked))
+                {
+                    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
+
+                }
+            }
+
+            
+
+            //if ((bool)(mainWindow.SortHistoryOfAppointmentsByDate.IsChecked))
+            //{
+            //    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
+
+            //}
+            //if ((bool)(mainWindow.SortHistoryOfAppointmentsByName.IsChecked))
+            //{
+            //    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
+
+            //}
 
         }
 

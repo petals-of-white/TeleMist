@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeleMist"
         mc:Ignorable="d"
-        Title="CallWindow">
+        Title="CallWindow"
+        Style="{StaticResource TheRightWindow}">
     <Grid>
 
         <Grid.RowDefinitions>

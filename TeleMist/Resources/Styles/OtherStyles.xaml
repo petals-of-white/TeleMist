@@ -62,21 +62,6 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
-
-    <Style TargetType="Calendar" x:Key="EnhancedCalendar">
-        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CalendarDayButton}"/>
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF6C55E4"/>
-                    <GradientStop Color="#FFECF0F4" Offset="0.16"/>
-                    <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style TargetType="DatePicker">
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Height" Value="{StaticResource ButtonHeight}"/>

@@ -161,48 +161,7 @@
         <EventSetter Event="Click" Handler="FillAppointmentInfoButton_Click"/>
     </Style>
     
-    <Style x:Key="CalendarDayButton" TargetType="CalendarDayButton">
-
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Background" Value="Transparent"/>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="8" Background="{TemplateBinding Background}"
-                                BorderThickness="1">
-
-                        <ContentPresenter 
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-
-                    </Border>
-
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="5" Background="#6C55E4"
-                                BorderThickness="1">
-                                <ContentPresenter 
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                             />
-                            </Border>
-
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Foreground" Value="White"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
+    
 
     <Style TargetType="Button" x:Key="TextButton">
 

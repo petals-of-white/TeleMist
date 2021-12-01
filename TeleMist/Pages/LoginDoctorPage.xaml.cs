@@ -67,7 +67,8 @@ namespace TeleMist.Pages
 
                 MainWindow main = new MainWindow();
                 App.Current.MainWindow.Close();
-                main.Show();
+                App.Current.MainWindow = main;
+                App.Current.MainWindow.Show();
             }
             else
             {

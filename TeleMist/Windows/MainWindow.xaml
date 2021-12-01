@@ -8,7 +8,8 @@
         Title="Main Window"
         d:Height="500"
         d:Width="800"
-        DataContext="{DynamicResource CurrentUser}" Height="358" Width="650">
+        DataContext="{DynamicResource CurrentUser}"
+        Style="{StaticResource TheRightWindow}">
 
     <Grid>
         <TabControl x:Name="MainTabs" Margin="10,10" Background="#f5f5f5" BorderBrush="#FFFEB83F" BorderThickness="1,1,1,1" SelectedIndex="2">
@@ -115,10 +116,12 @@
                         <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                         Сортувати за:
                         </TextBlock>
-                        <CheckBox Grid.Column="1">
+                        <CheckBox  x:Name="SortHistoryByName" Checked="SortHistoryByName_Checked"
+                                   Grid.Column="1">
                             :іменем
                         </CheckBox>
-                        <CheckBox Grid.Column="2">
+                        <CheckBox x:Name="SortHistoryByDate" Checked="SortHistoryByDate_Checked"
+                                  Grid.Column="2">
                             :датою консультації
                         </CheckBox>
 

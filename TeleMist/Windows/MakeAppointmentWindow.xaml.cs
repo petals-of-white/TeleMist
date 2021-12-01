@@ -89,7 +89,7 @@ namespace TeleMist
 
         private void AppointmentCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show("Було обрано іншу дату");
+            //MessageBox.Show("Було обрано іншу дату");
             Database db = (Database)App.Current.TryFindResource("AccessDB");
 
             var currentDoctor = (Doctor)this.Resources["SelectedDoctor"];
