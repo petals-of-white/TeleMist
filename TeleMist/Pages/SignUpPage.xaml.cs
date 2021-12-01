@@ -77,7 +77,6 @@ namespace TeleMist.Pages
 
             }
 
-
             string passwordHash = Hasher.MD5Hash(Password.Password);
 
             //int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
@@ -91,6 +90,8 @@ namespace TeleMist.Pages
                     "Найімовірніше, користувач з таким іменем уже існує.";
             }
         }
+
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new GreetingPage());

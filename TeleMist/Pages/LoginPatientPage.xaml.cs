@@ -46,8 +46,6 @@ namespace TeleMist.Pages
             string passwordHash = Hasher.MD5Hash(Password.Password);
 
             //пошук користувача
-            //List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
-            //    $" [username]='{PatientID.Text}' AND [password]='{Password.Password}';");
             List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
                 $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
 
@@ -58,7 +56,7 @@ namespace TeleMist.Pages
             if (patients != null && patients.Count > 0)
             {
                 Patient patient = patients[0];
-                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
+                //MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
                 /*using (StreamWriter outputFile = new StreamWriter("patient.txt"))
                 {
                     outputFile.WriteLine(patient.ToString());
@@ -70,8 +68,10 @@ namespace TeleMist.Pages
   
 
                 MainWindow main = new MainWindow();
+
                 App.Current.MainWindow.Close();
-                main.Show();
+                App.Current.MainWindow = main;
+                App.Current.MainWindow.Show();
 
             }
             else

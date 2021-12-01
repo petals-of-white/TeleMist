@@ -77,17 +77,17 @@ namespace TeleMist.Windows
 
         }
 
-        private void LogOutButotn_Click(object sender, RoutedEventArgs e)
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            AuthWindow auth = new AuthWindow();
             App.Current.Resources.Remove("CurrentUser");
             App.Current.Resources.Remove("HistoryOfAppointments");
             //App.Current.Resources.Remove("ActiveAppointments");
             App.Current.Resources.Remove("Doctors");
+            App.Current.MainWindow.Close();
 
-
-            this.Close();
-            auth.Show();
+            AuthWindow auth = new AuthWindow();
+            App.Current.MainWindow = auth;
+            App.Current.MainWindow.Show();
 
         }
 

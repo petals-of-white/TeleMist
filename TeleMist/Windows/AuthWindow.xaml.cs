@@ -16,10 +16,6 @@ namespace TeleMist
             
         }
 
-       /* private void DoctorButton_Click(object sender, RoutedEventArgs e)
-        {
-            Window DoctorWindow = new LoginDoctorWindow();
-            DoctorWindow.Show();
-        }*/
+    
     }
 }
