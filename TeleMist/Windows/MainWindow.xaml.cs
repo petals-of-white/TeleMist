@@ -83,9 +83,11 @@ namespace TeleMist.Windows
             App.Current.Resources.Remove("HistoryOfAppointments");
             //App.Current.Resources.Remove("ActiveAppointments");
             App.Current.Resources.Remove("Doctors");
-            App.Current.MainWindow.Close();
 
             AuthWindow auth = new AuthWindow();
+
+            App.Current.MainWindow.Close();
+
             App.Current.MainWindow = auth;
             App.Current.MainWindow.Show();
 

@@ -59,10 +59,10 @@
                 <ControlTemplate TargetType="Button">
                     <Border CornerRadius="5" Background="{TemplateBinding Background}"
                                 BorderThickness="1" BorderBrush="#ba263a">
-                        <ContentPresenter 
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"
-                                                
+                       
+
+                        <ContentPresenter    HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"    
                                              />
                     </Border>
 
@@ -71,13 +71,12 @@
         </Setter>
         <Setter Property="Content">
             <Setter.Value>
-                <TextBlock FontSize="14" Padding="0,0,0,0" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
+                <TextBlock FontSize="14" LineHeight="15"  LineStackingStrategy="BlockLineHeight" Text="Скасувати запис"/>
             </Setter.Value>
 
         </Setter>
 
         <Setter Property="Foreground" Value="#ba263a"/>
-
 
         <Setter Property="Background">
             <Setter.Value>
@@ -95,8 +94,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="5" Background="{TemplateBinding Background}"
-                                BorderThickness="3">
+                            <Border CornerRadius="5"
+                                    Width="{TemplateBinding Width, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-2}"
+                                    Height="{TemplateBinding Height, Converter={StaticResource MathConverter}, ConverterParameter=@VALUE-2}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="1" BorderBrush="#ba263a">
                                 <ContentPresenter 
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
@@ -160,15 +162,39 @@
     <Style TargetType="Button" x:Key="FillAppointmentInfoButton" BasedOn="{StaticResource YellowButton}">
         <EventSetter Event="Click" Handler="FillAppointmentInfoButton_Click"/>
     </Style>
-    
-    
+
 
     <Style TargetType="Button" x:Key="TextButton">
-
         <Setter Property="Foreground" Value="#F3b83f"/>
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <!--<EventSetter Event="Click" Handler="SignUpButton_Click"/>-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="0" Background="{x:Null}"
+                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <ContentPresenter></ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextDecorations" Value="None"/>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+            
+        </Setter>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock TextDecorations="Underline" Text="{TemplateBinding Content}"></TextBlock>
+                   
+                </DataTemplate>
+            </Setter.Value>
+           
+
+        </Setter>
     </Style>
 
     <Style TargetType="Button" x:Key="UnavailableTimeButton">
@@ -179,6 +205,37 @@
     <Style TargetType="Button" x:Key="AvailableTimeButton">
         <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Background" Value="Gray"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="GoBackToGreetingButton">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Image Height="auto" Width="auto" Source="\Images\GoBackArrow.png"></Image>
+            </Setter.Value>
+        </Setter>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}" BorderThickness="0"
+                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <ContentPresenter>
+                            <ContentPresenter.Content>
+                                <Image Source="\Images\GoBackArrow.png"></Image>
+
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
     </Style>
 
 

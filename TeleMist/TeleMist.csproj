@@ -14,11 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\goBackArrow.png" />
     <None Remove="Images\reload_arrow.png" />
     <None Remove="лого.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\goBackArrow.png" />
     <Resource Include="Images\reload_arrow.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

@@ -49,7 +49,7 @@ namespace TeleMist.Pages
             List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
                 $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
 
-            MessageBox.Show(patients.Count<Patient>().ToString());
+            //MessageBox.Show(patients.Count<Patient>().ToString());
 
             //Якщо не виникла помилка в процесі запиту І список користувачів не пустий (користувач існує).
             //Насправді, все це нижче бажано перенести в окрему функцію.
