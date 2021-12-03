@@ -203,7 +203,8 @@
 
 
                     <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ProfileFields}">Дата народження</TextBlock>
-                    <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
+                    <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" 
+                                Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
 
 
                     <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource ProfileFields}">Місце проживання</TextBlock>
@@ -212,7 +213,7 @@
                     <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
                     <TextBox x:Name="Insurance" Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
 
-                    <Button x:Name="LogOutButotn" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButotn_Click">Log Out</Button>
+                    <Button x:Name="LogOutButton" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButton_Click">Log Out</Button>
                     <Button x:Name="SaveChanges"  Style="{StaticResource PurpleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
 
                 </Grid>

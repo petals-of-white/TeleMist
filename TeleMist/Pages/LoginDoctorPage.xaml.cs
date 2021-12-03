@@ -55,11 +55,7 @@ namespace TeleMist.Pages
 
                 Doctor doctor = doctors[0];
 
-                MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
-                /*using (StreamWriter outputFile = new StreamWriter("doctor.txt"))
-                {
-                    outputFile.WriteLine(doctor.ToString());
-                }*/
+                //MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
 
                 App.Current.Resources.Add("CurrentUser", doctor);
 

@@ -64,8 +64,8 @@ namespace TeleMist.DB
 
                 //Перевіримо, чи існують узагалі запитані записи в базі даних
                 if (!reader.HasRows) {
-                    MessageBox.Show("Немає такого користувача, мабуть");
-                    return null;
+                    //MessageBox.Show("Немає такого користувача, мабуть");
+                    return new List<Doctor>();
                 }
 
                 /*
@@ -138,7 +138,7 @@ namespace TeleMist.DB
                 //Перевіримо, чи існують узагалі запитані записи в базі даних
                 if (!reader.HasRows)
                 {
-                    MessageBox.Show("Немає такого користувача, мабуть");
+                    //MessageBox.Show("Немає такого користувача, мабуть");
                     return new List<Patient>();
                     
                 }

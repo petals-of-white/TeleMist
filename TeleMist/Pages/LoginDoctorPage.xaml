@@ -25,34 +25,39 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*" MinWidth="330"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+
         </Grid.ColumnDefinitions>
         <!--End of Grid-->
         <!--Ідемо згори донизу-->
 
-        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="0" Style="{StaticResource PurpleButton}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BackButton_Click">Назад</Button>
+        <Button x:Name="BackButton" Grid.Row="1" Grid.Column="1"
+                Style="{StaticResource GoBackToGreetingButton}"
+                Click="BackButton_Click"></Button>
 
-        <Image x:Name="Logo" Grid.Column="1" Grid.Row="1" Style="{StaticResource Logo}"></Image>
+        <Image x:Name="Logo" Grid.Column="2" Grid.Row="1" Style="{StaticResource Logo}"></Image>
         <TextBlock Style="{StaticResource AbstractTextBlock}" x:Name="Kek" HorizontalAlignment="Stretch"
-               VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"
+               VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"
                    TextWrapping="WrapWithOverflow" TextAlignment="Center">
             Вітаємо, лікарю.
             Будь ласка, уведіть свій DoctorID і пароль
 
         </TextBlock>
         <xctk:WatermarkTextBox Style="{StaticResource TextboxWithDefaultText}" x:Name="DoctorID"
-                               Grid.Row="3" Grid.Column="1" Watermark="DoctorID"/>
+                               Grid.Row="3" Grid.Column="2" Watermark="DoctorID"/>
 
         <!--<TextBox x:Name="DoctorID" Grid.Row="3" Grid.Column="1" Style="{StaticResource SmallBox}"/>-->
         <xctk:WatermarkPasswordBox x:Name="Password" Watermark="Пароль"
-                                 Grid.Row="4" Grid.Column="1"/>
+                                 Grid.Row="4" Grid.Column="2"/>
         <!--<PasswordBox x:Name="Password" Grid.Row="4" Grid.Column="1" Margin="15,7,15,7"/>-->
-        <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="1" 
+        <Button x:Name="LoginAsADoctor" Content="Увійти" Grid.Row="5" Grid.Column="2" 
                Click="LoginAsADoctor_Click"
                Style="{StaticResource PurpleButton}"/>
-        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}" Grid.Row="6" Grid.Column="1">
+        <TextBlock x:Name="Warning" Style="{StaticResource WarningMessage}" Grid.Row="6" Grid.Column="2">
         </TextBlock>
     </Grid>
 </Page>

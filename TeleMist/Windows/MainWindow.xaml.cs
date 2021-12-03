@@ -35,13 +35,21 @@ namespace TeleMist.Windows
             string surname, firstName, patronym, gender, residence, insurance;
             DateTime dateOfBirth;
 
-            surname = Surname.Text;
-            firstName = FirstName.Text;
-            patronym = Patronym.Text;
-            gender = GenderBox.Text;
-            residence = Residence.Text;
-            insurance = Insurance.Text;
-            dateOfBirth = DateOfBirth.SelectedDate.Value;
+            try
+            {
+                surname = Surname.Text;
+                firstName = FirstName.Text;
+                patronym = Patronym.Text;
+                gender = GenderBox.Text;
+                residence = Residence.Text;
+                insurance = Insurance.Text;
+                dateOfBirth = DateOfBirth.SelectedDate.Value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Було введено неприпустимі значення полів");
+                return;
+            }
 
           
             Patient currentPatient = App.Current.TryFindResource("CurrentUser") as Patient;
@@ -69,17 +77,19 @@ namespace TeleMist.Windows
 
         }
 
-        private void LogOutButotn_Click(object sender, RoutedEventArgs e)
+        private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
-            AuthWindow auth = new AuthWindow();
             App.Current.Resources.Remove("CurrentUser");
             App.Current.Resources.Remove("HistoryOfAppointments");
             //App.Current.Resources.Remove("ActiveAppointments");
             App.Current.Resources.Remove("Doctors");
 
+            AuthWindow auth = new AuthWindow();
 
-            this.Close();
-            auth.Show();
+            App.Current.MainWindow.Close();
+
+            App.Current.MainWindow = auth;
+            App.Current.MainWindow.Show();
 
         }
 

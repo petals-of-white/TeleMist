@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Markup;
 using TeleMist.DB;
 namespace TeleMist
 {
@@ -13,6 +16,15 @@ namespace TeleMist
         {
             //InitializeComponent();
             //this.Resources["ReloadArrowImg"] = getpath
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var vCulture = new CultureInfo("uk-UA");
+
+            Thread.CurrentThread.CurrentCulture = vCulture;
+            Thread.CurrentThread.CurrentUICulture = vCulture;
+            base.OnStartup(e);  
         }
 
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
