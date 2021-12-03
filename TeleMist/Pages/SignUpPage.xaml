@@ -50,7 +50,7 @@
             Grid.Column="2"
             Style="{StaticResource Logo}" />
 
-        <TextBlock Grid.Row="2" Grid.Column="2">Вітаємо. Будь ласка, оберіть, як ви хочете зареєструватися. Вигадайте собі унікальне ім'я користувача і відповідний пароль</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2">Вітаємо. Будь ласка, оберіть, як ви хочете зареєструватися. Вигадайте собі унікальне ім'я користувача і пароль.</TextBlock>
 
         <UniformGrid
             Grid.Row="3"

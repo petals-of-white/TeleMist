@@ -56,9 +56,8 @@
             Style="{StaticResource AbstractTextBlock}"
             TextAlignment="Center"
             TextWrapping="WrapWithOverflow">
-            Вітаємо, пацієнту.
-            Будь ласка, уведіть свій PatientID і пароль
-        </TextBlock>
+            Вітаємо, пацієнте.<LineBreak />
+            Будь ласка, уведіть свій логін (PatientID) і пароль</TextBlock>
         <xctk:WatermarkTextBox
             x:Name="PatientID"
             Grid.Row="3"

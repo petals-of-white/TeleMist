@@ -63,7 +63,7 @@ namespace TeleMist
                 int res = db.Insert(SQL);
                 if (res == 1)
                 {
-                    MessageBox.Show("Успішно створено запис!!!");
+                    MessageBox.Show($"Вас записано на консультацію до лікаря {selectedDoctor.FullName}");
                     db.UpdatePatientInfo(currentPatient);
                     this.Close();
                 }

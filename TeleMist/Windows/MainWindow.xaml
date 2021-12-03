@@ -10,7 +10,11 @@
     d:Width="800"
     DataContext="{DynamicResource CurrentUser}"
     Style="{StaticResource TheRightWindow}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    <Window.Resources>
+        <Image x:Key="sos"></Image>
+    </Window.Resources>
     <Grid>
         <TabControl
             x:Name="MainTabs"
@@ -319,7 +323,7 @@
                         Grid.Row="7"
                         Grid.Column="1"
                         Style="{StaticResource ProfileFields}">
-                        Страховий поліс / Спеціялізація лікаря
+                        Страховий поліс
                     </TextBlock>
                     <TextBox
                         x:Name="Insurance"

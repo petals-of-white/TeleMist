@@ -29,6 +29,7 @@
                 <ResourceDictionary Source="Resources/Styles/Calendar.xaml" />
                 <ResourceDictionary Source="Resources/Styles/TextBlocks.xaml" />
                 <ResourceDictionary Source="Resources/Styles/TextBoxes.xaml" />
+                <!--<ResourceDictionary Source="Resources/Styles/RadioButton.xaml"/>-->
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

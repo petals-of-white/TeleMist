@@ -29,7 +29,7 @@ namespace TeleMist.Pages
 
             if (Password.Password == "" || DoctorID.Text == "")
             {
-                MessageBox.Show("Заповніть, нарешті, поля");
+                MessageBox.Show("Необхідно заповнити поля");
                 return;
             }
             string passwordHash = Hasher.MD5Hash(Password.Password);

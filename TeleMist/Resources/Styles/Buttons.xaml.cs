@@ -65,19 +65,28 @@ namespace TeleMist.Resources.Styles
         private void CancelAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var button = (Button) sender;
-            var doctor = (Doctor) button.DataContext; //одержимо контекст для кнопки скасування
-            Appointment appointment = doctor.NextAppointment;
-            var db = (Database) App.Current.TryFindResource("AccessDB");
-            int res = db.Delete($"DELETE FROM [appointment] WHERE [id] = {appointment.Id}");
-            Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
-            if (res == 1)
+            var result = MessageBox.Show("Ви точно бажаєте скасувати запис?", "Увага", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
             {
-                db.UpdatePatientInfo(currentPatient);
-                MessageBox.Show("Перемога. Ми скасували запис.");
+                var button = (Button) sender;
+                var doctor = (Doctor) button.DataContext; //одержимо контекст для кнопки скасування
+                Appointment appointment = doctor.NextAppointment;
+                var db = (Database) App.Current.TryFindResource("AccessDB");
+                int res = db.Delete($"DELETE FROM [appointment] WHERE [id] = {appointment.Id}");
+                Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
+                if (res == 1)
+                {
+                    db.UpdatePatientInfo(currentPatient);
+                    MessageBox.Show($"Запис до лікаря {doctor.FullName} скасовано."); ;
+                }
+                else
+                    MessageBox.Show("Помилка скасування запису.");
             }
             else
-                MessageBox.Show("Your circuit's dead, there's something wrong. Can you hear me, Major Tom?");
+            {
+
+            }
+
 
         }
     }

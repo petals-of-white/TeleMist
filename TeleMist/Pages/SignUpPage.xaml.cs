@@ -73,7 +73,7 @@ namespace TeleMist.Pages
             int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{passwordHash}');");
 
             if (res == 1)
-                MessageBox.Show("Успішний успіх");
+                MessageBox.Show("Обліковий запис успішно створено");
             else
             {
                 Warning.Text = "Неможливо зареєструватися. " +

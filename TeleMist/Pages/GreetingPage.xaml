@@ -15,9 +15,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="15" />
             <RowDefinition Height="80" />
+            <!--<RowDefinition Height="*" MinHeight="50" />
             <RowDefinition Height="*" MinHeight="50" />
             <RowDefinition Height="*" MinHeight="50" />
+            <RowDefinition Height="*" MinHeight="50" />-->
             <RowDefinition Height="*" MinHeight="50" />
+            <RowDefinition Height="auto" MinHeight="50" />
+            <RowDefinition Height="auto" MinHeight="50" />
             <RowDefinition Height="*" MinHeight="50" />
             <RowDefinition Height="15" />
         </Grid.RowDefinitions>
@@ -40,27 +44,32 @@
             Grid.Column="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Style="{StaticResource AbstractTextBlock}"
-            Text="Вітаємо. Будь ласка, оберіть себе" />
+            Style="{StaticResource AbstractTextBlock}">
+            Вітання!<LineBreak />
+            Будь ласка, оберіть свою роль у системі.</TextBlock>
         <Button
             x:Name="DoctorButton"
             Grid.Row="3"
             Grid.Column="1"
             Click="DoctorButton_Click"
-            Content="Я лікар"
-            Style="{StaticResource PurpleButton}" /> 
+            Content="Я - лікар"
+            Style="{StaticResource PurpleButton}" />
         <!--  ="{Binding UpdateViewCommand}" CommandParameter="doctor"/>  -->
         <Button
             x:Name="PatientButton"
             Grid.Row="4"
             Grid.Column="1"
             Click="PatientButton_Click"
-            Content="Я пацієнт"
+            Content="Я - пацієнт"
             Style="{StaticResource PurpleButton}" />
-        <!--<Button Content="Зареєструватись" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom"
-                HorizontalAlignment="Stretch" Margin="10,0,10,0" x:Name="SignUpButton"
-                Style="{StaticResource TextButton}" Click="GoToSignUpButton_Click"/>-->
-        <TextBlock Grid.Row="5" Grid.Column="1">
+        <Button
+            x:Name="SignUpButton"
+            Grid.Row="5"
+            Grid.Column="1"
+            Click="GoToSignUpButton_Click"
+            Content="Зареєструватись"
+            Style="{StaticResource YellowButton}" />
+        <!--<TextBlock Grid.Row="5" Grid.Column="1">
             <Hyperlink NavigateUri="\Pages\SignUpPage.xaml">
                 <Hyperlink.Resources>
                     <Style TargetType="Hyperlink">
@@ -73,9 +82,9 @@
                         </Style.Triggers>
                     </Style>
                 </Hyperlink.Resources>
-                Зареєструватися
+                <Bold>Зареєструватися</Bold>
             </Hyperlink>
-        </TextBlock>
+        </TextBlock>-->
 
     </Grid>
 </Page>

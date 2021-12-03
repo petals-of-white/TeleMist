@@ -55,25 +55,42 @@ namespace TeleMist.Windows
             {
                 //!!!!!ПОдумати над цим
                 Database db = App.Current.TryFindResource("AccessDB") as Database;
-                string sql = $"UPDATE [patient] SET " +
+                bool res; //результат виконання запиту
+                string sql; //sql-рядок
+
+                if (selectedAvatar != null) //з обраним зображенням мармизки
+                {
+                    sql = $"UPDATE [patient] SET " +
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
                     $"[insurance] = '{insurance}', [avatar] = @binary " +
                     $"WHERE [id] = {currentPatient.Id}";
-                bool res = db.NonQuery(sql, binaryParameter: selectedAvatar);
-                if (res)
-                {
-                    MessageBox.Show("Дані про користувача успішно оновлено");
-                    db.UpdatePatientInfo(currentPatient);
-                    MessageBox.Show(App.Current.TryFindResource("CurrentUser").ToString());
+                    res = db.NonQuery(sql, binaryParameter: selectedAvatar);
+                }
+
+                else
+                { //без змін мармизки
+                    sql = $"UPDATE [patient] SET " +
+                    $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
+                    $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
+                    $"[insurance] = '{insurance}'" +
+                    $"WHERE [id] = {currentPatient.Id}";
+                    res = db.NonQuery(sql);
 
                 }
+
+
+                if (res)
+                {
+                    MessageBox.Show("Ваші дані успішно оновлено.");
+                    db.UpdatePatientInfo(currentPatient);
+                    //MessageBox.Show(App.Current.TryFindResource("CurrentUser").ToString());
+
+                }
+
             }
 
-
-
         }
-
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
         {
             App.Current.Resources.Remove("CurrentUser");
@@ -88,7 +105,6 @@ namespace TeleMist.Windows
             App.Current.MainWindow.Show();
 
         }
-
         private void SortDoctorsByName_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -140,7 +156,6 @@ namespace TeleMist.Windows
             App.Current.Resources [resourceName] = sortedResources;
 
         }
-
         internal void SortResource<T>(string resourceName)
         {
             List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
@@ -151,18 +166,15 @@ namespace TeleMist.Windows
             App.Current.Resources [resourceName] = sortedResources;
 
         }
-
         private void SortHistoryByName_Checked(object sender, RoutedEventArgs e)
         {
             SortResource<Appointment>("HistoryOfAppointments");
         }
-
         private void SortHistoryByDate_Checked(object sender, RoutedEventArgs e)
         {
             SortResource<Appointment>("HistoryOfAppointments");
 
         }
-
         private void ChangeAvatarButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -179,10 +191,6 @@ namespace TeleMist.Windows
 
 
                 this.Resources ["SelectedAvatar"] = bytes;
-
-
-                //Avatar.Source = converter.ByteToImage(bytes); 
-
                 Debug.WriteLine("Мармизку встановлено");
 
             }

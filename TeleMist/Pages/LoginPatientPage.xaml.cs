@@ -27,7 +27,7 @@ namespace TeleMist.Pages
             Database db = (Database) App.Current.TryFindResource("AccessDB");
             if (Password.Password == "" || PatientID.Text == "")
             {
-                MessageBox.Show("Заповніть, нарешті, поля");
+                MessageBox.Show("Необхідно заповнити поля");
                 return;
             }
 

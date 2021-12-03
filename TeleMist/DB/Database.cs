@@ -454,14 +454,21 @@ namespace TeleMist.DB
 
             }
 
+
+
             App.Current.Resources ["CurrentUser"] = updatedPatient;
             App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
             //App.Current.Resources["ActiveAppointments"] = activeAppointments;
             App.Current.Resources ["Doctors"] = doctors;
+
             MainWindow mainWindow = App.Current.MainWindow as MainWindow;
 
             if (mainWindow != null)
             {
+                //очищаємо обрану мармизку
+                mainWindow.Resources.Remove("SelectedAvatar");
+
+                mainWindow.TestText.Text = "";
                 if ((bool) (mainWindow.SortDoctorsByDate?.IsChecked))
                 {
                     mainWindow.SortResource<Doctor>("Doctors", new Doctor.DateComparer());
