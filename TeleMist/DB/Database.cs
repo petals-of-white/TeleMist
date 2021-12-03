@@ -6,7 +6,7 @@ using TeleMist.Models;
 using System.Data;
 using System.Linq;
 using TeleMist.Windows;
-
+using TeleMist.Helpers;
 namespace TeleMist.DB
 {
 
@@ -19,7 +19,6 @@ namespace TeleMist.DB
             this.Connection = new OleDbConnection(Helper.ConStr());
 
         }
-
         public bool NonQuery(string SQL) {
 
             Connection.Open();
@@ -79,8 +78,13 @@ namespace TeleMist.DB
                     doctor.Id = (int)(TypedValue(reader["id"]));
                     doctor.Username = (string)(TypedValue(reader["username"]));
                     doctor.Password = (string)(TypedValue(reader["password"]));
-                    //patient.Avatar = (int)(TypedValue(reader["avatar"]));
+
+                    ByteImageConverter converter = new ByteImageConverter();
+
+                    doctor.Avatar = converter.ByteToImage ((byte[])(TypedValue(reader["avatar"])));
+
                     doctor.Surname = (string)(TypedValue(reader["surname"]));
+
                     doctor.FirstName = (string)(TypedValue(reader["first_name"]));
                     doctor.Patronym = (string)(TypedValue(reader["patronym"]));
                     doctor.Gender = (string)(TypedValue(reader["gender"]));
@@ -154,7 +158,10 @@ namespace TeleMist.DB
                     patient.Id = (int)(TypedValue(reader["id"]));
                     patient.Username = (string)(TypedValue(reader["username"]));
                     patient.Password = (string)(TypedValue(reader["password"]));
-                    //patient.Avatar = (int)(TypedValue(reader["avatar"]));
+
+                    ByteImageConverter converter = new ByteImageConverter();
+
+                    patient.Avatar = converter.ByteToImage ((byte[])(TypedValue(reader["avatar"])));
                     patient.Surname = (string)(TypedValue(reader["surname"]));
                     patient.FirstName = (string)(TypedValue(reader["first_name"]));
                     patient.Patronym = (string)(TypedValue(reader["patronym"]));
@@ -184,6 +191,12 @@ namespace TeleMist.DB
 
             return patients;
         }
+
+        /// <summary>
+        /// Повертає список відвідувань згідно з SQl запитом
+        /// </summary>
+        /// <param name="SQL"></param>
+        /// <returns></returns>
         public List<Appointment> GetAppointments(string SQL)
         {
             Connection.Open();
@@ -258,6 +271,8 @@ namespace TeleMist.DB
             return appointments;
 
         }
+
+
         public void Update()
         {
             throw new NotImplementedException();
@@ -330,6 +345,11 @@ namespace TeleMist.DB
             }
             return obj;
         }
+        /// <summary>
+        /// Метод для перевірки значень із БД на DBNull
+        /// </summary>
+        /// <param name="Field"></param>
+        /// <returns></returns>
         private object TypedValue(object Field)
         {
             if (Field == DBNull.Value)
@@ -414,7 +434,7 @@ namespace TeleMist.DB
             //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
 
 
-            //тестовий варіянт зв'язування відвідувань
+            //тестовий варіянт зв'язування Lo
             foreach (Appointment appointment in activeAppointments)
             {
                 var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
@@ -461,6 +481,11 @@ namespace TeleMist.DB
 
         }
 
+        /// <summary>
+        /// Вихід із обліковго запису
+        /// <br>
+        /// Потребує подальшого опрацювання
+        /// </summary>
         public void LogOutUser()
         {
             App.Current.Resources.Clear();

@@ -46,8 +46,12 @@ namespace TeleMist.Pages
             string passwordHash = Hasher.MD5Hash(Password.Password);
 
             //пошук користувача
-            List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
-                $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
+            
+            
+                List<Patient> patients = db.GetPatients($"SELECT * FROM [patient] WHERE" +
+         $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
+            
+  
 
             //MessageBox.Show(patients.Count<Patient>().ToString());
 

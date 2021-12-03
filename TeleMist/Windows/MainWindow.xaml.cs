@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TeleMist.DB;
 using TeleMist.Models;
+using TeleMist.Helpers;
+using System.Drawing.Imaging;
+using System.Diagnostics;
 
 namespace TeleMist.Windows
 {
@@ -34,10 +39,12 @@ namespace TeleMist.Windows
         {
             string surname, firstName, patronym, gender, residence, insurance;
             DateTime dateOfBirth;
+            byte[] selectedAvatar;
 
             try
             {
                 surname = Surname.Text;
+                selectedAvatar = this.Resources["SelectedAvatar"] as byte[];
                 firstName = FirstName.Text;
                 patronym = Patronym.Text;
                 gender = GenderBox.Text;
@@ -61,7 +68,7 @@ namespace TeleMist.Windows
                 string sql = $"UPDATE [patient] SET " +
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
-                    $"[insurance] = '{insurance}' " +
+                    $"[insurance] = '{insurance}', [avatar] = '{selectedAvatar}'" +
                     $"WHERE [id] = {currentPatient.Id}";
                 bool res = db.NonQuery(sql);
                 if (res)
@@ -87,7 +94,6 @@ namespace TeleMist.Windows
             AuthWindow auth = new AuthWindow();
 
             App.Current.MainWindow.Close();
-
             App.Current.MainWindow = auth;
             App.Current.MainWindow.Show();
 
@@ -165,6 +171,33 @@ namespace TeleMist.Windows
         {
             SortResource<Appointment>("HistoryOfAppointments");
 
+        }
+
+        private void ChangeAvatarButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Зображення (.jpg, .png, .gif, .bmp)|*.jpg;*.png;*.gif;*.bmp";
+            openFileDialog.Multiselect = false;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
+                
+                TestText.Text = openFileDialog.FileName + " вибрано як мармизку";
+                ByteImageConverter converter = new ByteImageConverter();
+                byte[] bytes = converter.ImageToByte(fs);
+
+
+
+                this.Resources["SelectedAvatar"] = bytes;
+
+
+                //Avatar.Source = converter.ByteToImage(bytes); 
+
+                Debug.WriteLine("Мармизку встановлено");
+                
+            }
+
+        
         }
     }
 }

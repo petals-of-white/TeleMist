@@ -90,14 +90,11 @@
                 </Grid>
             </TabItem>
 
-
-
             <TabItem Header="Історія">
                 <!--<StackPanel Orientation="Vertical">-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition  Height="auto"/>
@@ -155,7 +152,6 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </Grid>
-
             </TabItem>
             <TabItem Header="Профіль">
                 <Grid >
@@ -176,7 +172,7 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <!--<ColumnDefinition Width="*"></ColumnDefinition>-->
                         <ColumnDefinition Width="10"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
@@ -200,8 +196,6 @@
                         <ComboBoxItem>Жінка</ComboBoxItem>
                     </ComboBox>
 
-
-
                     <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource ProfileFields}">Дата народження</TextBlock>
                     <DatePicker x:Name="DateOfBirth" Margin="5" Grid.Row="5" Grid.Column="2" 
                                 Text="Hello Darkness My Old Friend" SelectedDate="{Binding Path=DateOfBirth}"/>
@@ -213,8 +207,26 @@
                     <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource ProfileFields}">Страховий поліс / Спеціялізація лікаря</TextBlock>
                     <TextBox x:Name="Insurance" Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallBox}" Text="{Binding Path=Insurance}"></TextBox>
 
-                    <Button x:Name="LogOutButton" Style="{StaticResource YellowButton}" Grid.Row="2" Grid.Column="4" Click="LogOutButton_Click">Log Out</Button>
-                    <Button x:Name="SaveChanges"  Style="{StaticResource PurpleButton}" Click="SaveChanges_Click" Grid.Row="8" Grid.Column="4" VerticalAlignment="Bottom">Зберегти</Button>
+                    
+                    
+                    <Button x:Name="LogOutButton" VerticalAlignment="Bottom"
+                            Style="{StaticResource YellowButton}" Grid.Row="8" 
+                            Grid.Column="1" Click="LogOutButton_Click">Вийти з обліківки</Button>
+                    <Button x:Name="SaveChanges"  Style="{StaticResource PurpleButton}"
+                            HorizontalAlignment="Right"
+                            Click="SaveChanges_Click" Grid.Row="8" Grid.Column="3" VerticalAlignment="Bottom">Зберегти</Button>
+
+
+                    <Image Stretch="Fill" HorizontalAlignment="Right"
+                            Grid.Row="1" Grid.Column="3" Grid.RowSpan="3"
+                            x:Name="Avatar" Width="{StaticResource ButtonWidth}" Source="{Binding Path=Avatar}" Height="{StaticResource ButtonWidth}">
+                        
+                    </Image>
+                    <Button HorizontalAlignment="Right" x:Name="ChangeAvatarButton" Style="{StaticResource YellowButton}"
+                            Grid.Row="4" Grid.Column="3" Click="ChangeAvatarButton_Click">
+                        Змінити мармизку
+                    </Button>
+                    <TextBlock HorizontalAlignment="Right" Grid.Row="5" Grid.Column="3" x:Name="TestText"></TextBlock>
 
                 </Grid>
             </TabItem>
