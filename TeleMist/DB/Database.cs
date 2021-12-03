@@ -19,10 +19,14 @@ namespace TeleMist.DB
             this.Connection = new OleDbConnection(Helper.ConStr());
 
         }
-        public bool NonQuery(string SQL) {
+        public bool NonQuery(string SQL, byte[] binaryParameter=null) {
 
             Connection.Open();
             OleDbCommand NonQueryCommand = new OleDbCommand(SQL, Connection);
+            if (binaryParameter != null) {
+                NonQueryCommand.Parameters.AddWithValue("@binary", binaryParameter);
+
+            }
             try
             {
                 NonQueryCommand.ExecuteNonQuery();
@@ -80,8 +84,9 @@ namespace TeleMist.DB
                     doctor.Password = (string)(TypedValue(reader["password"]));
 
                     ByteImageConverter converter = new ByteImageConverter();
+                    var rawAvatar = reader["avatar"];
 
-                    doctor.Avatar = converter.ByteToImage ((byte[])(TypedValue(reader["avatar"])));
+                    doctor.Avatar = converter.ByteToImage ((byte[])(TypedValue(rawAvatar)));
 
                     doctor.Surname = (string)(TypedValue(reader["surname"]));
 
@@ -160,8 +165,9 @@ namespace TeleMist.DB
                     patient.Password = (string)(TypedValue(reader["password"]));
 
                     ByteImageConverter converter = new ByteImageConverter();
+                    var rawAvatar = reader["avatar"];
 
-                    patient.Avatar = converter.ByteToImage ((byte[])(TypedValue(reader["avatar"])));
+                    patient.Avatar = converter.ByteToImage((byte[])(TypedValue(rawAvatar)));
                     patient.Surname = (string)(TypedValue(reader["surname"]));
                     patient.FirstName = (string)(TypedValue(reader["first_name"]));
                     patient.Patronym = (string)(TypedValue(reader["patronym"]));

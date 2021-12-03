@@ -97,10 +97,10 @@ namespace TeleMist.Helpers
     {
         public ImageSource ByteToImage(byte[] imageData)
         {
-            //if (imageData == null)
-            //{
-            //    return null;
-            //}
+            if (imageData == null)
+            {
+                return null;
+            }
             BitmapImage biImg = new BitmapImage();
 
             MemoryStream ms = new MemoryStream(imageData);

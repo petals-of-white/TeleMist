@@ -68,9 +68,9 @@ namespace TeleMist.Windows
                 string sql = $"UPDATE [patient] SET " +
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
-                    $"[insurance] = '{insurance}', [avatar] = '{selectedAvatar}'" +
+                    $"[insurance] = '{insurance}', [avatar] = @binary " +
                     $"WHERE [id] = {currentPatient.Id}";
-                bool res = db.NonQuery(sql);
+                bool res = db.NonQuery(sql, binaryParameter: selectedAvatar);
                 if (res)
                 {
                     MessageBox.Show("Дані про користувача успішно оновлено");

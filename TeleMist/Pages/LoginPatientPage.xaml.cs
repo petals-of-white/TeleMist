@@ -52,7 +52,6 @@ namespace TeleMist.Pages
          $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
             
   
-
             //MessageBox.Show(patients.Count<Patient>().ToString());
 
             //Якщо не виникла помилка в процесі запиту І список користувачів не пустий (користувач існує).
