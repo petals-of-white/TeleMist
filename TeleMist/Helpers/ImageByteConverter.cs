@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -95,7 +88,7 @@ namespace TeleMist.Helpers
     //}
     public class ByteImageConverter
     {
-        public ImageSource ByteToImage(byte[] imageData)
+        public ImageSource ByteToImage(byte [] imageData)
         {
             if (imageData == null)
             {
@@ -118,14 +111,14 @@ namespace TeleMist.Helpers
                 MessageBox.Show("Помилка якась " + ex.Message);
                 biImg = null;
             }
-            
+
             ImageSource imgSrc = biImg as ImageSource;
             return imgSrc;
         }
 
-        public byte[] ImageToByte(FileStream fs)
+        public byte [] ImageToByte(FileStream fs)
         {
-            byte[] imgBytes = new byte[fs.Length];
+            byte [] imgBytes = new byte [fs.Length];
             fs.Read(imgBytes, 0, Convert.ToInt32(fs.Length));
             return imgBytes;
         }

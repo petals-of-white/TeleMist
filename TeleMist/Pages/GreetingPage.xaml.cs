@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 
 namespace TeleMist.Pages
@@ -28,7 +17,7 @@ namespace TeleMist.Pages
             InitializeComponent();
             //NavigationService();
             //frame = kek.FindName("MainFrame") as Frame;
-            
+
         }
 
         private void DoctorButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +28,7 @@ namespace TeleMist.Pages
 
         private void PatientButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginPatientPage page = new LoginPatientPage();
+            var page = new LoginPatientPage();
             NavigationService.Navigate(page);
         }
 

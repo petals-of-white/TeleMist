@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace TeleMist.Models
@@ -21,7 +18,7 @@ namespace TeleMist.Models
         public string Gender { get; set; }
 
         public string Residence { get; set; }
-        
+
         /// <summary>
         /// Інформація про найближчу зустріч для протилежної сторонки
         /// </summary>
@@ -66,7 +63,7 @@ namespace TeleMist.Models
                 {
                     return x.NextAppointment.CompareTo(y.NextAppointment);
                 }
-             
+
                 else if (x.NextAppointment == null && y.NextAppointment != null)
                 {
                     return -1;
@@ -81,6 +78,6 @@ namespace TeleMist.Models
                 }
             }
         }
-       
+
     }
 }

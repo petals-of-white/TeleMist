@@ -35,9 +35,5 @@
         <!--  BasedOn="{StaticResource DefaultText}">  -->
         <Setter Property="FontSize" Value="13" />
         <Setter Property="Foreground" Value="Red" />
-        <!--<Setter Property="TextAlignment" Value="Center"/>-->
-        <!--<Setter Property="TextWrapping" Value="Wrap"/>-->
-        <!--<Setter Property="VerticalAlignment" Value="Center"/>-->
-
     </Style>
 </ResourceDictionary>

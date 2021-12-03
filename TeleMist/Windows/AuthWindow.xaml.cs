@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using TeleMist.ViewModels;
 using TeleMist.Pages;
 namespace TeleMist
 {
@@ -13,9 +12,9 @@ namespace TeleMist
             InitializeComponent();
             MainFrame.Content = new GreetingPage();
             //DataContext = new MainViewModel();
-            
+
         }
 
-    
+
     }
 }

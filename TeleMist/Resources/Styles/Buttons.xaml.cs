@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Controls;
-using System.Diagnostics;
 using TeleMist.DB;
 using TeleMist.Models;
 
 namespace TeleMist.Resources.Styles
 {
-    public partial class Buttons: ResourceDictionary
-    { 
+    public partial class Buttons : ResourceDictionary
+    {
         public Buttons()
         {
 
@@ -21,20 +15,20 @@ namespace TeleMist.Resources.Styles
         }
         private void OpenAppointmentMakingButton_Click(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            var doctor = (Doctor)button.DataContext;
+            var button = (Button) sender;
+            var doctor = (Doctor) button.DataContext;
             Window make_appointment = new MakeAppointmentWindow();
             make_appointment.Resources.Add("SelectedDoctor", doctor);
 
-            
+
             make_appointment.Show();
 
         }
 
         private void ShowAppointmentDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            var appointment = (Appointment)button.DataContext;
+            var button = (Button) sender;
+            var appointment = (Appointment) button.DataContext;
             Window appointmentDetails = new PatientAppointmentWindow();
             appointmentDetails.Resources.Add("SelectedAppointment", appointment);
             appointmentDetails.Show();
@@ -54,8 +48,8 @@ namespace TeleMist.Resources.Styles
 
         private void UpdateInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            Database db = (Database)App.Current.TryFindResource("AccessDB");
-            Patient currentPatient = App.Current.Resources["CurrentUser"] as Patient;
+            Database db = (Database) App.Current.TryFindResource("AccessDB");
+            Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
             List<Appointment> appointments = App.Current.TryFindResource("HistoryOfAppointments") as List<Appointment>;
             List<Doctor> doctos = App.Current.TryFindResource("Doctors") as List<Doctor>;
 
@@ -71,18 +65,18 @@ namespace TeleMist.Resources.Styles
         private void CancelAppointmentButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var button = (Button)sender;
-            var doctor = (Doctor)button.DataContext; //одержимо контекст для кнопки скасування
+            var button = (Button) sender;
+            var doctor = (Doctor) button.DataContext; //одержимо контекст для кнопки скасування
             Appointment appointment = doctor.NextAppointment;
-            var db = (Database)App.Current.TryFindResource("AccessDB"); 
+            var db = (Database) App.Current.TryFindResource("AccessDB");
             int res = db.Delete($"DELETE FROM [appointment] WHERE [id] = {appointment.Id}");
-            Patient currentPatient = App.Current.Resources["CurrentUser"] as Patient;
+            Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
             if (res == 1)
             {
                 db.UpdatePatientInfo(currentPatient);
                 MessageBox.Show("Перемога. Ми скасували запис.");
             }
-            else 
+            else
                 MessageBox.Show("Your circuit's dead, there's something wrong. Can you hear me, Major Tom?");
 
         }

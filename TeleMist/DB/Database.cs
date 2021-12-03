@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Windows;
-using TeleMist.Models;
 using System.Data;
+using System.Data.OleDb;
 using System.Linq;
-using TeleMist.Windows;
+using System.Windows;
 using TeleMist.Helpers;
+using TeleMist.Models;
+using TeleMist.Windows;
 namespace TeleMist.DB
 {
 
@@ -19,11 +19,13 @@ namespace TeleMist.DB
             this.Connection = new OleDbConnection(Helper.ConStr());
 
         }
-        public bool NonQuery(string SQL, byte[] binaryParameter=null) {
+        public bool NonQuery(string SQL, byte [] binaryParameter = null)
+        {
 
             Connection.Open();
             OleDbCommand NonQueryCommand = new OleDbCommand(SQL, Connection);
-            if (binaryParameter != null) {
+            if (binaryParameter != null)
+            {
                 NonQueryCommand.Parameters.AddWithValue("@binary", binaryParameter);
 
             }
@@ -66,7 +68,8 @@ namespace TeleMist.DB
                 OleDbDataReader reader = selectCommand.ExecuteReader();
 
                 //Перевіримо, чи існують узагалі запитані записи в базі даних
-                if (!reader.HasRows) {
+                if (!reader.HasRows)
+                {
                     //MessageBox.Show("Немає такого користувача, мабуть");
                     return new List<Doctor>();
                 }
@@ -79,23 +82,23 @@ namespace TeleMist.DB
                 {
 
                     Doctor doctor = new Doctor();
-                    doctor.Id = (int)(TypedValue(reader["id"]));
-                    doctor.Username = (string)(TypedValue(reader["username"]));
-                    doctor.Password = (string)(TypedValue(reader["password"]));
+                    doctor.Id = (int) (TypedValue(reader ["id"]));
+                    doctor.Username = (string) (TypedValue(reader ["username"]));
+                    doctor.Password = (string) (TypedValue(reader ["password"]));
 
                     ByteImageConverter converter = new ByteImageConverter();
-                    var rawAvatar = reader["avatar"];
+                    var rawAvatar = reader ["avatar"];
 
-                    doctor.Avatar = converter.ByteToImage ((byte[])(TypedValue(rawAvatar)));
+                    doctor.Avatar = converter.ByteToImage((byte []) (TypedValue(rawAvatar)));
 
-                    doctor.Surname = (string)(TypedValue(reader["surname"]));
+                    doctor.Surname = (string) (TypedValue(reader ["surname"]));
 
-                    doctor.FirstName = (string)(TypedValue(reader["first_name"]));
-                    doctor.Patronym = (string)(TypedValue(reader["patronym"]));
-                    doctor.Gender = (string)(TypedValue(reader["gender"]));
-                    doctor.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
-                    doctor.Residence = (string)TypedValue(reader["residence"]);
-                    doctor.Specialty = (string)TypedValue(reader["specialty"]);
+                    doctor.FirstName = (string) (TypedValue(reader ["first_name"]));
+                    doctor.Patronym = (string) (TypedValue(reader ["patronym"]));
+                    doctor.Gender = (string) (TypedValue(reader ["gender"]));
+                    doctor.DateOfBirth = (DateTime?) (TypedValue(reader ["date_of_birth"]));
+                    doctor.Residence = (string) TypedValue(reader ["residence"]);
+                    doctor.Specialty = (string) TypedValue(reader ["specialty"]);
                     doctors.Add(doctor);
                 }
 
@@ -149,7 +152,7 @@ namespace TeleMist.DB
                 {
                     //MessageBox.Show("Немає такого користувача, мабуть");
                     return new List<Patient>();
-                    
+
                 }
 
                 while (reader.Read())
@@ -160,21 +163,21 @@ namespace TeleMist.DB
                  */
 
                     Patient patient = new Patient();
-                    patient.Id = (int)(TypedValue(reader["id"]));
-                    patient.Username = (string)(TypedValue(reader["username"]));
-                    patient.Password = (string)(TypedValue(reader["password"]));
+                    patient.Id = (int) (TypedValue(reader ["id"]));
+                    patient.Username = (string) (TypedValue(reader ["username"]));
+                    patient.Password = (string) (TypedValue(reader ["password"]));
 
                     ByteImageConverter converter = new ByteImageConverter();
-                    var rawAvatar = reader["avatar"];
+                    var rawAvatar = reader ["avatar"];
 
-                    patient.Avatar = converter.ByteToImage((byte[])(TypedValue(rawAvatar)));
-                    patient.Surname = (string)(TypedValue(reader["surname"]));
-                    patient.FirstName = (string)(TypedValue(reader["first_name"]));
-                    patient.Patronym = (string)(TypedValue(reader["patronym"]));
-                    patient.Gender = (string)(TypedValue(reader["gender"]));
-                    patient.DateOfBirth = (DateTime?)(TypedValue(reader["date_of_birth"]));
-                    patient.Residence = (string)TypedValue(reader["residence"]);
-                    patient.Insurance = (string)TypedValue(reader["insurance"]);
+                    patient.Avatar = converter.ByteToImage((byte []) (TypedValue(rawAvatar)));
+                    patient.Surname = (string) (TypedValue(reader ["surname"]));
+                    patient.FirstName = (string) (TypedValue(reader ["first_name"]));
+                    patient.Patronym = (string) (TypedValue(reader ["patronym"]));
+                    patient.Gender = (string) (TypedValue(reader ["gender"]));
+                    patient.DateOfBirth = (DateTime?) (TypedValue(reader ["date_of_birth"]));
+                    patient.Residence = (string) TypedValue(reader ["residence"]);
+                    patient.Insurance = (string) TypedValue(reader ["insurance"]);
 
                     //додаємо до списку пацієнтів
                     patients.Add(patient);
@@ -227,14 +230,14 @@ namespace TeleMist.DB
                 спершу перевіривши, чи не дорівнюють вони нулю за допомогою функції CheckNull
                  */
                     Appointment appointment = new Appointment();
-                    appointment.Id = (int)(TypedValue(reader["id"]));
+                    appointment.Id = (int) (TypedValue(reader ["id"]));
 
                     //Спробуємо дістати методами GetPatients і GetDoctors
                     //відповідного пацієнта і лікаря замість індентифікатора
 
 
                     //!!! Перевірити наявність пацієнта
-                    int doctorId = (int)(TypedValue(reader["doctor_id"]));
+                    int doctorId = (int) (TypedValue(reader ["doctor_id"]));
 
 
 
@@ -243,18 +246,18 @@ namespace TeleMist.DB
 
 
                     //!!! Перевірити наявність пацієнта
-                    int patientId = (int)(TypedValue(reader["patient_id"]));
+                    int patientId = (int) (TypedValue(reader ["patient_id"]));
 
 
-                    appointment.Reason = (string)(TypedValue(reader["reason"]));
-                    appointment.Date_Time = (DateTime?)(TypedValue(reader["date_time"]));
-                    appointment.Diagnose = (string)TypedValue(reader["diagnose"]);
-                    appointment.Recommendations = (string)TypedValue(reader["recommendations"]);
-                    appointment.Status = (string)TypedValue((reader["status"]));
+                    appointment.Reason = (string) (TypedValue(reader ["reason"]));
+                    appointment.Date_Time = (DateTime?) (TypedValue(reader ["date_time"]));
+                    appointment.Diagnose = (string) TypedValue(reader ["diagnose"]);
+                    appointment.Recommendations = (string) TypedValue(reader ["recommendations"]);
+                    appointment.Status = (string) TypedValue((reader ["status"]));
                     appointment.Doctor = GetDoctors($"SELECT * FROM [doctor] WHERE" +
-                $" [id]={doctorId}")[0];
+                $" [id]={doctorId}") [0];
                     appointment.Patient = GetPatients($"SELECT * FROM [patient] WHERE" +
-                $" [id]={patientId}")[0];
+                $" [id]={patientId}") [0];
 
                     appointments.Add(appointment);
 
@@ -376,7 +379,7 @@ namespace TeleMist.DB
 
             if (patients != null)
             {
-                App.Current.Resources["Patients"] = patients;
+                App.Current.Resources ["Patients"] = patients;
 
                 //App.Current.Resources.Add("Patients", patients);
             }
@@ -389,7 +392,7 @@ namespace TeleMist.DB
 
 
             if (historyOfAppointments != null)
-                App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
+                App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
             //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
 
             //майбутні консультації
@@ -397,7 +400,7 @@ namespace TeleMist.DB
                 $"([patient_id]={doctor.Id}) AND ([date_time] > Now())");
 
 
-            App.Current.Resources["ActiveAppointments"] = activeAppointments;
+            App.Current.Resources ["ActiveAppointments"] = activeAppointments;
             //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
 
             //тестовий варіянт зв'язування відвідувань
@@ -419,7 +422,7 @@ namespace TeleMist.DB
             Patient updatedPatient;
 
 
-            updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}")[0];
+            updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}") [0];
             doctors = GetDoctors($"SELECT * FROM [doctor]");
 
             historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
@@ -451,28 +454,28 @@ namespace TeleMist.DB
 
             }
 
-            App.Current.Resources["CurrentUser"] = updatedPatient;
-            App.Current.Resources["HistoryOfAppointments"] = historyOfAppointments;
+            App.Current.Resources ["CurrentUser"] = updatedPatient;
+            App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
             //App.Current.Resources["ActiveAppointments"] = activeAppointments;
-            App.Current.Resources["Doctors"] = doctors;
+            App.Current.Resources ["Doctors"] = doctors;
             MainWindow mainWindow = App.Current.MainWindow as MainWindow;
 
             if (mainWindow != null)
             {
-                if ((bool)(mainWindow.SortDoctorsByDate?.IsChecked))
+                if ((bool) (mainWindow.SortDoctorsByDate?.IsChecked))
                 {
                     mainWindow.SortResource<Doctor>("Doctors", new Doctor.DateComparer());
 
                 }
 
-                if ((bool)(mainWindow.SortDoctorsByName?.IsChecked))
+                if ((bool) (mainWindow.SortDoctorsByName?.IsChecked))
                 {
                     mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
 
                 }
             }
 
-            
+
 
             //if ((bool)(mainWindow.SortHistoryOfAppointmentsByDate.IsChecked))
             //{

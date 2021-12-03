@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeleMist.Models
 {
-    public class Appointment: IComparable<Appointment>
+    public class Appointment : IComparable<Appointment>
     {
         public int Id { get; set; }
         //public int PatientId { get; set; }

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TeleMist.DB;
 using TeleMist.Models;
 using TeleMist.Windows;
@@ -33,10 +22,10 @@ namespace TeleMist.Pages
             NavigationService.Navigate(new GreetingPage());
         }
 
-            
+
         private void LoginAsADoctor_Click(object sender, RoutedEventArgs e)
         {
-            Database db = (Database)App.Current.TryFindResource("AccessDB");
+            Database db = (Database) App.Current.TryFindResource("AccessDB");
 
             if (Password.Password == "" || DoctorID.Text == "")
             {
@@ -53,7 +42,7 @@ namespace TeleMist.Pages
             if (doctors != null && doctors.Count > 0)
             {
 
-                Doctor doctor = doctors[0];
+                Doctor doctor = doctors [0];
 
                 //MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
 
@@ -73,7 +62,7 @@ namespace TeleMist.Pages
 
         }
 
-      
+
 
     }
 }

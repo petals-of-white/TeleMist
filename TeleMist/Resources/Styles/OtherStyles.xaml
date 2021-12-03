@@ -13,8 +13,6 @@
         <Setter Property="Source" Value="/Images/logo.png" />
     </Style>
 
-
-
     <Style TargetType="TabItem">
         <Setter Property="Foreground" Value="#f5f5f5" />
         <Setter Property="Height" Value="30" />
@@ -49,10 +47,6 @@
         </Style.Triggers>
     </Style>
 
-
-
-
-
     <Style TargetType="ComboBox">
         <Setter Property="Height" Value="{StaticResource ButtonHeight}" />
         <Setter Property="Width" Value="{StaticResource ButtonWidth}" />
@@ -64,8 +58,6 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
-
-
 
     <Style TargetType="MediaElement">
         <Setter Property="Source" Value="W:\гей була в мене коняк.mp4" />

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace TeleMist.Helpers
@@ -13,7 +11,7 @@ namespace TeleMist.Helpers
     // Operator order is parenthesis first, then Left-To-Right (no operator precedence)
     public class MathConverter : IValueConverter
     {
-        private static readonly char[] _allOperators = new[] { '+', '-', '*', '/', '%', '(', ')' };
+        private static readonly char [] _allOperators = new [] { '+', '-', '*', '/', '%', '(', ')' };
 
         private static readonly List<string> _grouping = new List<string> { "(", ")" };
         private static readonly List<string> _operators = new List<string> { "+", "-", "*", "/", "%" };
@@ -51,7 +49,7 @@ namespace TeleMist.Helpers
             EvaluateMathString(ref mathEquation, ref numbers, 0);
 
             // After parsing the numbers list should only have one value - the total
-            return numbers[0];
+            return numbers [0];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -100,24 +98,24 @@ namespace TeleMist.Helpers
                     // and that the next token is either the number expected, or it was a ( meaning
                     // that this was called recursively and that the number changed
                     if (numbers.Count > (index + 1) &&
-                        (double.Parse(nextToken) == numbers[index + 1] || nextToken == "("))
+                        (double.Parse(nextToken) == numbers [index + 1] || nextToken == "("))
                     {
                         switch (token)
                         {
                             case "+":
-                                numbers[index] = numbers[index] + numbers[index + 1];
+                                numbers [index] = numbers [index] + numbers [index + 1];
                                 break;
                             case "-":
-                                numbers[index] = numbers[index] - numbers[index + 1];
+                                numbers [index] = numbers [index] - numbers [index + 1];
                                 break;
                             case "*":
-                                numbers[index] = numbers[index] * numbers[index + 1];
+                                numbers [index] = numbers [index] * numbers [index + 1];
                                 break;
                             case "/":
-                                numbers[index] = numbers[index] / numbers[index + 1];
+                                numbers [index] = numbers [index] / numbers [index + 1];
                                 break;
                             case "%":
-                                numbers[index] = numbers[index] % numbers[index + 1];
+                                numbers [index] = numbers [index] % numbers [index + 1];
                                 break;
                         }
                         numbers.RemoveAt(index + 1);

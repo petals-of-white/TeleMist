@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TeleMist.DB;
 using TeleMist.Models;
 
@@ -37,7 +26,7 @@ namespace TeleMist.Pages
                 //MessageBox.Show("Ім'я користувача не може бути порожнім");
                 return;
             }
-            
+
             if (UserID.Text.Length < 6)
             {
                 Warning.Text = "Ім'я користувача мусить містити щонайменше 6 символів";
@@ -50,7 +39,7 @@ namespace TeleMist.Pages
                 //MessageBox.Show("Пароль не може бути порожнім");
                 return;
             }
-            
+
             if (Password.Password.Length < 6)
             {
                 Warning.Text = "Пароль мусить містити щонайменше 6 символів";
@@ -64,11 +53,12 @@ namespace TeleMist.Pages
                 return;
             }
 
-            
-            Database db = (Database)App.Current.TryFindResource("AccessDB");
+
+            Database db = (Database) App.Current.TryFindResource("AccessDB");
 
 
-            if (Doctor.IsChecked == true) {
+            if (Doctor.IsChecked == true)
+            {
                 role = "doctor";
             }
             else

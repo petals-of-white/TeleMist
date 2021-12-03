@@ -1,5 +1,5 @@
-﻿using Caliburn.Micro;
-using System.Windows;
+﻿using System.Windows;
+using Caliburn.Micro;
 using TeleMist.ViewModels;
 
 namespace TeleMist

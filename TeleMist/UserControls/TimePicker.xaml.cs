@@ -1,19 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TeleMist.UserControls
 {
@@ -56,14 +45,14 @@ namespace TeleMist.UserControls
             get { return _allAppointmentHours; }
             set { _allAppointmentHours = value; }
         }
-        
-        private static string[] hours = {
+
+        private static string [] hours = {
             "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
             "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
             "15:00", "15:30", "16:00"
         };
 
-        
+
 
         private List<string> _unavailableHours; //maybe a DateTime type will be a better choice, not sur,e though.
 
@@ -71,7 +60,7 @@ namespace TeleMist.UserControls
         //public static readonly DependencyProperty AllHoursButtonsProperty = DependencyProperty.Register("AllHoursButtons",
         //    typeof(List<Button>), typeof(TimePicker), new PropertyMetadata(true));
 
-    
+
 
         public static readonly DependencyProperty AppointmentDateProperty = DependencyProperty.Register("AppointmentDate",
             typeof(DateTime?),
@@ -97,7 +86,7 @@ namespace TeleMist.UserControls
 
         public string NumberOfButtons
         {
-            get { return (string)GetValue(NumberButtonsProperty); }
+            get { return (string) GetValue(NumberButtonsProperty); }
             set { SetValue(NumberButtonsProperty, value); }
         }
 
@@ -109,18 +98,19 @@ namespace TeleMist.UserControls
                 Debug.WriteLine("Getting date to");
 
 
-                DateTime? dateAndTime = (DateTime?)GetValue(AppointmentDateProperty);
+                DateTime? dateAndTime = (DateTime?) GetValue(AppointmentDateProperty);
                 return dateAndTime;
             }
             set
             {
-                if (value != null) {
+                if (value != null)
+                {
                     Debug.WriteLine("Setting date to" + value);
                     SetValue(AppointmentDateProperty, value); //Задаємо значення дати
                     GetBusyHoursFromDb(); //дістаємо з бази даних інформацію про недоступні години
                     MakeButtons(); //створюємо кнопки, заборонивши вибирати недоступні
                 }
-               
+
             }
         }
         //public List<Button> AllHoursButtons
@@ -146,7 +136,7 @@ namespace TeleMist.UserControls
             Debug.WriteLine("Getting from db");
             //doing something... date
 
-            string[] test = { "16:00", "11:00", "10:00" };
+            string [] test = { "16:00", "11:00", "10:00" };
             UnavailableHours = new List<string>(test);
 
         }
@@ -178,19 +168,19 @@ namespace TeleMist.UserControls
 
 
             }
-          
-            
+
+
             Debug.WriteLine("This has ended");
 
 
-        } 
-      
+        }
 
-        
 
-        
 
-        
+
+
+
+
 
 
     }

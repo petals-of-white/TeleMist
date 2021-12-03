@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
-using TeleMist;
-using TeleMist.Models;
-using System.Windows;
-namespace TeleMist.DB
+﻿namespace TeleMist.DB
 {
     public static class Helper
     {
         public static string ConStr()
         {
-            string str = (string)App.Current.TryFindResource("ConnectionString");
+            string str = (string) App.Current.TryFindResource("ConnectionString");
             return str;
         }
 

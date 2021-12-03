@@ -19,7 +19,6 @@
         <Setter Property="Width" Value="{DynamicResource ButtonWidth}" />
 
         <Style.Triggers>
-
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Template">
                     <Setter.Value>

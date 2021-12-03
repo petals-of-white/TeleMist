@@ -1,17 +1,19 @@
-﻿<Window x:Class="TeleMist.AuthWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeleMist" xmlns:viewmodels="clr-namespace:TeleMist.ViewModels"
-        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
-        mc:Ignorable="d"
-        Title="Ласкаво просимо до ТелеМіст"
-        Style="{StaticResource TheRightWindow}">
+﻿<Window
+    x:Class="TeleMist.AuthWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeleMist"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:TeleMist.ViewModels"
+    Title="Ласкаво просимо до ТелеМіст"
+    d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+    Style="{StaticResource TheRightWindow}"
+    mc:Ignorable="d">
 
 
     <!--<ContentControl Content="{Binding SelectedViewModel}"/>-->
     <!--<ContentControl x:Name="main" Content="{StaticResource ButtonHeight}"></ContentControl>-->
-    <Frame NavigationUIVisibility="Hidden" x:Name="MainFrame"></Frame> 
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
 
 </Window>

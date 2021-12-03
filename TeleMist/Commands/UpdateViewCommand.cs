@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TeleMist.ViewModels;
 
@@ -27,11 +23,13 @@ namespace TeleMist.Commands
         public void Execute(object parameter)
         {
             Console.WriteLine("test");
-            if (parameter.ToString() == "greeting") {
+            if (parameter.ToString() == "greeting")
+            {
                 viewModel.SelectedViewModel = new GreetingViewModel();
 
             }
-            else if (parameter.ToString() == "doctor") {
+            else if (parameter.ToString() == "doctor")
+            {
                 viewModel.SelectedViewModel = new LoginDoctorViewModel();
             }
             else if (parameter.ToString() == "patient")
@@ -40,6 +38,6 @@ namespace TeleMist.Commands
             }
         }
     }
-    
-    
+
+
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace TeleMist.Models
 {
@@ -26,7 +24,7 @@ namespace TeleMist.Models
             var result = default(string);
 
             //використаємо
-            using(var algo = new MD5CryptoServiceProvider()) 
+            using (var algo = new MD5CryptoServiceProvider())
             {
                 result = GenerateHashString(algo, text);
             }
@@ -86,13 +84,12 @@ namespace TeleMist.Models
         {
             MD5 md5 = new MD5CryptoServiceProvider();
 
-
             // знайдемо геш параметра text
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
 
             //результат-геш 
 
-            byte[] result = md5.Hash;
+            byte [] result = md5.Hash;
 
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -100,11 +97,11 @@ namespace TeleMist.Models
             {
 
                 //що коїться
-                stringBuilder.Append(result[i].ToString("x2"));
+                stringBuilder.Append(result [i].ToString("x2"));
 
             }
             return stringBuilder.ToString();
-    
+
         }
     }
 }
