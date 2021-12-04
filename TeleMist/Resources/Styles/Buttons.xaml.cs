@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,12 +63,24 @@ namespace TeleMist.Resources.Styles
 
         private void UpdateInfoButton_Click(object sender, RoutedEventArgs e)
         {
+            var currentUser = App.Current.Resources ["CurrentUser"];
             Database db = (Database) App.Current.TryFindResource("AccessDB");
-            Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
-            List<Appointment> appointments = App.Current.TryFindResource("HistoryOfAppointments") as List<Appointment>;
-            List<Doctor> doctos = App.Current.TryFindResource("Doctors") as List<Doctor>;
+            if (currentUser is Patient)
+            {
+                db.UpdatePatientInfo(currentUser as Patient);
+            }
+            else if (currentUser is Doctor)
+            {
+                db.UpdateDoctorInfo(currentUser as Doctor);
+            }
+            else
+            {
+                MessageBox.Show("Something is wrong with the type");
+            }
+            //Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
+            //List<Appointment> appointments = App.Current.TryFindResource("HistoryOfAppointments") as List<Appointment>;
+            //List<Doctor> doctos = App.Current.TryFindResource("Doctors") as List<Doctor>;
 
-            db.UpdatePatientInfo(currentPatient);
         }
         /// <summary>
         /// Скасовує відповідний запис до лікаря.
@@ -102,6 +115,15 @@ namespace TeleMist.Resources.Styles
             }
 
 
+        }
+
+        private void ViewPatientDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var context = button.DataContext as Appointment;
+
+            MessageBox.Show($"Пацієнт: {context.Patient.FullName}, {context.Patient.DateOfBirth}" +
+                $"{context.Patient.Gender}, {context.Patient.Residence}");
         }
     }
 

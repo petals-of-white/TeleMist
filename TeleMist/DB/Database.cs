@@ -7,6 +7,7 @@ using System.Windows;
 using TeleMist.Helpers;
 using TeleMist.Models;
 using TeleMist.Windows;
+using static TeleMist.Helpers.ResourceSorter;
 namespace TeleMist.DB
 {
 
@@ -80,7 +81,6 @@ namespace TeleMist.DB
                  */
                 while (reader.Read())
                 {
-
                     Doctor doctor = new Doctor();
                     doctor.Id = (int) (TypedValue(reader ["id"]));
                     doctor.Username = (string) (TypedValue(reader ["username"]));
@@ -88,17 +88,16 @@ namespace TeleMist.DB
 
                     ByteImageConverter converter = new ByteImageConverter();
                     var rawAvatar = reader ["avatar"];
-
                     doctor.Avatar = converter.ByteToImage((byte []) (TypedValue(rawAvatar)));
 
                     doctor.Surname = (string) (TypedValue(reader ["surname"]));
-
                     doctor.FirstName = (string) (TypedValue(reader ["first_name"]));
                     doctor.Patronym = (string) (TypedValue(reader ["patronym"]));
                     doctor.Gender = (string) (TypedValue(reader ["gender"]));
                     doctor.DateOfBirth = (DateTime?) (TypedValue(reader ["date_of_birth"]));
                     doctor.Residence = (string) TypedValue(reader ["residence"]);
                     doctor.Specialty = (string) TypedValue(reader ["specialty"]);
+
                     doctors.Add(doctor);
                 }
 
@@ -106,8 +105,8 @@ namespace TeleMist.DB
 
             catch (OleDbException e)
             {
-                MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
-                return null;
+                MessageBox.Show("Щось пішло не так:\n " + e.Message);
+                return new List<Doctor>();
             }
 
             finally
@@ -169,8 +168,8 @@ namespace TeleMist.DB
 
                     ByteImageConverter converter = new ByteImageConverter();
                     var rawAvatar = reader ["avatar"];
-
                     patient.Avatar = converter.ByteToImage((byte []) (TypedValue(rawAvatar)));
+                    
                     patient.Surname = (string) (TypedValue(reader ["surname"]));
                     patient.FirstName = (string) (TypedValue(reader ["first_name"]));
                     patient.Patronym = (string) (TypedValue(reader ["patronym"]));
@@ -188,7 +187,7 @@ namespace TeleMist.DB
 
             catch (OleDbException e)
             {
-                MessageBox.Show("Щось пішло не так " + e.Message + e.Data + e.GetType() + e.InnerException);
+                MessageBox.Show("Щось пішло не так:\n " + e.Message);
                 return new List<Patient>();
             }
 
@@ -219,7 +218,6 @@ namespace TeleMist.DB
                 //Перевіримо, чи існують узагалі запитані записи в базі даних
                 if (!reader.HasRows)
                 {
-                    //MessageBox.Show("Немає відвідувань поки що");
                     return new List<Appointment>();
                 }
 
@@ -232,27 +230,19 @@ namespace TeleMist.DB
                     Appointment appointment = new Appointment();
                     appointment.Id = (int) (TypedValue(reader ["id"]));
 
-                    //Спробуємо дістати методами GetPatients і GetDoctors
-                    //відповідного пацієнта і лікаря замість індентифікатора
-
-
                     //!!! Перевірити наявність пацієнта
                     int doctorId = (int) (TypedValue(reader ["doctor_id"]));
 
-
-
-                    //MessageBox.Show(reader.ToString());
-
-
-
                     //!!! Перевірити наявність пацієнта
                     int patientId = (int) (TypedValue(reader ["patient_id"]));
-
 
                     appointment.Reason = (string) (TypedValue(reader ["reason"]));
                     appointment.Date_Time = (DateTime?) (TypedValue(reader ["date_time"]));
                     appointment.Diagnose = (string) TypedValue(reader ["diagnose"]);
                     appointment.Recommendations = (string) TypedValue(reader ["recommendations"]);
+
+                    //Спробуємо дістати методами GetPatients і GetDoctors
+                    //відповідного пацієнта і лікаря замість індентифікатора
                     appointment.Status = (string) TypedValue((reader ["status"]));
                     appointment.Doctor = GetDoctors($"SELECT * FROM [doctor] WHERE" +
                 $" [id]={doctorId}") [0];
@@ -282,9 +272,141 @@ namespace TeleMist.DB
         }
 
 
-        public void Update()
+
+
+        public void UpdateDoctorInfo(Doctor doctor)
         {
-            throw new NotImplementedException();
+            List<Appointment> historyOfAppointments, activeAppointments;
+            Doctor updatedDoctor;
+
+
+            updatedDoctor = GetDoctors($"SELECT * FROM [doctor] WHERE [id] = {doctor.Id}") [0];
+            
+            //завершені консультації
+            historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                    $"([doctor_id]={doctor.Id}) AND ([status] = 'Завершено')");
+
+            //майбутні консультації
+            activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                $"([doctor_id]={doctor.Id}) AND ([status] = 'Заплановано');");
+
+
+            ////тестовий варіянт зв'язування Lo
+            //foreach (Appointment appointment in activeAppointments)
+            //{
+            //    var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
+            //                   where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
+            //                   select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+            //    Doctor doc = tempDocs.First();
+            //    doc.NextAppointment = appointment;
+
+            //}
+
+
+
+            App.Current.Resources ["CurrentUser"] = updatedDoctor;
+            App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
+            App.Current.Resources["ActiveAppointments"] = activeAppointments;
+
+            MainDoctorWindow mainWindow = App.Current.MainWindow as MainDoctorWindow;
+
+            if (mainWindow != null)
+            {
+                //очищаємо обрану мармизку
+                mainWindow.Resources.Remove("SelectedAvatar");
+
+                mainWindow.TestText.Text = "";
+                if ((bool) (mainWindow.SortAppointmentsByDate?.IsChecked))
+                {
+                    //сортуємо за датою консультації
+                    SortResource<Appointment>("ActiveAppointments", new Appointment.DateComparer());
+                }
+
+                if ((bool) (mainWindow.SortAppointmentsByName?.IsChecked))
+                {
+                    //сортуємо за іменем пацієнтів
+                    SortResource<Appointment>("ActiveAppointments", new Appointment.PatientNameComparer());
+                }
+            }
+
+        }
+
+        public void UpdatePatientInfo(Patient patient)
+        {
+            List<Doctor> doctors;
+            List<Appointment> historyOfAppointments, activeAppointments;
+            Patient updatedPatient;
+
+
+            updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}") [0];
+            doctors = GetDoctors($"SELECT * FROM [doctor]");
+
+            historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                    $"([patient_id]={patient.Id}) AND ([status] = 'Завершено')");
+
+
+            //зміни історію відвідувань
+            //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
+
+            //майбутні консультації
+
+            activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
+                $"([patient_id]={patient.Id}) AND ([status] = 'Заплановано');");
+
+
+            // if (activeAppointments != null)
+
+            //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
+
+
+            //тестовий варіянт зв'язування Lo
+            foreach (Appointment appointment in activeAppointments)
+            {
+                var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
+                               where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
+                               select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
+                Doctor doc = tempDocs.First();
+                doc.NextAppointment = appointment;
+
+            }
+
+
+
+            App.Current.Resources ["CurrentUser"] = updatedPatient;
+            App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
+            //App.Current.Resources["ActiveAppointments"] = activeAppointments;
+            App.Current.Resources ["Doctors"] = doctors;
+
+            MainWindow mainWindow = App.Current.MainWindow as MainWindow;
+
+            if (mainWindow != null)
+            {
+                //очищаємо обрану мармизку
+                mainWindow.Resources.Remove("SelectedAvatar");
+
+                mainWindow.TestText.Text = "";
+                if ((bool) (mainWindow.SortDoctorsByDate?.IsChecked))
+                {
+                    SortResource<Doctor>("Doctors", new Doctor.DateComparer());
+
+                }
+
+                if ((bool) (mainWindow.SortDoctorsByName?.IsChecked))
+                {
+                    SortResource<Doctor>("Doctors", new Doctor.NameComparer());
+
+                }
+            }
+        }
+
+        /// <summary>
+        /// Вихід із обліковго запису
+        /// <br>
+        /// Потребує подальшого опрацювання
+        /// </summary>
+        public void LogOutUser()
+        {
+            App.Current.Resources.Clear();
         }
         public int Delete(string SQL)
         {
@@ -364,147 +486,6 @@ namespace TeleMist.DB
             if (Field == DBNull.Value)
                 return null;
             else return Field;
-        }
-
-        public void UpdateDoctorInfo(Doctor doctor)
-        {
-            //Database db = (Database)App.Current.TryFindResource("AccessDB");
-
-            List<Patient> patients = GetPatients($"SELECT * FROM [doctor]");
-
-            /*foreach (Patient patient in patients)
-            {
-                MessageBox.Show(patient.ToString());
-            }*/
-
-            if (patients != null)
-            {
-                App.Current.Resources ["Patients"] = patients;
-
-                //App.Current.Resources.Add("Patients", patients);
-            }
-
-            List<Appointment> historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                    $"([doctor_id]={doctor.Id}) AND ([date_time] < Now())");
-
-            //foreach (Appointment appointment in historyOfAppointments)
-            //    MessageBox.Show(appointment.ToString());
-
-
-            if (historyOfAppointments != null)
-                App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
-            //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
-
-            //майбутні консультації
-            List<Appointment> activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                $"([patient_id]={doctor.Id}) AND ([date_time] > Now())");
-
-
-            App.Current.Resources ["ActiveAppointments"] = activeAppointments;
-            //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
-
-            //тестовий варіянт зв'язування відвідувань
-            foreach (Appointment appointment in activeAppointments)
-            {
-                var tempDocs = from patient in patients // зі списку всіх доступних лікарів
-                               where patient.Id == appointment.Patient.Id // де id лікаря = id лікаря в консультації
-                               select patient; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
-                Patient pat = tempDocs.First();
-                pat.NextAppointment = appointment;
-
-            }
-        }
-
-        public void UpdatePatientInfo(Patient patient)
-        {
-            List<Doctor> doctors;
-            List<Appointment> historyOfAppointments, activeAppointments;
-            Patient updatedPatient;
-
-
-            updatedPatient = GetPatients($"SELECT * FROM [patient] WHERE [id] = {patient.Id}") [0];
-            doctors = GetDoctors($"SELECT * FROM [doctor]");
-
-            historyOfAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                    $"([patient_id]={patient.Id}) AND ([status] = 'Завершено')");
-
-
-            //зміни історію відвідувань
-            //App.Current.Resources.Add("HistoryOfAppointments", historyOfAppointments);
-
-            //майбутні консультації
-
-            activeAppointments = GetAppointments($"SELECT * FROM [appointment] WHERE " +
-                $"([patient_id]={patient.Id}) AND ([status] = 'Заплановано');");
-
-
-            // if (activeAppointments != null)
-
-            //App.Current.Resources.Add("ActiveAppointments", activeAppointments);
-
-
-            //тестовий варіянт зв'язування Lo
-            foreach (Appointment appointment in activeAppointments)
-            {
-                var tempDocs = from doctor in doctors // зі списку всіх доступних лікарів
-                               where doctor.Id == appointment.Doctor.Id // де id лікаря = id лікаря в консультації
-                               select doctor; //вибрати лікаря (зазвичай поверне список з одного елемента (сподіваюсь))
-                Doctor doc = tempDocs.First();
-                doc.NextAppointment = appointment;
-
-            }
-
-
-
-            App.Current.Resources ["CurrentUser"] = updatedPatient;
-            App.Current.Resources ["HistoryOfAppointments"] = historyOfAppointments;
-            //App.Current.Resources["ActiveAppointments"] = activeAppointments;
-            App.Current.Resources ["Doctors"] = doctors;
-
-            MainWindow mainWindow = App.Current.MainWindow as MainWindow;
-
-            if (mainWindow != null)
-            {
-                //очищаємо обрану мармизку
-                mainWindow.Resources.Remove("SelectedAvatar");
-
-                mainWindow.TestText.Text = "";
-                if ((bool) (mainWindow.SortDoctorsByDate?.IsChecked))
-                {
-                    mainWindow.SortResource<Doctor>("Doctors", new Doctor.DateComparer());
-
-                }
-
-                if ((bool) (mainWindow.SortDoctorsByName?.IsChecked))
-                {
-                    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
-
-                }
-            }
-
-
-
-            //if ((bool)(mainWindow.SortHistoryOfAppointmentsByDate.IsChecked))
-            //{
-            //    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
-
-            //}
-            //if ((bool)(mainWindow.SortHistoryOfAppointmentsByName.IsChecked))
-            //{
-            //    mainWindow.SortResource<Doctor>("Doctors", new Doctor.NameComparer());
-
-            //}
-
-        }
-
-        /// <summary>
-        /// Вихід із обліковго запису
-        /// <br>
-        /// Потребує подальшого опрацювання
-        /// </summary>
-        public void LogOutUser()
-        {
-            App.Current.Resources.Clear();
         }
     }
 }

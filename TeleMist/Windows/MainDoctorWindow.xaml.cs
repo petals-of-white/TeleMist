@@ -9,15 +9,14 @@ using TeleMist.DB;
 using TeleMist.Helpers;
 using TeleMist.Models;
 using static TeleMist.Helpers.ResourceSorter;
-
 namespace TeleMist.Windows
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainDoctorWindow : Window
     {
-        public MainWindow()
+        public MainDoctorWindow()
         {
             InitializeComponent();
         }
@@ -28,7 +27,7 @@ namespace TeleMist.Windows
         /// <param name="e"></param>
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            string surname, firstName, patronym, gender, residence, insurance;
+            string surname, firstName, patronym, gender, residence, specialty;
             DateTime dateOfBirth;
             byte [] selectedAvatar;
 
@@ -40,7 +39,7 @@ namespace TeleMist.Windows
                 patronym = Patronym.Text;
                 gender = GenderBox.Text;
                 residence = Residence.Text;
-                insurance = Insurance.Text;
+                specialty = Specialty.Text;
                 dateOfBirth = DateOfBirth.SelectedDate.Value;
             }
             catch (Exception ex)
@@ -50,7 +49,7 @@ namespace TeleMist.Windows
             }
 
 
-            Patient currentUser = App.Current.TryFindResource("CurrentUser") as Patient;
+            Doctor currentUser = (Doctor) App.Current.TryFindResource("CurrentUser");
 
             if (currentUser != null)
             {
@@ -61,20 +60,20 @@ namespace TeleMist.Windows
 
                 if (selectedAvatar != null) //з обраним зображенням мармизки
                 {
-                    sql = $"UPDATE [patient] SET " +
+                    sql = $"UPDATE [doctor] SET " +
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
-                    $"[insurance] = '{insurance}', [avatar] = @binary " +
+                    $"[specialty] = '{specialty}', [avatar] = @binary " +
                     $"WHERE [id] = {currentUser.Id}";
                     res = db.NonQuery(sql, binaryParameter: selectedAvatar);
                 }
 
                 else
                 { //без змін мармизки
-                    sql = $"UPDATE [patient] SET " +
+                    sql = $"UPDATE [doctor] SET " +
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
-                    $"[insurance] = '{insurance}'" +
+                    $"[specialty] = '{specialty}'" +
                     $"WHERE [id] = {currentUser.Id}";
                     res = db.NonQuery(sql);
 
@@ -84,7 +83,7 @@ namespace TeleMist.Windows
                 if (res)
                 {
                     MessageBox.Show("Ваші дані успішно оновлено.");
-                    db.UpdatePatientInfo(currentUser);
+                    db.UpdateDoctorInfo(currentUser);
                     //MessageBox.Show(App.Current.TryFindResource("CurrentUser").ToString());
 
                 }
@@ -97,7 +96,7 @@ namespace TeleMist.Windows
             App.Current.Resources.Remove("CurrentUser");
             App.Current.Resources.Remove("HistoryOfAppointments");
             //App.Current.Resources.Remove("ActiveAppointments");
-            App.Current.Resources.Remove("Doctors");
+            App.Current.Resources.Remove("ActiveAppointments");
 
             AuthWindow auth = new AuthWindow();
 
@@ -106,21 +105,25 @@ namespace TeleMist.Windows
             App.Current.MainWindow.Show();
 
         }
-        private void SortDoctorsByName_Checked(object sender, RoutedEventArgs e)
+        private void SortAppointmentsByName_Checked(object sender, RoutedEventArgs e)
         {
-
-            SortResource<Doctor>("Doctors", new Doctor.NameComparer());
+            SortResource<Appointment>("ActiveAppointments", new Appointment.PatientNameComparer());
 
         }
-        private void SortDoctorsByDate_Checked(object sender, RoutedEventArgs e)
+        private void SortAppointmentsByDate_Checked(object sender, RoutedEventArgs e)
         {
-            SortResource<Doctor>("Doctors" , new Doctor.DateComparer());
+            SortResource<Appointment>("ActiveAppointments");
         }
-        
+        /// <summary>
+        /// Сортує ресурс-список за навзою ресурсу, з елементами типу T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="resourceName"></param>
+        /// <param name="comparer"></param>
         
         private void SortHistoryByName_Checked(object sender, RoutedEventArgs e)
         {
-            SortResource<Appointment>("HistoryOfAppointments", new Appointment.DoctorNameComparer());
+            SortResource<Appointment>("HistoryOfAppointments", new Appointment.PatientNameComparer());
         }
         private void SortHistoryByDate_Checked(object sender, RoutedEventArgs e)
         {
@@ -139,8 +142,6 @@ namespace TeleMist.Windows
                 TestText.Text = openFileDialog.FileName + " вибрано як мармизку";
                 ByteImageConverter converter = new ByteImageConverter();
                 byte [] bytes = converter.ImageToByte(fs);
-
-
 
                 this.Resources ["SelectedAvatar"] = bytes;
                 Debug.WriteLine("Мармизку встановлено");

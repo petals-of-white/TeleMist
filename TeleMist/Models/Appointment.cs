@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TeleMist.Models
 {
@@ -17,27 +18,48 @@ namespace TeleMist.Models
 
         public int CompareTo(Appointment other)
         {
-            return other.Date_Time.Value.CompareTo(this.Date_Time.Value);
-            //if (this != null && other != null)
-            //{
-            //    return this.Date_Time.Value.CompareTo(other.Date_Time.Value);
-            //}
-            ////if (x.NextAppointment.Date_Time.HasValue && y.NextAppointment.Date_Time.HasValue)
-            ////{
-            ////    return x.NextAppointment.Date_Time.Value.CompareTo(y.NextAppointment.Date_Time.Value);
-            ////}
-            //else if (this == null && other != null)
-            //{
-            //    return 1;
-            //}
-            //else if (this != null && other == null)
-            //{
-            //    return -1;
-            //}
-            //else
-            //{
-            //    return 0;
-            //}
+            return this.Date_Time.Value.CompareTo(other.Date_Time.Value);
+
+        }
+
+        public class PatientNameComparer : IComparer<Appointment>
+        {
+            public int Compare(Appointment x, Appointment y)
+            {
+                return x.Patient.FullName.CompareTo(y.Patient.FullName);
+            }
+        }
+
+        public class DateComparer : IComparer<Appointment>
+        {
+            public int Compare(Appointment x, Appointment y)
+            {
+                if (x != null && y != null)
+                {
+                    return x.CompareTo(y);
+                }
+
+                else if (x == null && y != null)
+                {
+                    return -1;
+                }
+                else if (x != null && y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public class DoctorNameComparer : IComparer<Appointment>
+        {
+            public int Compare(Appointment x, Appointment y)
+            {
+                return x.Doctor.FullName.CompareTo(y.Doctor.FullName);
+            }
         }
 
         public override string ToString()

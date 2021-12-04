@@ -217,6 +217,14 @@
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 
+
+    <Style
+        x:Key="ViewPatientDetailsButton"
+        BasedOn="{StaticResource PurpleButton}"
+        TargetType="Button">
+        <Setter Property="Content" Value="Деталі" />
+        <EventSetter Event="Click" Handler="ViewPatientDetailsButton_Click" />
+    </Style>
     <Style x:Key="AvailableTimeButton" TargetType="Button">
         <Setter Property="Background" Value="Gray" />
         <Setter Property="BorderThickness" Value="0" />

@@ -24,6 +24,7 @@ namespace TeleMist.Pages
 
         private void LoginAsAPatient_Click(object sender, RoutedEventArgs e)
         {
+
             Database db = (Database) App.Current.TryFindResource("AccessDB");
             if (Password.Password == "" || PatientID.Text == "")
             {
@@ -34,8 +35,6 @@ namespace TeleMist.Pages
             string passwordHash = Hasher.MD5Hash(Password.Password);
 
             //пошук користувача
-
-
             var patients = db.GetPatients($"SELECT * FROM [patient] WHERE"
                 + $" [username]='{PatientID.Text}' AND [password]='{passwordHash}';");
 
@@ -44,19 +43,11 @@ namespace TeleMist.Pages
             if (patients != null && patients.Count > 0)
             {
                 Patient patient = patients [0];
-                //MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
-                /*using (StreamWriter outputFile = new StreamWriter("patient.txt"))
-                {
-                    outputFile.WriteLine(patient.ToString());
-                }*/
-
                 App.Current.Resources ["CurrentUser"] = patient;
-
                 db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
 
-
+                //головне вікно
                 MainWindow main = new MainWindow();
-
                 App.Current.MainWindow.Close();
                 App.Current.MainWindow = main;
                 App.Current.MainWindow.Show();

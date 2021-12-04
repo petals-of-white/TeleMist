@@ -16,7 +16,6 @@ namespace TeleMist.Models
         public string Patronym { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
-
         public string Residence { get; set; }
 
         /// <summary>
@@ -66,11 +65,11 @@ namespace TeleMist.Models
 
                 else if (x.NextAppointment == null && y.NextAppointment != null)
                 {
-                    return -1;
+                    return 1;
                 }
                 else if (x.NextAppointment != null && y.NextAppointment == null)
                 {
-                    return 1;
+                    return -1;
                 }
                 else
                 {

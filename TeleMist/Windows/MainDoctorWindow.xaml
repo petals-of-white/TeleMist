@@ -1,12 +1,12 @@
 ﻿<Window
-    x:Class="TeleMist.Windows.MainWindow"
+    x:Class="TeleMist.Windows.MainDoctorWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TeleMist.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-    Title="{Binding FullName, StringFormat={}Пацієнт {0}}"
+    Title="{Binding FullName, StringFormat={}Лікар {0}}"
     d:Height="500"
     d:Width="800"
     DataContext="{DynamicResource CurrentUser}"
@@ -23,13 +23,12 @@
             BorderBrush="#FFFEB83F"
             BorderThickness="1,1,1,1"
             SelectedIndex="2">
-            <TabItem Header="Лікарі">
+            <TabItem Header="Розклад консультацій">
                 <!--<StackPanel Orientation="Vertical">-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
@@ -42,24 +41,24 @@
                             <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="3*" />
                         </Grid.ColumnDefinitions>
-
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
+
 
                         <TextBlock Grid.Column="0" Style="{StaticResource AbstractTextBlock}">
                             Сортувати за:
                         </TextBlock>
                         <CheckBox
-                            x:Name="SortDoctorsByName"
+                            x:Name="SortAppointmentsByName"
                             Grid.Column="1"
-                            Checked="SortDoctorsByName_Checked">
+                            Checked="SortAppointmentsByName_Checked">
                             :іменем
                         </CheckBox>
                         <CheckBox
-                            x:Name="SortDoctorsByDate"
+                            x:Name="SortAppointmentsByDate"
                             Grid.Column="2"
-                            Checked="SortDoctorsByDate_Checked">
+                            Checked="SortAppointmentsByDate_Checked">
                             :датою консультації
                         </CheckBox>
 
@@ -69,7 +68,7 @@
                             Style="{StaticResource UpdateButton}" />
                     </Grid>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="DoctorsList" ItemsSource="{DynamicResource Doctors}">
+                        <ItemsControl x:Name="DoctorsList" ItemsSource="{DynamicResource ActiveAppointments}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderBrush="#FFF2B242" BorderThickness="0,1,0,0">
@@ -88,23 +87,23 @@
                                                 Grid.Column="0"
                                                 MaxWidth="100"
                                                 MaxHeight="100"
-                                                Source="{Binding Avatar}" />
+                                                Source="{Binding Patient.Avatar}" />
                                             <TextBlock
                                                 Grid.Column="1"
                                                 LineStackingStrategy="MaxHeight"
                                                 Style="{StaticResource AbstractTextBlock}"
-                                                Text="{Binding FullName}" />
+                                                Text="{Binding Patient.FullName}" />
                                             <TextBlock
                                                 Grid.Column="2"
                                                 Padding="0,0,0,0"
                                                 ScrollViewer.CanContentScroll="True"
                                                 Style="{StaticResource AbstractTextBlock}"
-                                                Text="{Binding NextAppointment.Date_Time, StringFormat={}{0:dd.MM.yyyy о HH:mm}}" />
-                                            <Button Grid.Column="3" Style="{Binding AppointmentStatus}" />
+                                                Text="{Binding Date_Time, StringFormat={}{0:dd.MM.yyyy о HH:mm}}" />
+                                            <Button Grid.Column="3" Style="{StaticResource ViewPatientDetailsButton}" />
                                             <Button
                                                 Grid.Column="4"
                                                 Style="{StaticResource CancelButton}"
-                                                Visibility="{Binding CancelButtonVisibility}">
+                                                Visibility="Hidden">
                                                 <Button.Content>
                                                     <TextBlock
                                                         Padding="0,0,0,0"
@@ -115,7 +114,6 @@
                                                         Text="Скасувати запис" />
                                                 </Button.Content>
                                             </Button>
-
                                         </Grid>
                                     </Border>
                                 </DataTemplate>
@@ -188,11 +186,11 @@
                                                 Grid.Column="0"
                                                 MaxWidth="100"
                                                 MaxHeight="100"
-                                                Source="{Binding Doctor.Avatar}" />
+                                                Source="{Binding Patient.Avatar}" />
                                             <TextBlock
                                                 Grid.Column="1"
                                                 Style="{StaticResource AbstractTextBlock}"
-                                                Text="{Binding Doctor.FullName}" />
+                                                Text="{Binding Patient.FullName}" />
                                             <TextBlock
                                                 Grid.Column="2"
                                                 Style="{StaticResource AbstractTextBlock}"
@@ -231,7 +229,6 @@
                         <!--<ColumnDefinition Width="*"></ColumnDefinition>-->
                         <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
-
 
                     <TextBlock
                         Grid.Row="1"
@@ -286,11 +283,9 @@
                         Grid.Row="4"
                         Grid.Column="2"
                         SelectedIndex="{Binding Path=GenderBoxIndex}">
-
                         <ComboBoxItem>Чоловік</ComboBoxItem>
                         <ComboBoxItem>Жінка</ComboBoxItem>
                     </ComboBox>
-
                     <TextBlock
                         Grid.Row="5"
                         Grid.Column="1"
@@ -316,22 +311,18 @@
                         Grid.Column="2"
                         Style="{StaticResource SmallBox}"
                         Text="{Binding Path=Residence}" />
-
                     <TextBlock
                         Grid.Row="7"
                         Grid.Column="1"
                         Style="{StaticResource ProfileFields}">
-                        Страховий поліс
+                        Спеціялізація
                     </TextBlock>
                     <TextBox
-                        x:Name="Insurance"
+                        x:Name="Specialty"
                         Grid.Row="7"
                         Grid.Column="2"
                         Style="{StaticResource SmallBox}"
-                        Text="{Binding Path=Insurance}" />
-
-
-
+                        Text="{Binding Path=Specialty}" />
                     <Button
                         x:Name="LogOutButton"
                         Grid.Row="8"
@@ -351,7 +342,6 @@
                         Style="{StaticResource PurpleButton}">
                         Зберегти
                     </Button>
-
 
                     <Image
                         x:Name="Avatar"
@@ -377,7 +367,6 @@
                         Grid.Row="5"
                         Grid.Column="3"
                         HorizontalAlignment="Right" />
-
                 </Grid>
             </TabItem>
         </TabControl>
