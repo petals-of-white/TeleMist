@@ -5,6 +5,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
+    <System:Double x:Key="DefaultFontSize">16</System:Double>
     <System:Double x:Key="ButtonHeight">35</System:Double>
     <System:Double x:Key="ButtonWidth">215</System:Double>
 

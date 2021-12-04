@@ -70,7 +70,7 @@
             Margin="0,5"
             HorizontalAlignment="Center"
             DisplayMode="Month"
-            FontSize="16"
+            FontSize="{StaticResource DefaultFontSize}"
             SelectedDatesChanged="AppointmentCalendar_SelectedDatesChanged"
             Style="{StaticResource EnhancedCalendar}" />
 

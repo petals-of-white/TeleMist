@@ -3,6 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using TeleMist.DB;
 using TeleMist.Models;
+using TeleMist.Helpers;
+using System.IO;
 
 namespace TeleMist.Pages
 {
@@ -18,8 +20,11 @@ namespace TeleMist.Pages
         private void SingUpButton_Click(object sender, RoutedEventArgs e)
         {
 
-            string role;
-
+            string role, passwordHash, avatarDir;
+            bool res;
+            byte [] imageData;
+            ByteImageConverter converter;
+           
             if (UserID.Text == "")
             {
                 Warning.Text = "Ім'я користувача не може бути порожнім";
@@ -30,6 +35,7 @@ namespace TeleMist.Pages
             if (UserID.Text.Length < 6)
             {
                 Warning.Text = "Ім'я користувача мусить містити щонайменше 6 символів";
+                return ;
             }
 
 
@@ -43,6 +49,7 @@ namespace TeleMist.Pages
             if (Password.Password.Length < 6)
             {
                 Warning.Text = "Пароль мусить містити щонайменше 6 символів";
+                return;
 
             }
 
@@ -66,14 +73,33 @@ namespace TeleMist.Pages
                 role = "patient";
 
             }
+            passwordHash = Hasher.MD5Hash(Password.Password);
 
-            string passwordHash = Hasher.MD5Hash(Password.Password);
+            converter = new ByteImageConverter();
+            avatarDir = Path.GetFullPath(@"..\..\..") + @"\Images\default_avatar.png";
 
-            //int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{Password.Password}');");
-            int res = db.Insert($"INSERT INTO [{role}] ([username], [password]) VALUES ('{UserID.Text}', '{passwordHash}');");
+            if (File.Exists(avatarDir))
+            {
+                imageData = converter.ImageToByte(File.OpenRead(avatarDir));
 
-            if (res == 1)
+            }
+            else
+            {
+
+                MessageBox.Show("Немає такого файлу " + avatarDir);
+                return;
+            }
+
+
+            res = db.NonQuery($"INSERT INTO [{role}] ([username], [password], [avatar]) VALUES ('{UserID.Text}', '{passwordHash}', @binary);", binaryParameter: imageData);
+            
+            if (res)
+            {
                 MessageBox.Show("Обліковий запис успішно створено");
+                NavigationService.GoBack();
+
+            }
+                
             else
             {
                 Warning.Text = "Неможливо зареєструватися. " +

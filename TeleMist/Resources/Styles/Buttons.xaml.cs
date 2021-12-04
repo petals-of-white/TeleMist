@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using TeleMist.DB;
 using TeleMist.Models;
+using TeleMist.Windows;
 
 namespace TeleMist.Resources.Styles
 {
+
     public partial class Buttons : ResourceDictionary
     {
         public Buttons()
@@ -17,10 +20,21 @@ namespace TeleMist.Resources.Styles
         {
             var button = (Button) sender;
             var doctor = (Doctor) button.DataContext;
+            var currentUser = (Patient) App.Current.Resources ["CurrentUser"];
+
+            ArrayList requiredFields = new ArrayList {
+                currentUser.FirstName, currentUser.Surname, currentUser.Patronym,
+                currentUser.DateOfBirth
+            };
+            
+            if (requiredFields.Contains("") || requiredFields.Contains(null))
+            {
+                MessageBox.Show("Перш ніж записуватися на консультацію, заповність особисту інформацію.", "Увага");
+                return;
+            }
+            
             Window make_appointment = new MakeAppointmentWindow();
             make_appointment.Resources.Add("SelectedDoctor", doctor);
-
-
             make_appointment.Show();
 
         }

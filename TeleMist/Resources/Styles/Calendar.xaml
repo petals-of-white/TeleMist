@@ -63,7 +63,7 @@
     <Style TargetType="DatePicker">
         <Setter Property="CalendarStyle" Value="{StaticResource EnhancedCalendar}" />
 
-        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="Height" Value="{StaticResource ButtonHeight}" />
         <Setter Property="Width" Value="{StaticResource ButtonWidth}" />
     </Style>

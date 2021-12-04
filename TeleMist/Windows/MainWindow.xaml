@@ -5,15 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TeleMist.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     Title="Main Window"
     d:Height="500"
     d:Width="800"
     DataContext="{DynamicResource CurrentUser}"
     Style="{StaticResource TheRightWindow}"
-    mc:Ignorable="d"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+    mc:Ignorable="d">
     <Window.Resources>
-        <Image x:Key="sos"></Image>
+        <Image x:Key="sos" />
     </Window.Resources>
     <Grid>
         <TabControl
@@ -301,9 +301,7 @@
                         x:Name="DateOfBirth"
                         Grid.Row="5"
                         Grid.Column="2"
-                        Margin="5"
-                        SelectedDate="{Binding Path=DateOfBirth}"
-                        Text="Hello Darkness My Old Friend" />
+                        SelectedDate="{Binding Path=DateOfBirth}" />
 
 
                     <TextBlock

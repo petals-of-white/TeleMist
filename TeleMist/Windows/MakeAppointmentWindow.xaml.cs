@@ -52,26 +52,20 @@ namespace TeleMist
 
             var currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
             var selectedDoctor = this.Resources ["SelectedDoctor"] as Doctor;
-            DateTime appTime;
-            try
+
+            DateTime appTime = DateTime.Parse(AppointmentCalendar.SelectedDate.Value.ToShortDateString() + " " + ((AppointmentTime) TimeBox.SelectedValue).Time);
+            //MessageBox.Show(appTime.ToString());
+            string SQL = $"INSERT INTO [appointment] ([patient_id], [doctor_id], " +
+            $"[date_time], [status]) " +
+            $"VALUES ({currentPatient.Id}, {selectedDoctor.Id}, '{appTime}', 'Заплановано')";
+            int res = db.Insert(SQL);
+            if (res == 1)
             {
-                appTime = DateTime.Parse(AppointmentCalendar.SelectedDate.Value.ToShortDateString() + " " + ((AppointmentTime) TimeBox.SelectedValue).Time);
-                MessageBox.Show(appTime.ToString());
-                string SQL = $"INSERT INTO [appointment] ([patient_id], [doctor_id], " +
-                $"[date_time], [status]) " +
-                $"VALUES ({currentPatient.Id}, {selectedDoctor.Id}, '{appTime}', 'Заплановано')";
-                int res = db.Insert(SQL);
-                if (res == 1)
-                {
-                    MessageBox.Show($"Вас записано на консультацію до лікаря {selectedDoctor.FullName}");
-                    db.UpdatePatientInfo(currentPatient);
-                    this.Close();
-                }
+                MessageBox.Show($"Вас записано на консультацію до лікаря {selectedDoctor.FullName}");
+                db.UpdatePatientInfo(currentPatient);
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something wrong \n" + ex.Message);
-            }
+          
 
 
 
@@ -80,13 +74,11 @@ namespace TeleMist
 
         private void AppointmentCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+
             //MessageBox.Show("Було обрано іншу дату");
             Database db = (Database) App.Current.TryFindResource("AccessDB");
-
             var currentDoctor = (Doctor) this.Resources ["SelectedDoctor"];
-
             string dateStr = AppointmentCalendar.SelectedDate.Value.ToString("dd.MM.yyyy");
-
             string SQL = $"SELECT * FROM [appointment] WHERE " +
                 $"DateValue([date_time]) = '{dateStr}' " +
                 $"AND [doctor_id] = {currentDoctor.Id};";
@@ -94,40 +86,27 @@ namespace TeleMist
 
             List<Appointment> appointments = db.GetAppointments(SQL);
 
-
-            foreach (Appointment appointment in appointments)
-            {
-                MessageBox.Show(appointment.ToString());
-            }
+            //foreach (Appointment appointment in appointments)
+            //{
+            //    MessageBox.Show(appointment.ToString());
+            //}
 
             IEnumerable<string> unavailableHours = from appointment in appointments
                                                    select appointment.Date_Time.Value.ToString("HH:mm").TrimStart('0');
 
-
-            foreach (string hour in unavailableHours)
-            {
-                MessageBox.Show(hour);
-            }
+            //foreach (string hour in unavailableHours)
+            //{
+            //    MessageBox.Show(hour);
+            //}
             List<AppointmentTime> times = new List<AppointmentTime>();
-
-            var random = new Random();
+            
             foreach (string hour in allAvailableHours)
             {
                 //MessageBox.Show(hour + "" + unavailableHours.FirstOrDefault());
                 bool isAvailable = !unavailableHours.Contains(hour);
                 times.Add(new AppointmentTime { Time = hour, available = isAvailable });
             }
-
             this.Resources ["HoursForSelectedDate"] = times;
-
-            //string time = appointments[0].Date_Time.Value.ToShortTimeString();
-
-
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Не правилно щосваві");
-            //}
-
         }
 
     }

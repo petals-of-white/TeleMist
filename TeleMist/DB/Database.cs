@@ -37,7 +37,7 @@ namespace TeleMist.DB
             catch (OleDbException e)
             {
 
-                MessageBox.Show("Помилка! " + e.Message);
+                MessageBox.Show("Помилка.");
                 return false;
             }
 
