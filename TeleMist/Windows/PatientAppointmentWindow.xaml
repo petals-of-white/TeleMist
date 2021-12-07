@@ -8,7 +8,10 @@
     Title="Інформація про консультацію"
     DataContext="{DynamicResource SelectedAppointment}"
     Style="{StaticResource TheRightWindow}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Initialized="Window_Initialized"
+    >
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
@@ -37,6 +40,7 @@
 
         <!--  Рядок 2  -->
         <TextBlock
+            x:Name="Role"
             Grid.Row="2"
             Grid.Column="1"
             Style="{StaticResource AbstractTextBlock}">

@@ -377,7 +377,7 @@ namespace TeleMist.DB
             //App.Current.Resources["ActiveAppointments"] = activeAppointments;
             App.Current.Resources ["Doctors"] = doctors;
 
-            MainWindow mainWindow = App.Current.MainWindow as MainWindow;
+            MainPatientWindow mainWindow = App.Current.MainWindow as MainPatientWindow;
 
             if (mainWindow != null)
             {

@@ -144,12 +144,16 @@
         TargetType="Button">
         <Setter Property="Content">
             <Setter.Value>
-                <Image Source="\Images\reload_arrow.png" />
+                <Image
+                    Width="30"
+                    Height="30"
+                    Source="\Images\reload_arrow.png" />
             </Setter.Value>
         </Setter>
         <Setter Property="HorizontalAlignment" Value="                 Right" />
-        <Setter Property="MaxHeight" Value="30" />
-        <Setter Property="MaxWidth" Value=" 30" />
+        <Setter Property="MaxHeight" Value="40" />
+        <Setter Property="MaxWidth" Value="40" />
+
         <EventSetter Event="Click" Handler="UpdateInfoButton_Click" />
     </Style>
 

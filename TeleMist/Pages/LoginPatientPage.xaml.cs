@@ -47,7 +47,7 @@ namespace TeleMist.Pages
                 db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
 
                 //головне вікно
-                MainWindow main = new MainWindow();
+                MainPatientWindow main = new MainPatientWindow();
                 App.Current.MainWindow.Close();
                 App.Current.MainWindow = main;
                 App.Current.MainWindow.Show();

@@ -14,8 +14,8 @@ namespace TeleMist.Resources.Styles
     {
         public Buttons()
         {
-
             InitializeComponent();
+            
         }
         private void OpenAppointmentMakingButton_Click(object sender, RoutedEventArgs e)
         {
@@ -23,6 +23,7 @@ namespace TeleMist.Resources.Styles
             var doctor = (Doctor) button.DataContext;
             var currentUser = (Patient) App.Current.Resources ["CurrentUser"];
 
+            //обов'язкові поля
             ArrayList requiredFields = new ArrayList {
                 currentUser.FirstName, currentUser.Surname, currentUser.Patronym,
                 currentUser.DateOfBirth
