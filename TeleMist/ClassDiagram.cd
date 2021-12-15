@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="TeleMist.Models.Person">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <NestedTypes>
+      <Class Name="TeleMist.Models.Person.NameComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Person.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="TeleMist.Models.Person.DateComparer" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Person.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAEICAAQQAEAAABAAQAAADAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Models.Doctor">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAKAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\Doctor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Models.Patient">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Models.Hasher">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEAEAAAAAAAAApBAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Hasher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Models.Appointment" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="TeleMist.Models.Appointment.PatientNameComparer">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Appointment.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="TeleMist.Models.Appointment.DateComparer">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Appointment.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="TeleMist.Models.Appointment.DoctorNameComparer">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Appointment.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACAQAEAAAAAAYEAAAAAAAAAAAAAAQAIAAAAAAACQA=</HashCode>
+      <FileName>Models\Appointment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Models.AppointmentTime">
+    <Position X="3" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\AppointmentTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Helpers.ByteImageConverter">
+    <Position X="11.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ImageByteConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Helpers.ResourceSorter">
+    <Position X="11.75" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ResourceSorter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Helpers.MathConverter" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAIAAEAAAAAgAAAAAAAAAAIAKAAA=</HashCode>
+      <FileName>Helpers\MathConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.DB.Database">
+    <Position X="9.25" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAJAIEQAAAACAAUAAAAEAAAQAAEEAAAAAAAABAAAAAA=</HashCode>
+      <FileName>DB\Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.DB.Helper">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\Helper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.Models.Messages">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Messages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TeleMist.AuthWindow" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\AuthWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.CallWindow" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\CallWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.ConfirmCallWindow" BaseTypeListCollapsed="true">
+    <Position X="18" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\ConfirmCallWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.DoctorAppointmentInfoWindow" BaseTypeListCollapsed="true">
+    <Position X="20" Y="7.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\DoctorAppointmentInfoWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.MakeAppointmentWindow" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="11" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAACAAAAAAAAAAAIAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\MakeAppointmentWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.PatientAppointmentWindow" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\PatientAppointmentWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Windows.MainDoctorWindow" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="11" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIBAAAAACAABAAAAAAAAABAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Windows\MainDoctorWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Windows.MainPatientWindow" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="11" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAIAAAAAACAAAACAAAAAAABAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Windows\MainPatientWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Pages.GreetingPage" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAQAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\GreetingPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Pages.LoginDoctorPage" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="2.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Pages\LoginDoctorPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Pages.LoginPatientPage" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Pages\LoginPatientPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TeleMist.Pages.SignUpPage" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAACAAAAA=</HashCode>
+      <FileName>Pages\SignUpPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

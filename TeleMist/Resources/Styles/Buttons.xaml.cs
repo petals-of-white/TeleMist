@@ -76,7 +76,7 @@ namespace TeleMist.Resources.Styles
             }
             else
             {
-                MessageBox.Show("Something is wrong with the type");
+                //MessageBox.Show("Something is wrong with the type");
             }
             //Patient currentPatient = App.Current.Resources ["CurrentUser"] as Patient;
             //List<Appointment> appointments = App.Current.TryFindResource("HistoryOfAppointments") as List<Appointment>;

@@ -5,9 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TeleMist"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodels="clr-namespace:TeleMist.ViewModels"
     Title="Ласкаво просимо до ТелеМіст"
-    d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
     Style="{StaticResource TheRightWindow}"
     mc:Ignorable="d">
 
