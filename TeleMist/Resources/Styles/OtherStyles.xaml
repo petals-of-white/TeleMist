@@ -29,7 +29,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Width" Value="160" />
+        <Setter Property="Width" Value="170" />
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="true">

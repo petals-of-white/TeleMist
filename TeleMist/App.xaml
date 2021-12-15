@@ -6,6 +6,7 @@
     xmlns:viewmodels="clr-namespace:TeleMist.ViewModels"
     xmlns:views="clr-namespace:TeleMist.Views"
     LoadCompleted="Application_LoadCompleted"
+    Startup="Application_Startup"
     StartupUri="Windows/AuthWindow.xaml">
 
     <Application.Resources>

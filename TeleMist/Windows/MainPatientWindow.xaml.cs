@@ -8,15 +8,16 @@ using Microsoft.Win32;
 using TeleMist.DB;
 using TeleMist.Helpers;
 using TeleMist.Models;
+using static TeleMist.Helpers.ResourceSorter;
 
 namespace TeleMist.Windows
 {
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainPatientWindow : Window
     {
-        public MainWindow()
+        public MainPatientWindow()
         {
             InitializeComponent();
         }
@@ -49,9 +50,9 @@ namespace TeleMist.Windows
             }
 
 
-            Patient currentPatient = App.Current.TryFindResource("CurrentUser") as Patient;
+            Patient currentUser = App.Current.TryFindResource("CurrentUser") as Patient;
 
-            if (currentPatient != null)
+            if (currentUser != null)
             {
                 //!!!!!ПОдумати над цим
                 Database db = App.Current.TryFindResource("AccessDB") as Database;
@@ -64,7 +65,7 @@ namespace TeleMist.Windows
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
                     $"[insurance] = '{insurance}', [avatar] = @binary " +
-                    $"WHERE [id] = {currentPatient.Id}";
+                    $"WHERE [id] = {currentUser.Id}";
                     res = db.NonQuery(sql, binaryParameter: selectedAvatar);
                 }
 
@@ -74,7 +75,7 @@ namespace TeleMist.Windows
                     $"[surname] = '{surname}', [first_name] = '{firstName}', [patronym] = '{patronym}', " +
                     $"[gender] = '{gender}', [date_of_birth] = '{dateOfBirth}', [residence] = '{residence}', " +
                     $"[insurance] = '{insurance}'" +
-                    $"WHERE [id] = {currentPatient.Id}";
+                    $"WHERE [id] = {currentUser.Id}";
                     res = db.NonQuery(sql);
 
                 }
@@ -83,7 +84,7 @@ namespace TeleMist.Windows
                 if (res)
                 {
                     MessageBox.Show("Ваші дані успішно оновлено.");
-                    db.UpdatePatientInfo(currentPatient);
+                    db.UpdatePatientInfo(currentUser);
                     //MessageBox.Show(App.Current.TryFindResource("CurrentUser").ToString());
 
                 }
@@ -107,68 +108,15 @@ namespace TeleMist.Windows
         }
         private void SortDoctorsByName_Checked(object sender, RoutedEventArgs e)
         {
-
-            List<Doctor> doctors = App.Current.Resources ["Doctors"] as List<Doctor>;
-
-            var updatedDoctors = from doctor in new List<Doctor>(doctors)
-                                 select doctor;
-            var sortedDoctors = updatedDoctors.ToList();
-            sortedDoctors.Sort(new Doctor.NameComparer());
-
-            App.Current.Resources ["Doctors"] = sortedDoctors;
-
-            //     DoctorsList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("FullName",
-            //System.ComponentModel.ListSortDirection.Ascending));
-
-
-
-
+            SortResource<Doctor>("Doctors", new Doctor.NameComparer());
         }
         private void SortDoctorsByDate_Checked(object sender, RoutedEventArgs e)
         {
-            List<Doctor> doctors = App.Current.Resources ["Doctors"] as List<Doctor>;
-
-            var updatedDoctors = from doctor in new List<Doctor>(doctors)
-                                 select doctor;
-            var sortedDoctors = updatedDoctors.ToList();
-            sortedDoctors.Sort(new Doctor.DateComparer());
-            sortedDoctors.Reverse();
-
-
-            App.Current.Resources ["Doctors"] = sortedDoctors;
-        }
-        /// <summary>
-        /// Сортує ресурс-список за навзою ресурсу, з елементами типу T
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="resourceName"></param>
-        /// <param name="comparer"></param>
-        internal void SortResource<T>(string resourceName, IComparer<T> comparer)
-        {
-            List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
-
-            var updatedResources = from resource in new List<T>(resources)
-                                   select resource;
-            var sortedResources = updatedResources.ToList();
-            sortedResources.Sort(comparer);
-
-
-            App.Current.Resources [resourceName] = sortedResources;
-
-        }
-        internal void SortResource<T>(string resourceName)
-        {
-            List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
-            var updatedResources = from resource in new List<T>(resources)
-                                   select resource;
-            var sortedResources = updatedResources.ToList();
-            sortedResources.Sort();
-            App.Current.Resources [resourceName] = sortedResources;
-
-        }
+            SortResource<Doctor>("Doctors" , new Doctor.DateComparer());
+        }        
         private void SortHistoryByName_Checked(object sender, RoutedEventArgs e)
         {
-            SortResource<Appointment>("HistoryOfAppointments");
+            SortResource<Appointment>("HistoryOfAppointments", new Appointment.DoctorNameComparer());
         }
         private void SortHistoryByDate_Checked(object sender, RoutedEventArgs e)
         {
@@ -188,14 +136,9 @@ namespace TeleMist.Windows
                 ByteImageConverter converter = new ByteImageConverter();
                 byte [] bytes = converter.ImageToByte(fs);
 
-
-
                 this.Resources ["SelectedAvatar"] = bytes;
                 Debug.WriteLine("Мармизку встановлено");
-
             }
-
-
         }
     }
 }

@@ -10,8 +10,6 @@ namespace TeleMist.Models
         {
             return $"Id = {Id}, DoctgorID = {Username}, Password =  {Password}, {FullName}, {Gender}, {DateOfBirth}, {Residence}, {Specialty}";
         }
-
-
         public string CancelButtonVisibility
         {
             get
@@ -44,7 +42,6 @@ namespace TeleMist.Models
 
             }
         }
-
 
         //private void MakeAppointmentButon_Click(object sender, RoutedEventArgs e)
         //{

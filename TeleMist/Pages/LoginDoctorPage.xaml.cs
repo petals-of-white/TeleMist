@@ -26,40 +26,37 @@ namespace TeleMist.Pages
         private void LoginAsADoctor_Click(object sender, RoutedEventArgs e)
         {
             Database db = (Database) App.Current.TryFindResource("AccessDB");
-
             if (Password.Password == "" || DoctorID.Text == "")
             {
                 MessageBox.Show("Необхідно заповнити поля");
                 return;
             }
+
             string passwordHash = Hasher.MD5Hash(Password.Password);
 
-            /**/
-            //Doctor doctor = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
-            //    $" [username]='{DoctorID.Text}' AND [password]='{Password.Password}';")[0];
-            List<Doctor> doctors = db.GetDoctors($"SELECT * FROM [doctor] WHERE" +
-                $" [username]='{DoctorID.Text}' AND [password]='{passwordHash}';");
+            //пошук користувача
+            var doctors = db.GetDoctors($"SELECT * FROM [doctor] WHERE"
+                + $" [username]='{DoctorID.Text}' AND [password]='{passwordHash}';");
+
+            //Якщо не виникла помилка в процесі запиту І список користувачів не пустий (користувач існує).
+            //Насправді, все це нижче бажано перенести в окрему функцію.
             if (doctors != null && doctors.Count > 0)
             {
-
                 Doctor doctor = doctors [0];
+                App.Current.Resources ["CurrentUser"] = doctor;
+                db.UpdateDoctorInfo(doctor); //оновлює всі необхідну інформацію
 
-                //MessageBox.Show("Суперуспішний успіх. Нарешті ми це зробили!!");
-
-                App.Current.Resources.Add("CurrentUser", doctor);
-
-                db.UpdateDoctorInfo(doctor);
-
-                MainWindow main = new MainWindow();
+                //головне вікно
+                MainDoctorWindow main = new();
                 App.Current.MainWindow.Close();
                 App.Current.MainWindow = main;
                 App.Current.MainWindow.Show();
+
             }
             else
             {
                 Warning.Text = "Неможливо авторизуватись. Перевірте правильність уведення даних і повторіть спробу";
             }
-
         }
 
 

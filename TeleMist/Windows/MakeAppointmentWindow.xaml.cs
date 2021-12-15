@@ -58,17 +58,14 @@ namespace TeleMist
             string SQL = $"INSERT INTO [appointment] ([patient_id], [doctor_id], " +
             $"[date_time], [status]) " +
             $"VALUES ({currentPatient.Id}, {selectedDoctor.Id}, '{appTime}', 'Заплановано')";
-            int res = db.Insert(SQL);
-            if (res == 1)
+            bool res = db.NonQuery(SQL);
+            if (res)
             {
                 MessageBox.Show($"Вас записано на консультацію до лікаря {selectedDoctor.FullName}");
                 db.UpdatePatientInfo(currentPatient);
                 this.Close();
             }
           
-
-
-
 
         }
 
@@ -86,18 +83,9 @@ namespace TeleMist
 
             List<Appointment> appointments = db.GetAppointments(SQL);
 
-            //foreach (Appointment appointment in appointments)
-            //{
-            //    MessageBox.Show(appointment.ToString());
-            //}
-
             IEnumerable<string> unavailableHours = from appointment in appointments
                                                    select appointment.Date_Time.Value.ToString("HH:mm").TrimStart('0');
 
-            //foreach (string hour in unavailableHours)
-            //{
-            //    MessageBox.Show(hour);
-            //}
             List<AppointmentTime> times = new List<AppointmentTime>();
             
             foreach (string hour in allAvailableHours)

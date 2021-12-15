@@ -16,5 +16,10 @@ namespace TeleMist
         {
             this.Close();
         }
+
+        private void Window_Initialized(object sender, System.EventArgs e)
+        {
+            //if (this.Resources)
+        }
     }
 }
