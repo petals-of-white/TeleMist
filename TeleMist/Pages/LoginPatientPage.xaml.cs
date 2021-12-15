@@ -45,7 +45,6 @@ namespace TeleMist.Pages
                 Patient patient = patients [0];
                 App.Current.Resources ["CurrentUser"] = patient;
                 db.UpdatePatientInfo(patient); //оновлює всі необхідну інформацію
-
                 //головне вікно
                 MainPatientWindow main = new MainPatientWindow();
                 App.Current.MainWindow.Close();

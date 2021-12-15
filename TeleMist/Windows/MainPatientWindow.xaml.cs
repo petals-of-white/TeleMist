@@ -108,16 +108,12 @@ namespace TeleMist.Windows
         }
         private void SortDoctorsByName_Checked(object sender, RoutedEventArgs e)
         {
-
             SortResource<Doctor>("Doctors", new Doctor.NameComparer());
-
         }
         private void SortDoctorsByDate_Checked(object sender, RoutedEventArgs e)
         {
             SortResource<Doctor>("Doctors" , new Doctor.DateComparer());
-        }
-        
-        
+        }        
         private void SortHistoryByName_Checked(object sender, RoutedEventArgs e)
         {
             SortResource<Appointment>("HistoryOfAppointments", new Appointment.DoctorNameComparer());
@@ -140,37 +136,9 @@ namespace TeleMist.Windows
                 ByteImageConverter converter = new ByteImageConverter();
                 byte [] bytes = converter.ImageToByte(fs);
 
-
-
                 this.Resources ["SelectedAvatar"] = bytes;
                 Debug.WriteLine("Мармизку встановлено");
-
             }
-
-
         }
-        //internal void SortResource<T>(string resourceName, IComparer<T> comparer)
-        //{
-        //    List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
-
-        //    var updatedResources = from resource in new List<T>(resources)
-        //                           select resource;
-        //    var sortedResources = updatedResources.ToList();
-        //    sortedResources.Sort(comparer);
-
-
-        //    App.Current.Resources [resourceName] = sortedResources;
-
-        //}
-        //internal void SortResource<T>(string resourceName)
-        //{
-        //    List<T> resources = App.Current.TryFindResource(resourceName) as List<T>;
-        //    var updatedResources = from resource in new List<T>(resources)
-        //                           select resource;
-        //    var sortedResources = updatedResources.ToList();
-        //    sortedResources.Sort();
-        //    App.Current.Resources [resourceName] = sortedResources;
-
-        //}
     }
 }

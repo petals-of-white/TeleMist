@@ -89,7 +89,6 @@ namespace TeleMist.DB
                     ByteImageConverter converter = new ByteImageConverter();
                     var rawAvatar = reader ["avatar"];
                     doctor.Avatar = converter.ByteToImage((byte []) (TypedValue(rawAvatar)));
-
                     doctor.Surname = (string) (TypedValue(reader ["surname"]));
                     doctor.FirstName = (string) (TypedValue(reader ["first_name"]));
                     doctor.Patronym = (string) (TypedValue(reader ["patronym"]));
@@ -97,7 +96,6 @@ namespace TeleMist.DB
                     doctor.DateOfBirth = (DateTime?) (TypedValue(reader ["date_of_birth"]));
                     doctor.Residence = (string) TypedValue(reader ["residence"]);
                     doctor.Specialty = (string) TypedValue(reader ["specialty"]);
-
                     doctors.Add(doctor);
                 }
 
@@ -114,7 +112,6 @@ namespace TeleMist.DB
                 if (toCloseConnection)
                     Connection.Close();
             }
-
 
             return doctors;
         }
