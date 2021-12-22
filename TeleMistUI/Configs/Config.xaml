@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:db="clr-namespace:TeleMistLibrary.DB"
+    xmlns:helper="clr-namespace:TeleMistLibrary.Helpers"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <sys:String x:Key="ConnectionString">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\ТелеМіст\TeleMist\DB\telemist.accdb</sys:String>
+    <db:Database x:Key="AccessDB" />
+    <helper:MathConverter x:Key="MathConverter" />
+</ResourceDictionary>

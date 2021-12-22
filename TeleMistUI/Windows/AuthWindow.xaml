@@ -1,0 +1,17 @@
+﻿<Window
+    x:Class="TeleMistUI.AuthWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeleMistUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Ласкаво просимо до ТелеМіст"
+    Style="{StaticResource TheRightWindow}"
+    mc:Ignorable="d">
+
+
+    <!--<ContentControl Content="{Binding SelectedViewModel}"/>-->
+    <!--<ContentControl x:Name="main" Content="{StaticResource ButtonHeight}"></ContentControl>-->
+    <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" />
+
+</Window>

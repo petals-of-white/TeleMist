@@ -1,0 +1,122 @@
+﻿<Window
+    x:Class="TeleMistUI.PatientAppointmentWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TeleMistUI"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Інформація про консультацію"
+    DataContext="{DynamicResource SelectedAppointment}"
+    Style="{StaticResource TheRightWindow}"
+    mc:Ignorable="d"
+    Initialized="Window_Initialized"
+    >
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="2"
+            Style="{StaticResource AbstractTextBlock}"><Bold Foreground="#6c55e4">Інформація про консультацію</Bold></TextBlock>
+
+        <!--  Рядок 2  -->
+        <TextBlock
+            x:Name="Role"
+            Grid.Row="2"
+            Grid.Column="1"
+            Style="{StaticResource AbstractTextBlock}">
+            Лікар
+        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="2"
+            Style="{StaticResource AbstractTextBlock}"
+            Text="{Binding Doctor.FullName}" />
+
+
+        <!--  Рядок 3  -->
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="1"
+            Style="{StaticResource AbstractTextBlock}">
+            Причина звернення
+        </TextBlock>
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource LockedBox}"
+            Text="{Binding Reason}" />
+
+        <!--  Рядок 4  -->
+        <TextBlock
+            Grid.Row="4"
+            Grid.Column="1"
+            Style="{StaticResource AbstractTextBlock}">
+            Скарги
+        </TextBlock>
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource LockedBox}" />
+
+        <!--  Рядок 5  -->
+        <TextBlock
+            Grid.Row="5"
+            Grid.Column="1"
+            Style="{StaticResource AbstractTextBlock}">
+            Діягнози
+        </TextBlock>
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource LockedBox}"
+            Text="{Binding Diagnose}" />
+
+        <!--  Рядок 6  -->
+        <TextBlock
+            Grid.Row="6"
+            Grid.Column="1"
+            Style="{StaticResource AbstractTextBlock}">
+            Призначення
+        </TextBlock>
+        <TextBox
+            Grid.Row="6"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource LockedBox}"
+            Text="{Binding Recommendations}" />
+
+        <!--  Рядок 7  -->
+        <Button
+            Grid.Row="7"
+            Grid.Column="3"
+            Click="CloseButton_Click"
+            Style="{StaticResource PurpleButton}">
+            Зрозуміло
+        </Button>
+
+    </Grid>
+
+</Window>
